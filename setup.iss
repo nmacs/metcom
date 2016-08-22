@@ -35,9 +35,9 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\nmacs\Documents\untitled\package\MetCOM.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\nmacs\Documents\untitled\package\*";          DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "distr\vc_redist.x86.exe";                              DestDir: "{tmp}"; Flags: ignoreversion deleteafterinstall nocompression
+Source: "package\MetCOM.exe";              DestDir: "{app}"; Flags: ignoreversion
+Source: "package\*";                       DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "distr\vc_redist.x86.exe";         DestDir: "{tmp}"; Flags: ignoreversion deleteafterinstall nocompression
 
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
