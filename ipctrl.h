@@ -4,6 +4,8 @@
 #include <QFrame>
 #include <QLineEdit>
 
+#define QTUTL_IP_SIZE 4
+
 class IPCtrl : public QFrame
 {
     typedef QFrame baseClass;
@@ -12,7 +14,8 @@ public:
     IPCtrl(QWidget *parent);
     ~IPCtrl();
 
-#define QTUTL_IP_SIZE 4
+    QString IP() const;
+    void setIP(QString const& ip);
 
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
@@ -21,6 +24,10 @@ public slots:
 
 signals:
     void signalTextChanged(QLineEdit* pEdit);
+    void textChanged(QString const& text);
+
+private slots:
+    void itemTextChanged(QString const& text);
 
 private:
     QLineEdit *(m_pLineEdit[QTUTL_IP_SIZE]);

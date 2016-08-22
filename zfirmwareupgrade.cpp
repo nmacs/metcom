@@ -1,8 +1,8 @@
 #include "zfirmwareupgrade.h"
 #include <QFile>
 
-ZFirmwareUpgrade::ZFirmwareUpgrade(ZChannel *channel, QObject *parent) :
-    ZProtocol(channel, parent)
+ZFirmwareUpgrade::ZFirmwareUpgrade(ZChannel *channel, Progress *progress, QObject *parent) :
+    ZProtocol(channel, progress, parent)
 {
 }
 
@@ -16,21 +16,10 @@ void ZFirmwareUpgrade::setResetConfiguration(bool value)
     m_resetConfiguration = value;
 }
 
-bool ZFirmwareUpgrade::run()
+bool ZFirmwareUpgrade::doRun()
 {
     bool res;
     QString command;
-
-    if (progress())
-    {
-        progress()->setValue(0);
-    }
-
-    if (password().isEmpty())
-    {
-        setErrorString(tr("No password provided"));
-        return false;
-    }
 
     QFile file(m_firmwareFile);
     res = file.open(QIODevice::ReadOnly);
@@ -113,15 +102,11 @@ bool ZFirmwareUpgrade::run()
             }
 
             bytesSent += sizeof(block) - 1;
-            if (progress())
-            {
-                progress()->setValue((bytesSent * 100) / firmwareSize);
-            }
+            reportProgress((double)bytesSent / firmwareSize, tr("Firmware Upgrade..."));
         }
 
         blockNumber += 1;
     }
-    m_progress->setValue(100);
     file.close();
 
     command = QString("ENF=%1\r").arg(password()).toUtf8();

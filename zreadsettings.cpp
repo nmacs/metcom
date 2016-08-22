@@ -1,12 +1,12 @@
 #include "zreadsettings.h"
 #include <QDebug>
 
-ZReadSettings::ZReadSettings(ZChannel *channel, QObject *parent) :
-    ZProtocol(channel, parent)
+ZReadSettings::ZReadSettings(ZChannel *channel, Progress *progress, QObject *parent) :
+    ZProtocol(channel, progress, parent)
 {
 }
 
-bool ZReadSettings::run()
+bool ZReadSettings::doRun()
 {
     bool res;
     QString command;

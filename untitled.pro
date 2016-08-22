@@ -25,7 +25,14 @@ SOURCES += main.cpp\
     zsettingsview.cpp \
     zsettingstable.cpp \
     zwritesettings.cpp \
-    zcommlog.cpp
+    zcommlog.cpp \
+    connect.cpp \
+    firmwareupgrade.cpp \
+    progress.cpp \
+    zcommlogdialog.cpp \
+    passwordchangedlg.cpp \
+    zpasswordchange.cpp \
+    zsettingsgui.cpp
 
 HEADERS  += mainwindow.h \
     zchannel.h \
@@ -38,12 +45,26 @@ HEADERS  += mainwindow.h \
     zsettingsview.h \
     zsettingstable.h \
     zwritesettings.h \
-    zcommlog.h
+    zcommlog.h \
+    connect.h \
+    firmwareupgrade.h \
+    progress.h \
+    zcommlogdialog.h \
+    passwordchangedlg.h \
+    zpasswordchange.h \
+    zsettingsgui.h
 
 FORMS    += mainwindow.ui \
-    connection.ui \
-    fwupgrade.ui
+    connect.ui \
+    fwupgrade_2.ui \
+    firmwareupgrade.ui \
+    progress.ui \
+    zcommlogdialog.ui \
+    passwordchangedlg.ui
 
 TRANSLATIONS += app_en.ts
 TRANSLATIONS += app_ru.ts
+
+DISTFILES += \
+    icon.png
 

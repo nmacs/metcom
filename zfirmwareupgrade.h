@@ -8,12 +8,12 @@ class ZFirmwareUpgrade : public ZProtocol
 {
     Q_OBJECT
 public:
-    explicit ZFirmwareUpgrade(ZChannel *channel = 0, QObject *parent = 0);
+    explicit ZFirmwareUpgrade(ZChannel *channel = 0, Progress *progress = 0, QObject *parent = 0);
 
     void setFirmwareFile(const QString &file);
     void setResetConfiguration(bool value);
 
-    virtual bool run();
+    virtual bool doRun();
 
 signals:
 
@@ -22,7 +22,6 @@ public slots:
 private:
     QString m_firmwareFile;
     bool m_resetConfiguration;
-    QProgressBar *m_progress;
 };
 
 #endif // ZFIRMWAREUPGRADE_H

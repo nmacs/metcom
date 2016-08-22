@@ -5,7 +5,9 @@
 #include <QSettings>
 #include <QTranslator>
 #include "zsettingstable.h"
-#include "zcommlog.h"
+#include "zcommlogdialog.h"
+#include "connect.h"
+#include "progress.h"
 
 class ZChannel;
 
@@ -22,6 +24,7 @@ public:
     ~MainWindow();
 
 private slots:
+#if 0
     void on_btnUpgrade_clicked();
     void on_btnSelectFirmware_clicked();
 
@@ -34,8 +37,13 @@ private slots:
 
     void on_groupSerialPort_clicked();
     void on_groupInternet_clicked();
+#endif
 
-    void on_timeout();
+    void on_actionConnect_triggered();
+
+    void on_actionCommunication_Log_triggered();
+    void on_actionPassword_Change_triggered();
+    void on_actionFirmwareUpgrade_triggered();
 
 private:
     void updateLanguage();
@@ -45,13 +53,14 @@ private:
     QString m_firmware;
 
     Ui::MainWindow *ui;
-    QTimer *timer;
     QSettings *settings;
     QTranslator *translator;
-    ZSettingsView *m_modemSettingsView;
+    ZSettingsView *m_modemSettingsTable;
+    ZSettingsView *m_modemSettingsGUI;
     ZSettings *m_modemSettings;
-    ZCommLog *m_commLog;
     ZChannel *m_channel;
+    Progress *m_progress;
+    ZCommLogDialog *m_log;
 };
 
 #endif // MAINWINDOW_H

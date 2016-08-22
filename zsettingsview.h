@@ -17,7 +17,7 @@ protected:
     void emitUpdated(const QString& key, const QVariant& value);
 
 signals:
-    void updated(const QString& key, const QVariant& value);
+    void updated(ZSettingsView *sender, const QString& key, const QVariant& value);
 
 public slots:
 };

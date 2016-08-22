@@ -2,9 +2,9 @@
 #include <QCoreApplication>
 #include <QThread>
 
-ZProtocol::ZProtocol(ZChannel *channel, QObject *parent) :
+ZProtocol::ZProtocol(ZChannel *channel, Progress *progress, QObject *parent) :
     QObject(parent),
-    m_progress(0)
+    m_progress(progress)
 {
     setChannel(channel);
 }
@@ -46,6 +46,7 @@ void ZProtocol::setChannel(ZChannel *channel)
     if (m_channel)
     {
         setTimeout(m_channel->defaultTimeout());
+        setPassword(m_channel->password());
     }
 }
 
@@ -57,11 +58,6 @@ void ZProtocol::setPassword(const QString &password)
 void ZProtocol::setTimeout(int value)
 {
     m_timeout = value;
-}
-
-void ZProtocol::setProgress(QProgressBar *progress)
-{
-    m_progress = progress;
 }
 
 void ZProtocol::msleep(int msec)
@@ -101,6 +97,25 @@ void ZProtocol::disconnect()
     }
 
     m_channel->disconnect();
+}
+
+bool ZProtocol::run()
+{
+    bool ret;
+
+    if (m_progress)
+    {
+        m_progress->start();
+    }
+
+    ret = doRun();
+
+    if (m_progress)
+    {
+        m_progress->end();
+    }
+
+    return ret;
 }
 
 bool ZProtocol::execute(const QString& command, const QByteArray& tail, bool noresponse)
@@ -217,4 +232,17 @@ bool ZProtocol::readout(QStringList *lines, int maxlines)
     }
 
     return true;
+}
+
+bool ZProtocol::cancelRequest() const
+{
+   return m_progress != 0 ? m_progress->cancelRequest() : false;
+}
+
+void ZProtocol::reportProgress(double progress, QString const& message)
+{
+    if (m_progress)
+    {
+        m_progress->setProgress(progress, message);
+    }
 }

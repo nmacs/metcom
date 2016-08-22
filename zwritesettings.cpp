@@ -1,7 +1,7 @@
 #include "zwritesettings.h"
 
-ZWriteSettings::ZWriteSettings(ZChannel *channel, QObject *parent) :
-    ZProtocol(channel, parent)
+ZWriteSettings::ZWriteSettings(ZChannel *channel, Progress *progress, QObject *parent) :
+    ZProtocol(channel, progress, parent)
 {
 }
 
@@ -10,7 +10,7 @@ void ZWriteSettings::setSettings(const ZSettings &settings)
     m_settings = settings;
 }
 
-bool ZWriteSettings::run()
+bool ZWriteSettings::doRun()
 {
     bool res;
     QString packet;

@@ -15,7 +15,13 @@ public:
     virtual QIODevice* device();
 
     void setPortName(const QString &port);
-    void setBaudRate(QSerialPort::BaudRate baud);
+    QString portName() const;
+
+    void setBaudRate(int baud);
+    int baudRate() const;
+
+    void setOpticalMode(bool enable);
+    bool opticalMode() const;
 
     virtual int defaultTimeout();
 
@@ -25,6 +31,7 @@ public slots:
 
 private:
     QSerialPort *m_port;
+    bool m_optical;
 };
 
 #endif // ZCHANNELDIRECTSERIAL_H

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVariant>
 #include <QMap>
+#include <QList>
 
 class ZSettingsView;
 
@@ -28,16 +29,19 @@ public:
 
     const Map& values() const { return m_values; }
 
-    void setView(ZSettingsView* view);
+    void addView(ZSettingsView* view);
 
 signals:
 
 public slots:
-    void update(const QString& key, const QVariant& value);
+    void update(ZSettingsView *sender, const QString& key, const QVariant& value);
+
+private:
+    void drawViews(ZSettingsView *except = 0);
 
 private:
     Map m_values;
-    ZSettingsView *m_view;
+    QList<ZSettingsView*> m_views;
 };
 
 #endif // ZSETTINGS_H

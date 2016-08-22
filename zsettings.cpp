@@ -5,18 +5,27 @@
 #include <QFileInfo>
 
 ZSettings::ZSettings(QObject *parent) :
-    QObject(parent),
-    m_view(0)
+    QObject(parent)
 {
+}
+
+void ZSettings::drawViews(ZSettingsView *except)
+{
+    QList<ZSettingsView*>::iterator iter, end;
+    end = m_views.end();
+    for (iter = m_views.begin(); iter != end; ++iter)
+    {
+        if (*iter != except)
+        {
+            (*iter)->draw(this);
+        }
+    }
 }
 
 void ZSettings::operator=(const ZSettings &other)
 {
     m_values = other.m_values;
-    if (m_view)
-    {
-        m_view->draw(this);
-    }
+    drawViews();
 }
 
 bool ZSettings::save(const QString &file)
@@ -70,10 +79,7 @@ bool ZSettings::load(const QString &file)
         m_values.insert(*iter, iniFile.value(*iter));
     }
 
-    if (m_view)
-    {
-        m_view->draw(this);
-    }
+    drawViews();
 
     return true;
 }
@@ -81,19 +87,13 @@ bool ZSettings::load(const QString &file)
 void ZSettings::setValues(const ZSettings::Map &values)
 {
     m_values = values;
-    if (m_view)
-    {
-        m_view->draw(this);
-    }
+    drawViews();
 }
 
 void ZSettings::setValue(const QString &key, const QVariant &value)
 {
     m_values.insert(key, value);
-    if (m_view)
-    {
-        m_view->draw(this);
-    }
+    drawViews();
 }
 
 const QVariant &ZSettings::value(const QString &key, QVariant const& def) const
@@ -107,16 +107,19 @@ void ZSettings::clear()
     m_values.clear();
 }
 
-void ZSettings::setView(ZSettingsView *view)
+void ZSettings::addView(ZSettingsView *view)
 {
-    m_view = view;
-    connect(m_view, SIGNAL(updated(QString,QVariant)),
-            this, SLOT(update(QString,QVariant)));
+    m_views.push_back(view);
+    connect(view,
+            &ZSettingsView::updated,
+            this,
+            &ZSettings::update);
 
     view->draw(this);
 }
 
-void ZSettings::update(const QString &key, const QVariant &value)
+void ZSettings::update(ZSettingsView *sender, const QString &key, const QVariant &value)
 {
     m_values.insert(key, value);
+    drawViews(sender);
 }

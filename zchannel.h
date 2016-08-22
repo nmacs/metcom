@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QIODevice>
+#include "progress.h"
 #include "zcommlog.h"
 
 class ZChannel : public QObject
@@ -17,10 +18,14 @@ public:
 
     virtual int defaultTimeout() = 0;
 
+    void setProgress(Progress *progress);
+    void setCommLog(ZCommLog *log);
+
+    void setPassword(QString const& password);
+    QString const& password() const;
+
     bool write(const char* data, qint64 length, int timeout);
     qint64 read(char* data, qint64 length, int timeout);
-
-    void setCommLog(ZCommLog *log);
 
     QString const& errorString() const { return m_errorString; }
 
@@ -33,7 +38,9 @@ protected:
     void yield();
 
 private:
+    QString m_password;
     QString m_errorString;
+    Progress *m_progress;
     ZCommLog *m_log;
 };
 

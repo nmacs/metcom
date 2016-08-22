@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>560</width>
+    <width>839</width>
     <height>640</height>
    </rect>
   </property>
@@ -24,13 +24,13 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="tabMode">
      <attribute name="title">
       <string>Mode</string>
      </attribute>
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QRadioButton" name="radioModeModem">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -46,7 +46,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_2">
+     <widget class="QRadioButton" name="radioModeClient">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -59,7 +59,7 @@
        <string>Client Mode</string>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupModeModem">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -71,7 +71,7 @@
       <property name="title">
        <string/>
       </property>
-      <widget class="QCheckBox" name="checkBox">
+      <widget class="QCheckBox" name="APHN">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -83,8 +83,14 @@
        <property name="text">
         <string>Any Phone Number</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lblModeModemPhoneGroup">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -97,18 +103,27 @@
         <string>Phone Group</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QSpinBox" name="GCSD">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>110</x>
          <y>50</y>
-         <width>69</width>
+         <width>42</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="maximum">
+        <number>9</number>
+       </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_2">
+     <widget class="QGroupBox" name="groupModeClient">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -124,8 +139,8 @@
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>40</y>
-         <width>341</width>
+         <y>30</y>
+         <width>350</width>
          <height>51</height>
         </rect>
        </property>
@@ -145,20 +160,10 @@
          <string>IP Address</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>20</y>
-          <width>161</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>220</x>
           <y>20</y>
           <width>21</width>
           <height>16</height>
@@ -168,14 +173,36 @@
          <string>Port</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_2">
+       <widget class="IPCtrl" name="IPC1">
         <property name="geometry">
          <rect>
-          <x>280</x>
+          <x>70</x>
           <y>20</y>
-          <width>41</width>
-          <height>20</height>
+          <width>130</width>
+          <height>21</height>
          </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="PTC1">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>20</y>
+          <width>90</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
         </property>
        </widget>
       </widget>
@@ -184,7 +211,7 @@
         <rect>
          <x>30</x>
          <y>90</y>
-         <width>341</width>
+         <width>350</width>
          <height>51</height>
         </rect>
        </property>
@@ -204,20 +231,10 @@
          <string>IP Address</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_5">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>20</y>
-          <width>161</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_7">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>220</x>
           <y>20</y>
           <width>41</width>
           <height>16</height>
@@ -227,19 +244,41 @@
          <string>Port</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_6">
+       <widget class="IPCtrl" name="IPC2">
         <property name="geometry">
          <rect>
-          <x>280</x>
+          <x>70</x>
           <y>20</y>
-          <width>41</width>
-          <height>20</height>
+          <width>130</width>
+          <height>21</height>
          </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="PTC2">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>20</y>
+          <width>90</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
         </property>
        </widget>
       </widget>
      </widget>
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QRadioButton" name="radioModeServer">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -252,7 +291,10 @@
        <string>Server Mode</string>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox_5">
+     <widget class="QGroupBox" name="groupModeServer">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>9</x>
@@ -264,16 +306,6 @@
       <property name="title">
        <string/>
       </property>
-      <widget class="QLineEdit" name="lineEdit_11">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>40</y>
-         <width>41</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_12">
        <property name="geometry">
         <rect>
@@ -299,49 +331,92 @@
        <property name="title">
         <string>Allowed IP Adresses</string>
        </property>
-       <widget class="QLineEdit" name="lineEdit_12">
+       <widget class="IPCtrl" name="EIP1">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>131</width>
-          <height>20</height>
+          <width>130</width>
+          <height>21</height>
          </rect>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_13">
+       <widget class="IPCtrl" name="EIP2">
         <property name="geometry">
          <rect>
           <x>150</x>
           <y>20</y>
-          <width>131</width>
-          <height>20</height>
+          <width>130</width>
+          <height>21</height>
          </rect>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_14">
+       <widget class="IPCtrl" name="EIP3">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>50</y>
-          <width>131</width>
-          <height>20</height>
+          <width>130</width>
+          <height>21</height>
          </rect>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_15">
+       <widget class="IPCtrl" name="EIP4">
         <property name="geometry">
          <rect>
           <x>150</x>
           <y>50</y>
-          <width>131</width>
-          <height>20</height>
+          <width>130</width>
+          <height>21</height>
          </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
         </property>
        </widget>
       </widget>
+      <widget class="QSpinBox" name="PTSR">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>40</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+      </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_9">
+     <widget class="QGroupBox" name="groupModeServerClient">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -358,7 +433,7 @@
         <rect>
          <x>30</x>
          <y>10</y>
-         <width>241</width>
+         <width>171</width>
          <height>16</height>
         </rect>
        </property>
@@ -371,7 +446,7 @@
         <rect>
          <x>30</x>
          <y>40</y>
-         <width>241</width>
+         <width>171</width>
          <height>16</height>
         </rect>
        </property>
@@ -384,7 +459,7 @@
         <rect>
          <x>30</x>
          <y>70</y>
-         <width>271</width>
+         <width>171</width>
          <height>16</height>
         </rect>
        </property>
@@ -392,49 +467,10 @@
         <string>Socket Reconnection Interval</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_21">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>10</y>
-         <width>131</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>512</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_22">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>40</y>
-         <width>131</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>300</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_23">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>70</y>
-         <width>131</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>600</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_17">
        <property name="geometry">
         <rect>
-         <x>350</x>
+         <x>320</x>
          <y>10</y>
          <width>91</width>
          <height>16</height>
@@ -447,7 +483,7 @@
       <widget class="QLabel" name="label_18">
        <property name="geometry">
         <rect>
-         <x>350</x>
+         <x>320</x>
          <y>40</y>
          <width>91</width>
          <height>16</height>
@@ -460,7 +496,7 @@
       <widget class="QLabel" name="label_19">
        <property name="geometry">
         <rect>
-         <x>350</x>
+         <x>320</x>
          <y>70</y>
          <width>91</width>
          <height>16</height>
@@ -470,20 +506,77 @@
         <string>(1..65535 sec)</string>
        </property>
       </widget>
+      <widget class="QSpinBox" name="MPSZ">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>10</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>1024</number>
+       </property>
+       <property name="value">
+        <number>1024</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="TRDT">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>40</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>9999</number>
+       </property>
+       <property name="value">
+        <number>300</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="SITT">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>70</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+       <property name="value">
+        <number>600</number>
+       </property>
+      </widget>
      </widget>
-     <zorder>groupBox_5</zorder>
-     <zorder>groupBox_2</zorder>
-     <zorder>groupBox</zorder>
-     <zorder>radioButton</zorder>
-     <zorder>radioButton_2</zorder>
-     <zorder>radioButton_3</zorder>
-     <zorder>groupBox_9</zorder>
+     <zorder>groupModeServer</zorder>
+     <zorder>groupModeClient</zorder>
+     <zorder>groupModeModem</zorder>
+     <zorder>radioModeModem</zorder>
+     <zorder>radioModeClient</zorder>
+     <zorder>radioModeServer</zorder>
+     <zorder>groupModeServerClient</zorder>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>SIM Card</string>
      </attribute>
-     <widget class="QRadioButton" name="radioButton_4">
+     <widget class="QRadioButton" name="radioSIM1">
       <property name="geometry">
        <rect>
         <x>90</x>
@@ -502,9 +595,9 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_5">
+     <widget class="QRadioButton" name="radioSIM2">
       <property name="enabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -534,7 +627,7 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox_11">
+     <widget class="QGroupBox" name="groupSIM1">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -546,23 +639,7 @@
       <property name="title">
        <string>SIM1</string>
       </property>
-      <widget class="QCheckBox" name="checkBox_2">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>111</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Enable SIM Card</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_4">
+      <widget class="QCheckBox" name="chkROA1">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -640,7 +717,7 @@
         <string>2G/3G Priority</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_24">
+      <widget class="QLineEdit" name="txtAPN1">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -650,7 +727,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_25">
+      <widget class="QLineEdit" name="txtLOG1">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -660,7 +737,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_26">
+      <widget class="QLineEdit" name="txtPSW1">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -670,7 +747,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_27">
+      <widget class="QLineEdit" name="txtPIN1">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -683,7 +760,7 @@
         <string/>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="NET1">
        <property name="geometry">
         <rect>
          <x>120</x>
@@ -709,7 +786,10 @@
        </item>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_12">
+     <widget class="QGroupBox" name="groupSIM2">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>280</x>
@@ -719,22 +799,12 @@
        </rect>
       </property>
       <property name="title">
-       <string>SIM1</string>
+       <string>SIM2</string>
       </property>
-      <widget class="QCheckBox" name="checkBox_8">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>20</y>
-         <width>111</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Enable SIM Card</string>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox_10">
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <widget class="QCheckBox" name="chkROA2">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -812,7 +882,7 @@
         <string>2G/3G Priority</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_34">
+      <widget class="QLineEdit" name="txtAPN2">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -822,7 +892,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_35">
+      <widget class="QLineEdit" name="txtLOG2">
        <property name="geometry">
         <rect>
          <x>72</x>
@@ -832,7 +902,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_36">
+      <widget class="QLineEdit" name="txtPSW2">
        <property name="geometry">
         <rect>
          <x>72</x>
@@ -842,7 +912,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_37">
+      <widget class="QLineEdit" name="txtPIN2">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -852,7 +922,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_4">
+      <widget class="QComboBox" name="NET2">
        <property name="geometry">
         <rect>
          <x>120</x>
@@ -916,7 +986,7 @@
         <string>Main SIM card return interval</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_39">
+      <widget class="QLineEdit" name="txtRMNS">
        <property name="geometry">
         <rect>
          <x>180</x>
@@ -929,7 +999,7 @@
         <string>10</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_40">
+      <widget class="QLineEdit" name="txtSIMSwapInterval">
        <property name="geometry">
         <rect>
          <x>180</x>
@@ -969,12 +1039,41 @@
        </property>
       </widget>
      </widget>
+     <widget class="QCheckBox" name="chkSIM1Enable">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>70</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enable SIM Card</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="chkSIM2Enable">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>70</y>
+        <width>111</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enable SIM Card</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>PING</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox_6">
+     <widget class="QGroupBox" name="ESCH">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -1005,7 +1104,7 @@
         <string>IP Address</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_43">
+      <widget class="QLineEdit" name="SCH2_IP">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -1041,32 +1140,12 @@
         <string>Port</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_42">
+      <widget class="QLineEdit" name="SCH1_IP">
        <property name="geometry">
         <rect>
          <x>70</x>
          <y>30</y>
          <width>161</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_44">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>60</y>
-         <width>41</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_41">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>30</y>
-         <width>41</width>
          <height>20</height>
         </rect>
        </property>
@@ -1084,8 +1163,40 @@
         <string>Port</string>
        </property>
       </widget>
+      <widget class="QSpinBox" name="SCH1_PORT">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>30</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="SCH2_PORT">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>60</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+      </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_7">
+     <widget class="QGroupBox" name="EPNG1">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -1116,19 +1227,6 @@
         <string>1..255min</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_47">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>130</y>
-         <width>41</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>10</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_52">
        <property name="geometry">
         <rect>
@@ -1142,7 +1240,7 @@
         <string>IP Address</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_13">
+      <widget class="QCheckBox" name="EDNS">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1168,7 +1266,7 @@
         <string>IP Address</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_46">
+      <widget class="QLineEdit" name="IPP2">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -1181,7 +1279,7 @@
         <string>google.com</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_45">
+      <widget class="QLineEdit" name="IPP1">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -1207,6 +1305,22 @@
         <string>Check Interval</string>
        </property>
       </widget>
+      <widget class="QSpinBox" name="PPNG">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>130</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -1216,9 +1330,9 @@
      <widget class="QGroupBox" name="groupBox_10">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>70</x>
         <y>20</y>
-        <width>321</width>
+        <width>341</width>
         <height>251</height>
        </rect>
       </property>
@@ -1238,7 +1352,7 @@
         <string>Stop Bits</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_10">
+      <widget class="QComboBox" name="STOP">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -1247,6 +1361,21 @@
          <height>22</height>
         </rect>
        </property>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1.5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
       </widget>
       <widget class="QLabel" name="label_56">
        <property name="geometry">
@@ -1261,7 +1390,7 @@
         <string>Interface Commutation</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_9">
+      <widget class="QComboBox" name="PRTY">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -1270,11 +1399,36 @@
          <height>22</height>
         </rect>
        </property>
+       <item>
+        <property name="text">
+         <string>Even</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Odd</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Space 0</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mark 1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>No Parity</string>
+        </property>
+       </item>
       </widget>
       <widget class="QLabel" name="label_55">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>120</x>
          <y>30</y>
          <width>111</width>
          <height>20</height>
@@ -1313,10 +1467,10 @@
         <string>Port Speed, bit/sec</string>
        </property>
       </widget>
-      <widget class="QRadioButton" name="radioButton_6">
+      <widget class="QRadioButton" name="MPRT_RS232">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>30</x>
          <y>30</y>
          <width>82</width>
          <height>17</height>
@@ -1332,10 +1486,10 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QRadioButton" name="radioButton_7">
+      <widget class="QRadioButton" name="MPRT_RS485">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>240</x>
          <y>30</y>
          <width>82</width>
          <height>17</height>
@@ -1345,15 +1499,30 @@
         <string>RS485</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_6">
+      <widget class="QComboBox" name="MAPT">
        <property name="geometry">
         <rect>
          <x>140</x>
          <y>70</y>
-         <width>69</width>
+         <width>181</width>
          <height>22</height>
         </rect>
        </property>
+       <item>
+        <property name="text">
+         <string>AUX Off</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>NET&lt;-&gt;PORT</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>AUX_PORT&lt;-&gt;MAIN PORT</string>
+        </property>
+       </item>
       </widget>
       <widget class="QLabel" name="label_59">
        <property name="geometry">
@@ -1368,7 +1537,7 @@
         <string>Parity</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_7">
+      <widget class="QComboBox" name="BDRT">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -1377,8 +1546,58 @@
          <height>22</height>
         </rect>
        </property>
+       <item>
+        <property name="text">
+         <string>600</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2400</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4800</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>9600</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>14400</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>19200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>38400</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>57600</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>115200</string>
+        </property>
+       </item>
       </widget>
-      <widget class="QComboBox" name="comboBox_8">
+      <widget class="QComboBox" name="BITS">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -1387,6 +1606,26 @@
          <height>22</height>
         </rect>
        </property>
+       <item>
+        <property name="text">
+         <string>5 bit</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6 bit</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>7 bit</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>8 bit</string>
+        </property>
+       </item>
       </widget>
      </widget>
     </widget>
@@ -1399,12 +1638,12 @@
        <rect>
         <x>50</x>
         <y>20</y>
-        <width>61</width>
+        <width>81</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Тел. номера</string>
+       <string>Phone Number</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -1417,7 +1656,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Группа номеров</string>
+       <string>Phone Group</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_3">
@@ -2882,6 +3121,9 @@
       <string>Access</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_14">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -3002,6 +3244,9 @@
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_15">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -3076,7 +3321,7 @@
       <property name="title">
        <string>Interval Timer</string>
       </property>
-      <widget class="QCheckBox" name="checkBox_15">
+      <widget class="QCheckBox" name="RSIT">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -3092,7 +3337,7 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_65">
+      <widget class="QLabel" name="lblRSHR">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -3105,23 +3350,10 @@
         <string>Reset Period</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_51">
+      <widget class="QLabel" name="lblRSHR_2">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>60</y>
-         <width>31</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>24</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_66">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
+         <x>150</x>
          <y>60</y>
          <width>51</width>
          <height>16</height>
@@ -3129,6 +3361,25 @@
        </property>
        <property name="text">
         <string>1..99 hour</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="RSHR">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>60</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>99</number>
+       </property>
+       <property name="value">
+        <number>24</number>
        </property>
       </widget>
      </widget>
@@ -3144,7 +3395,7 @@
       <property name="title">
        <string>Daily Timer</string>
       </property>
-      <widget class="QLabel" name="label_67">
+      <widget class="QLabel" name="lblDTHR">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -3157,7 +3408,7 @@
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Reset Time (hh:mm)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_16">
+      <widget class="QCheckBox" name="RSDT">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -3169,37 +3420,14 @@
        <property name="text">
         <string>Enable</string>
        </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_52">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>60</y>
-         <width>31</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>00</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_53">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>60</y>
-         <width>31</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>00</string>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_68">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>200</x>
          <y>60</y>
          <width>16</width>
          <height>16</height>
@@ -3207,6 +3435,44 @@
        </property>
        <property name="text">
         <string>:</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="DTHR">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>60</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>23</number>
+       </property>
+       <property name="value">
+        <number>16</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="DTMN">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>60</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>59</number>
+       </property>
+       <property name="value">
+        <number>30</number>
        </property>
       </widget>
      </widget>
@@ -3235,18 +3501,30 @@
         <string>Group</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_12">
+      <widget class="QSpinBox" name="GPHR">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>60</x>
          <y>20</y>
-         <width>69</width>
+         <width>51</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>9</number>
+       </property>
+       <property name="value">
+        <number>2</number>
        </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_19">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -3416,6 +3694,9 @@
       <string>Schedule</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_20">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -3437,7 +3718,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Idle mode exit by schedule</string>
+        <string>Exit sleep mode by schedule</string>
        </property>
       </widget>
       <widget class="QRadioButton" name="radioButton_10">
@@ -3830,6 +4111,9 @@
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_21">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -3851,7 +4135,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Выход из ждущего режима по звонку</string>
+        <string>Exit from sleep mode by incoming call</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="checkBox_26">
@@ -3864,7 +4148,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Переход в ждущий режим по звонку</string>
+        <string>Enter sleep mode by incoming call</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_85">
@@ -3923,7 +4207,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Текс SMS для выхода из  ждущего режима</string>
+        <string>SMS text for sleep mode exit</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_88">
@@ -3936,7 +4220,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Текст SMS для входа в ждущий режим</string>
+        <string>SMS text for sleep mode enter</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_74">
@@ -3964,33 +4248,16 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tabSettingsTable">
-     <attribute name="title">
-      <string>Settings</string>
-     </attribute>
-     <widget class="QTableView" name="tblSettings">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>8</y>
-        <width>515</width>
-        <height>330</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>471</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>550</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </widget>
+   </widget>
+   <widget class="QTableView" name="tblSettings">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>10</y>
+      <width>271</width>
+      <height>581</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -3998,7 +4265,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>560</width>
+     <width>839</width>
      <height>21</height>
     </rect>
    </property>
@@ -4013,8 +4280,10 @@
      <addaction name="actionEnglish"/>
      <addaction name="actionRussian"/>
     </widget>
-    <addaction name="actionPassword_change"/>
-    <addaction name="actionFirmware_Upgrade"/>
+    <addaction name="actionConnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionPassword_Change"/>
+    <addaction name="actionFirmwareUpgrade"/>
     <addaction name="actionReset"/>
     <addaction name="separator"/>
     <addaction name="menuLanguage"/>
@@ -4034,9 +4303,16 @@
     <addaction name="actionWriteSettings"/>
     <addaction name="actionDefault_Settings"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionCommunication_Log"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuDevice"/>
    <addaction name="menuOptions"/>
+   <addaction name="menuTools"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="sizeGripEnabled">
@@ -4089,12 +4365,12 @@
     <string>Connection</string>
    </property>
   </action>
-  <action name="actionPassword_change">
+  <action name="actionPassword_Change">
    <property name="text">
     <string>Change Password</string>
    </property>
   </action>
-  <action name="actionFirmware_Upgrade">
+  <action name="actionFirmwareUpgrade">
    <property name="text">
     <string>Firmware Upgrade</string>
    </property>
@@ -4104,8 +4380,26 @@
     <string>Reset</string>
    </property>
   </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connection</string>
+   </property>
+  </action>
+  <action name="actionCommunication_Log">
+   <property name="text">
+    <string>Communication Log</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>IPCtrl</class>
+   <extends>QFrame</extends>
+   <header location="global">ipctrl.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

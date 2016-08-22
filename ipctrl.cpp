@@ -15,10 +15,45 @@ public:
     }
     ~IPItemValidator() {}
 
+    virtual QValidator::State validate(QString &text, int &pos) const
+    {
+        bool ok;
+        int value = text.toInt(&ok);
+
+        if (!ok || QString::number(value) != text)
+        {
+            pos = 0;
+            return QValidator::Intermediate;
+        }
+
+        return QIntValidator::validate(text, pos);
+    }
+
     virtual void fixup(QString & input) const
     {
         if (input.isEmpty())
             input = "0";
+        else
+        {
+            bool ok;
+            int value = input.toInt(&ok);
+            if (ok)
+            {
+                if (value < 0)
+                {
+                    input = "0";
+                }
+                else if (value > UCHAR_MAX)
+                {
+                    input = "255";
+                }
+            }
+            else
+            {
+                input = "0";
+            }
+        }
+
     }
 };
 
@@ -46,6 +81,11 @@ IPCtrl::IPCtrl(QWidget *parent) : baseClass(parent)
         QLineEdit* pEdit = m_pLineEdit[i];
         pEdit->installEventFilter( this );
 
+        connect(pEdit,
+                &QLineEdit::textChanged,
+                this,
+                &IPCtrl::itemTextChanged);
+
         pLayout->addWidget( pEdit );
         pLayout->setStretch( pLayout->count(), 1 );
 
@@ -70,6 +110,55 @@ IPCtrl::IPCtrl(QWidget *parent) : baseClass(parent)
 IPCtrl::~IPCtrl()
 {
 
+}
+
+QString IPCtrl::IP() const
+{
+    int i;
+    QString ip;
+
+    for (i = 0; i < QTUTL_IP_SIZE - 1; i++)
+    {
+        QString ipItem = m_pLineEdit[i]->text();
+        ip += !ipItem.isEmpty() ? ipItem : "0";
+        ip += '.';
+    }
+    ip += m_pLineEdit[i]->text();
+
+    return ip;
+}
+
+void IPCtrl::setIP(QString const& ip)
+{
+    int i;
+    QStringList ipItems = ip.split('.');
+    int count = QTUTL_IP_SIZE;
+
+    if (count > ipItems.length())
+    {
+        count = ipItems.length();
+    }
+
+    for (i = 0; i < count; i++)
+    {
+        int pos;
+        QString ipItem = ipItems[i];
+        const QValidator *validator = m_pLineEdit[i]->validator();
+
+        if (validator->validate(ipItem, pos) != QValidator::Acceptable)
+        {
+            validator->fixup(ipItem);
+        }
+
+        m_pLineEdit[i]->setText(ipItem);
+    }
+
+    for (; i < QTUTL_IP_SIZE; i++)
+    {
+        m_pLineEdit[i]->setText("0");
+    }
+
+    emit textChanged(IP());
 }
 
 std::string IPCtrl::getIPItemStr( unsigned char item )
@@ -98,6 +187,12 @@ void IPCtrl::slotTextChanged( QLineEdit* pEdit )
             }
         }
     }
+}
+
+void IPCtrl::itemTextChanged(const QString &text)
+{
+    (void)text;
+    emit textChanged(IP());
 }
 
 bool IPCtrl::eventFilter(QObject *obj, QEvent *event)

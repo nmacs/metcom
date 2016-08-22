@@ -1,9 +1,12 @@
 #include "zchannel.h"
 #include <QCoreApplication>
+#include <QDebug>
 
 #define GUI_POLLING_INTERVAL_MS 30
 
-ZChannel::ZChannel(QObject *parent) : QObject(parent)
+ZChannel::ZChannel(QObject *parent) : QObject(parent),
+    m_progress(0),
+    m_log(0)
 {
 }
 
@@ -23,6 +26,12 @@ bool ZChannel::write(const char* data, qint64 length, int timeout)
             return false;
         }
 
+        if (m_progress != 0 && m_progress->cancelRequest())
+        {
+           setErrorString(tr("Operation cancelled"));
+           return false;
+        }
+
         if (ret > 0)
         {
             length -= ret;
@@ -31,6 +40,12 @@ bool ZChannel::write(const char* data, qint64 length, int timeout)
 
         while (timeout > 0)
         {
+            if (m_progress != 0 && m_progress->cancelRequest())
+            {
+               setErrorString(tr("Operation cancelled"));
+               return false;
+            }
+
             yield();
 
             if (device()->waitForBytesWritten(GUI_POLLING_INTERVAL_MS))
@@ -64,9 +79,16 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
             return -1;
         }
 
+        if (m_progress != 0 && m_progress->cancelRequest())
+        {
+           setErrorString(tr("Operation cancelled"));
+           return false;
+        }
+
         if (ret > 0)
         {
             data[bytesRead] = ch;
+            qDebug() << "byte " << ch;
 
             bytesRead += 1;
             maxLength -= 1;
@@ -80,6 +102,12 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
         {
             while (timeout > 0)
             {
+                if (m_progress != 0 && m_progress->cancelRequest())
+                {
+                   setErrorString(tr("Operation cancelled"));
+                   return false;
+                }
+
                 yield();
 
                 if (device()->waitForReadyRead(GUI_POLLING_INTERVAL_MS))
@@ -104,12 +132,27 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
     return bytesRead;
 }
 
+void ZChannel::yield()
+{
+    QCoreApplication::processEvents();
+}
+
+void ZChannel::setProgress(Progress *progress)
+{
+    m_progress = progress;
+}
+
 void ZChannel::setCommLog(ZCommLog *log)
 {
     m_log = log;
 }
 
-void ZChannel::yield()
+void ZChannel::setPassword(QString const& password)
 {
-    QCoreApplication::processEvents();
+    m_password = password;
+}
+
+QString const& ZChannel::password() const
+{
+    return m_password;
 }

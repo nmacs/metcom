@@ -9,11 +9,12 @@ class ZReadSettings : public ZProtocol
 {
     Q_OBJECT
 public:
-    ZReadSettings(ZChannel *channel = 0, QObject *parent = 0);
+    ZReadSettings(ZChannel *channel = 0, Progress *progress = 0, QObject *parent = 0);
 
     ZSettings const& settings() const { return m_settings; }
 
-    virtual bool run();
+protected:
+    virtual bool doRun();
 
 private:
     ZSettings m_settings;

@@ -1,60 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "QtSerialPort/QtSerialPort"
 #include <QFileDialog>
 #include "zchanneldirectserial.h"
 #include "zfirmwareupgrade.h"
 #include "zreadsettings.h"
 #include "zwritesettings.h"
 #include "zsettings.h"
-
-class ZGuiDisabler
-{
-public:
-    ZGuiDisabler(Ui::MainWindow *ui)
-    {
-        disable(ui->actionLoadSettings);
-        disable(ui->actionSaveSettings);
-        disable(ui->actionReadSettings);
-        disable(ui->actionWriteSettings);
-    }
-
-    ~ZGuiDisabler()
-    {
-        {
-            QList<QWidget*>::iterator iter;
-            for (iter = m_disabledWidgets.begin(); iter != m_disabledWidgets.end(); ++iter)
-            {
-                (*iter)->setEnabled(true);
-            }
-        }
-
-        {
-            QList<QAction*>::iterator iter;
-            for (iter = m_disabledActions.begin(); iter != m_disabledActions.end(); ++iter)
-            {
-                (*iter)->setDisabled(false);
-            }
-        }
-    }
-
-private:
-    void disable(QWidget *widget)
-    {
-        widget->setEnabled(false);
-        m_disabledWidgets.append(widget);
-    }
-
-    void disable(QAction *action)
-    {
-        action->setDisabled(true);
-        m_disabledActions.append(action);
-    }
-
-    Ui::MainWindow *m_ui;
-    QList<QWidget*> m_disabledWidgets;
-    QList<QAction*> m_disabledActions;
-};
+#include "connect.h"
+#include "firmwareupgrade.h"
+#include "passwordchangedlg.h"
+#include "zsettingsgui.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -69,25 +24,16 @@ MainWindow::MainWindow(QWidget *parent) :
     translator = new QTranslator(this);
     qApp->installTranslator(translator);
 
-#if 0
-    timer = new QTimer(this);
-    timer->setInterval(500);
-    timer->start();
-
-    connect(timer, &QTimer::timeout, this, &MainWindow::on_timeout);
-
     updateLanguage();
-    statusBar()->showMessage(tr("Ready"));
 
-    m_firmware = settings->value("LastFirmwareFile", "").toString();
-    ui->txtFirmwareFile->setText(m_firmware);
-
-    m_modemSettingsView = new ZSettingsTable(ui->tblSettings, this);
     m_modemSettings = new ZSettings(this);
-    m_modemSettings->setView(m_modemSettingsView);
+    m_modemSettings->addView(new ZSettingsTable(ui->tblSettings, this));
+    m_modemSettings->addView(new ZSettingsGUI(ui, this));
 
-    m_commLog = new ZCommLog(ui->txtCommLog, this);
-#endif
+    m_progress = new Progress(this);
+    m_log = new ZCommLogDialog(this);
+
+    statusBar()->showMessage(tr("Ready"));
 }
 
 MainWindow::~MainWindow()
@@ -95,60 +41,83 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_btnUpgrade_clicked()
+void MainWindow::updateLanguage()
 {
-#if 0
-    if (!setupChannel())
+    QVariant language = settings->value("Language", QLocale::system().name());
+
+    if (language.toString() == "ru")
     {
+        ui->actionRussian->setChecked(true);
+        ui->actionEnglish->setChecked(false);
+    }
+    else if (language.toString() == "en")
+    {
+        ui->actionEnglish->setChecked(true);
+        ui->actionRussian->setChecked(false);
+    }
+
+    QString translation = qApp->applicationDirPath() + "/translations/app_" + language.toString();
+    translator->load(translation);
+    ui->retranslateUi(this);
+}
+
+void MainWindow::on_actionConnect_triggered()
+{
+    Connect *connect = new Connect(m_channel, this);
+    QDialog::DialogCode code = (QDialog::DialogCode)connect->exec();
+
+    if (code == QDialog::Rejected)
+    {
+        delete connect;
         return;
     }
 
-    ZGuiDisabler disabler(ui);
-    (void)disabler;
-
-    statusBar()->showMessage(tr("Upgrade Firmware..."));
-
-    ZFirmwareUpgrade upgrade(m_channel);
-    upgrade.setPassword(ui->txtPassword->text());
-    upgrade.setResetConfiguration(ui->chkResetSettings->checkState() == Qt::Checked);
-    upgrade.setFirmwareFile(m_firmware);
-    upgrade.setProgress(ui->progressBar);
-
-    bool ret = upgrade.connect();
-    if (!ret)
+    ZChannel *channel = connect->channel();
+    if (channel != 0)
     {
-        statusBar()->showMessage(upgrade.errorString());
+        if (m_channel)
+        {
+            delete m_channel;
+        }
+        m_channel = channel;
+        m_channel->setCommLog(m_log->log());
+        m_channel->setProgress(m_progress);
+    }
+
+    delete connect;
+}
+void MainWindow::on_actionPassword_Change_triggered()
+{
+    if (m_channel == 0)
+    {
+        statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
     }
 
-    ret = upgrade.run();
-    upgrade.disconnect();
-
-    if (!ret)
-    {
-        statusBar()->showMessage(tr("Error: ") + upgrade.errorString());
-    }
-    else
-    {
-        statusBar()->showMessage(tr("Done"));
-    }
-#endif
+    PasswordChangeDlg *dialog = new PasswordChangeDlg(m_channel, m_progress, this);
+    dialog->exec();
+    delete dialog;
 }
 
-void MainWindow::on_btnSelectFirmware_clicked()
+void MainWindow::on_actionFirmwareUpgrade_triggered()
 {
-#if 0
-    QString firmware = QFileDialog::getOpenFileName(this,
-                                                    tr("Select Firmware file"),
-                                                    "",
-                                                    tr("ZixLink firmware (*.zlk)"));
+    if (m_channel == 0)
+    {
+        statusBar()->showMessage(tr("Communication channel was not configured"));
+        return;
+    }
 
-    ui->txtFirmwareFile->setText(firmware);
-    m_firmware = firmware;
-    settings->setValue("LastFirmwareFile", m_firmware);
-#endif
+    FirmwareUpgrade *dialog = new FirmwareUpgrade(m_channel, m_progress, this);
+    dialog->exec();
+    delete dialog;
 }
 
+void MainWindow::on_actionCommunication_Log_triggered()
+{
+    m_log->show();
+}
+
+#if 0
 void MainWindow::on_actionEnglish_triggered()
 {
     settings->setValue("Language", "en");
@@ -275,26 +244,6 @@ void MainWindow::on_actionSaveSettings_triggered()
 #endif
 }
 
-void MainWindow::updateLanguage()
-{
-    QVariant language = settings->value("Language", QLocale::system().name());
-
-    if (language.toString() == "ru")
-    {
-        ui->actionRussian->setChecked(true);
-        ui->actionEnglish->setChecked(false);
-    }
-    else if (language.toString() == "en")
-    {
-        ui->actionEnglish->setChecked(true);
-        ui->actionRussian->setChecked(false);
-    }
-
-    QString translation = qApp->applicationDirPath() + "/translations/app_" + language.toString();
-    translator->load(translation);
-    ui->retranslateUi(this);
-}
-
 bool MainWindow::setupChannel()
 {
 #if 0
@@ -341,39 +290,6 @@ bool MainWindow::setupChannel()
     return true;
 }
 
-void MainWindow::on_timeout()
-{
-#if 0
-    QList<QSerialPortInfo>::iterator i;
-    QList<QSerialPortInfo> ports = QSerialPortInfo::availablePorts();
-
-    for (int c = 0; c < ui->cmbSerialPort->count(); c++)
-    {
-        ui->cmbSerialPort->setItemData(c, "");
-    }
-
-    for (i = ports.begin(); i != ports.end(); i++)
-    {
-        QString text = i->portName() + ": " + i->description();
-        QString data = i->portName();
-
-        int ind = ui->cmbSerialPort->findText(text);
-        if (ind < 0)
-            ui->cmbSerialPort->addItem(text, data);
-        else
-            ui->cmbSerialPort->setItemData(ind, data);
-    }
-
-    for (int c = 0; c < ui->cmbSerialPort->count();)
-    {
-        if (ui->cmbSerialPort->itemData(c).toString() == "")
-            ui->cmbSerialPort->removeItem(c);
-        else
-            c++;
-    }
-#endif
-}
-
 void MainWindow::on_groupSerialPort_clicked()
 {
     //ui->groupSerialPort->setChecked(true);
@@ -386,3 +302,4 @@ void MainWindow::on_groupInternet_clicked()
     //ui->groupInternet->setChecked(true);
     //ui->groupSerialPort->setChecked(false);
 }
+#endif
