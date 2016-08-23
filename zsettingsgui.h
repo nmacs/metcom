@@ -71,6 +71,8 @@ private slots:
     void on_DTHR_valueChanged(int value);
     void on_DTMN_valueChanged(int value);
     void on_GPHR_valueChanged(int value);
+    void on_phoneBook_phoneChanged(const QString &phone, int index);
+    void on_phoneBook_phoneGroupChanged(const QString &phone, const QString &mask, int index);
 
 private:
     Ui::MainWindow* m_gui;

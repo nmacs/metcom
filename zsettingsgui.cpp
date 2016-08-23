@@ -305,6 +305,29 @@ ZSettingsGUI::ZSettingsGUI(Ui::MainWindow* gui, QObject *parent) :
             SIGNAL(valueChanged(int)),
             this,
             SLOT(on_GPHR_valueChanged(int)));
+
+    /*
+     * Phone Book
+     */
+    connect(m_gui->phoneBook,
+            &PhoneBook::phoneChanged,
+            this,
+            &ZSettingsGUI::on_phoneBook_phoneChanged);
+
+    connect(m_gui->phoneBook,
+            &PhoneBook::phoneGroupChanged,
+            this,
+            &ZSettingsGUI::on_phoneBook_phoneGroupChanged);
+}
+
+void ZSettingsGUI::on_phoneBook_phoneChanged(QString const& phone, int index)
+{
+    emitUpdated(QString("PHN%1").arg(index), phone);
+}
+
+void ZSettingsGUI::on_phoneBook_phoneGroupChanged(QString const& phone, QString const& mask, int index)
+{
+    emitUpdated(QString("GRP%1").arg(index), mask);
 }
 
 void ZSettingsGUI::on_radioSIM1_toggled(bool checked)
@@ -833,4 +856,12 @@ void ZSettingsGUI::draw(ZSettings *settings)
 
     int GPHR = settings->value("GPHR", 2).toInt();
     m_gui->GPHR->setValue(GPHR);
+
+    for (int i = 0; i < 10; i++)
+    {
+        QString PHNx = settings->value(QString("PHN%1").arg(i), "").toString();
+        QString GRPx = settings->value(QString("GRP%1").arg(i), "").toString();
+        m_gui->phoneBook->setPhone(PHNx, i);
+        m_gui->phoneBook->setGroupMask(GRPx, i);
+    }
 }

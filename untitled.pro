@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     zcommlogdialog.cpp \
     passwordchangedlg.cpp \
     zpasswordchange.cpp \
-    zsettingsgui.cpp
+    zsettingsgui.cpp \
+    phonebook.cpp
 
 HEADERS  += mainwindow.h \
     zchannel.h \
@@ -52,7 +53,8 @@ HEADERS  += mainwindow.h \
     zcommlogdialog.h \
     passwordchangedlg.h \
     zpasswordchange.h \
-    zsettingsgui.h
+    zsettingsgui.h \
+    phonebook.h
 
 FORMS    += mainwindow.ui \
     connect.ui \
