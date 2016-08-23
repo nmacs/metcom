@@ -24,20 +24,12 @@ public:
     ~MainWindow();
 
 private slots:
-#if 0
-    void on_btnUpgrade_clicked();
-    void on_btnSelectFirmware_clicked();
-
     void on_actionEnglish_triggered();
     void on_actionRussian_triggered();
     void on_actionReadSettings_triggered();
     void on_actionWriteSettings_triggered();
     void on_actionLoadSettings_triggered();
     void on_actionSaveSettings_triggered();
-
-    void on_groupSerialPort_clicked();
-    void on_groupInternet_clicked();
-#endif
 
     void on_actionConnect_triggered();
 

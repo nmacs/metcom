@@ -16,6 +16,8 @@ public:
 
     explicit ZSettings(QObject *parent = 0);
 
+    static const ZSettings& defaultSettings();
+
     void operator=(ZSettings const& other);
 
     bool save(const QString& file);

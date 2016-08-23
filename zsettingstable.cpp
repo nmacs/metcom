@@ -25,6 +25,8 @@ void ZSettingsTable::draw(ZSettings *settings)
         m_model->appendRow(new QStandardItem(item.value().toString()));
         m_model->setVerticalHeaderItem(m_model->rowCount() - 1, new QStandardItem(item.key()));
     }
+
+    m_model->sort(1);
 }
 
 void ZSettingsTable::itemChanged(QStandardItem *item)

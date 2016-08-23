@@ -325,7 +325,7 @@ void ZSettingsGUI::on_phoneBook_phoneChanged(QString const& phone, int index)
     emitUpdated(QString("PHN%1").arg(index), phone);
 }
 
-void ZSettingsGUI::on_phoneBook_phoneGroupChanged(QString const& phone, QString const& mask, int index)
+void ZSettingsGUI::on_phoneBook_phoneGroupChanged(QString const&, QString const& mask, int index)
 {
     emitUpdated(QString("GRP%1").arg(index), mask);
 }
@@ -595,7 +595,7 @@ void ZSettingsGUI::on_EDNS_toggled(bool checked)
 
 void ZSettingsGUI::on_PPNG_valueChanged(int value)
 {
-    emitUpdated("SCH2", value);
+    emitUpdated("PPNG", value);
 }
 
 void ZSettingsGUI::on_MPRT_RS232_toggled(bool checked)

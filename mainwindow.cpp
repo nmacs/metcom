@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     updateLanguage();
 
     m_modemSettings = new ZSettings(this);
+    *m_modemSettings = ZSettings::defaultSettings();
     m_modemSettings->addView(new ZSettingsTable(ui->tblSettings, this));
     m_modemSettings->addView(new ZSettingsGUI(ui, this));
 
@@ -117,7 +118,6 @@ void MainWindow::on_actionCommunication_Log_triggered()
     m_log->show();
 }
 
-#if 0
 void MainWindow::on_actionEnglish_triggered()
 {
     settings->setValue("Language", "en");
@@ -132,83 +132,72 @@ void MainWindow::on_actionRussian_triggered()
 
 void MainWindow::on_actionReadSettings_triggered()
 {
-#if 0
-    if (!setupChannel())
+    if (m_channel == 0)
     {
+        statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
     }
-
-    ZGuiDisabler disabler(ui);
-    (void)disabler;
 
     statusBar()->showMessage(tr("Reading Settings from Modem..."));
 
-    ZReadSettings read(m_channel);
-    read.setPassword(ui->txtPassword->text());
+    ZReadSettings *read = new ZReadSettings(m_channel, m_progress, this);
 
-    bool ret = read.connect();
+    bool ret = read->connect();
     if (!ret)
     {
-        statusBar()->showMessage(read.errorString());
+        statusBar()->showMessage(read->errorString());
         return;
     }
 
-    ret = read.run();
-    read.disconnect();
+    ret = read->run();
+    read->disconnect();
 
     if (!ret)
     {
-        statusBar()->showMessage(tr("Error: ") + read.errorString());
+        statusBar()->showMessage(tr("Error: ") + read->errorString());
     }
     else
     {
-        *m_modemSettings = read.settings();
+        *m_modemSettings = read->settings();
         statusBar()->showMessage(tr("Done"));
     }
-#endif
 }
 
 void MainWindow::on_actionWriteSettings_triggered()
 {
-#if 0
-    if (!setupChannel())
+    if (m_channel == 0)
     {
+        statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
     }
 
-    ZGuiDisabler disabler(ui);
-    (void)disabler;
+    statusBar()->showMessage(tr("Writing Settings from Modem..."));
 
-    statusBar()->showMessage(tr("Reading Settings from Modem..."));
+    ZWriteSettings *write = new ZWriteSettings(m_channel, m_progress, this);
+    write->setSettings(*m_modemSettings);
 
-    ZWriteSettings write(m_channel);
-    write.setPassword(ui->txtPassword->text());
-    write.setSettings(*m_modemSettings);
-
-    bool ret = write.connect();
+    bool ret = write->connect();
     if (!ret)
     {
-        statusBar()->showMessage(write.errorString());
+        statusBar()->showMessage(write->errorString());
         return;
     }
 
-    ret = write.run();
-    write.disconnect();
+    ret = write->run();
+    write->disconnect();
 
     if (!ret)
     {
-        statusBar()->showMessage(tr("Error: ") + write.errorString());
+        statusBar()->showMessage(tr("Error: ") + write->errorString());
     }
     else
     {
         statusBar()->showMessage(tr("Done"));
     }
-#endif
 }
 
 void MainWindow::on_actionLoadSettings_triggered()
 {
-#if 0
     QString file = QFileDialog::getOpenFileName(this,
                                                     tr("Load Settings file"),
                                                     "",
@@ -222,12 +211,10 @@ void MainWindow::on_actionLoadSettings_triggered()
     {
         statusBar()->showMessage(tr("Fail to load settings"));
     }
-#endif
 }
 
 void MainWindow::on_actionSaveSettings_triggered()
 {
-#if 0
     QString file = QFileDialog::getSaveFileName(this,
                                                     tr("Save Settings file"),
                                                     "",
@@ -241,65 +228,5 @@ void MainWindow::on_actionSaveSettings_triggered()
     {
         statusBar()->showMessage(tr("Fail to save settings"));
     }
-#endif
 }
 
-bool MainWindow::setupChannel()
-{
-#if 0
-    if (m_channel != 0)
-    {
-        delete m_channel;
-    }
-
-    if (ui->txtPassword->text().isEmpty())
-    {
-        statusBar()->showMessage(tr("Password is not entered"));
-        return false;
-    }
-
-    if (ui->groupSerialPort->isChecked())
-    {
-        QVariant portName = ui->cmbSerialPort->currentData();
-        if (!portName.isValid())
-        {
-            statusBar()->showMessage(tr("No serial port selected."));
-            return false;
-        }
-
-        ZChannelDirectSerial *channel = new ZChannelDirectSerial(this);
-
-        channel->setBaudRate(QSerialPort::Baud115200);
-        channel->setPortName(portName.toString());
-        channel->setCommLog(m_commLog);
-
-        m_channel = channel;
-    }
-    else if (ui->groupInternet->isChecked())
-    {
-        statusBar()->showMessage(tr("Internet communication is not supported yet."));
-        return false;
-    }
-    else
-    {
-        statusBar()->showMessage(tr("No communication channel selected."));
-        return false;
-    }
-#endif
-
-    return true;
-}
-
-void MainWindow::on_groupSerialPort_clicked()
-{
-    //ui->groupSerialPort->setChecked(true);
-    //ui->groupInternet->setChecked(false);
-}
-
-
-void MainWindow::on_groupInternet_clicked()
-{
-    //ui->groupInternet->setChecked(true);
-    //ui->groupSerialPort->setChecked(false);
-}
-#endif

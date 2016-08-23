@@ -82,7 +82,7 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
         if (m_progress != 0 && m_progress->cancelRequest())
         {
            setErrorString(tr("Operation cancelled"));
-           return false;
+           return -1;
         }
 
         if (ret > 0)
@@ -105,7 +105,7 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
                 if (m_progress != 0 && m_progress->cancelRequest())
                 {
                    setErrorString(tr("Operation cancelled"));
-                   return false;
+                   return -1;
                 }
 
                 yield();
