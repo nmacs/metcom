@@ -28,7 +28,16 @@ Progress::~Progress()
 
 void Progress::setProgress(double progress, const QString &message)
 {
-    ui->progressBar->setValue(progress * ui->progressBar->maximum());
+    if (progress < 0)
+    {
+        ui->progressBar->setMaximum(0);
+        ui->progressBar->setValue(0);
+    }
+    else
+    {
+        ui->progressBar->setMaximum(100);
+        ui->progressBar->setValue(progress * ui->progressBar->maximum());
+    }
     ui->lblMessage->setText(message);
 }
 

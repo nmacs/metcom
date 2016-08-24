@@ -28,18 +28,16 @@ void ZCommLog::log(const QByteArray &block, ZCommLog::Direction dir)
 
     for (int i = 0; i < block.length(); i++)
     {
-        if (i != 0 && (i % 16) == 0)
+        char byte = block.at(i);
+        hex += QString::asprintf("%02X ", (unsigned char)byte);
+        ascii += isprint(byte) ? byte : '.';
+
+        if (ascii.length() >= 16)
         {
             QString line = hex + "  " + ascii;
             m_view->append(line);
             hex.clear();
             ascii.clear();
-        }
-        else
-        {
-            char byte = block.at(i);
-            hex += QString::asprintf("%02X ", (unsigned char)byte);
-            ascii += isprint(byte) ? byte : '.';
         }
     }
 

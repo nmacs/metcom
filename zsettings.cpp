@@ -66,7 +66,7 @@ const ZSettings &ZSettings::defaultSettings()
         for (int i = 0; i < 10; i++)
         {
             settings.setValue(QString("PHN%0").arg(i), "");
-            settings.setValue(QString("GRP%0").arg(i), "");
+            settings.setValue(QString("GRP%0").arg(i), "0000000000");
         }
 
         settings.setValue("DBEN", 0);

@@ -860,7 +860,7 @@ void ZSettingsGUI::draw(ZSettings *settings)
     for (int i = 0; i < 10; i++)
     {
         QString PHNx = settings->value(QString("PHN%1").arg(i), "").toString();
-        QString GRPx = settings->value(QString("GRP%1").arg(i), "").toString();
+        QString GRPx = settings->value(QString("GRP%1").arg(i), "0000000000").toString();
         m_gui->phoneBook->setPhone(PHNx, i);
         m_gui->phoneBook->setGroupMask(GRPx, i);
     }

@@ -7,3 +7,5 @@ windeployqt MetCOM.exe
 copy %CD%\..\*.qm translations\
 
 cd ..
+
+pause

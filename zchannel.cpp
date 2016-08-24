@@ -70,6 +70,8 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
     qint64 ret;
     qint64 bytesRead = 0;
 
+    m_progress->setProgress(-1, "");
+
     while (maxLength > 0)
     {
         ret = device()->read(&ch, 1);
@@ -87,6 +89,7 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
 
         if (ret > 0)
         {
+new_byte:
             data[bytesRead] = ch;
             qDebug() << "byte " << ch;
 
@@ -114,6 +117,12 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
                     break;
 
                 timeout -= GUI_POLLING_INTERVAL_MS;
+
+                ret = device()->read(&ch, 1);
+                if (ret > 0)
+                {
+                    goto new_byte;
+                }
             }
 
             if (timeout <= 0)
