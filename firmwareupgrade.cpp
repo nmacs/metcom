@@ -34,21 +34,13 @@ void FirmwareUpgrade::on_btnSelectFirmware_clicked()
 
 void FirmwareUpgrade::on_btnUpgrade_clicked()
 {
+    bool ret;
     ZFirmwareUpgrade *upgrade = new ZFirmwareUpgrade(m_channel, m_progress, this);
 
     upgrade->setResetConfiguration(ui->chkResetSettings->checkState() == Qt::Checked);
     upgrade->setFirmwareFile(m_firmware);
 
-    bool ret = upgrade->connect();
-    if (!ret)
-    {
-        ui->lblStatus->setText(upgrade->errorString());
-        return;
-    }
-
     ret = upgrade->run();
-    upgrade->disconnect();
-
     if (!ret)
     {
         ui->lblStatus->setText(tr("Error: ") + upgrade->errorString());

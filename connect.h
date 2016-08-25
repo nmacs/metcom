@@ -29,6 +29,8 @@ private slots:
 
     void on_btnCancel_clicked();
 
+    void on_chkOpticalMode_toggled(bool checked);
+
 private:
     void showError(QWidget *widget, QString const& text);
     ZChannel* setupChannel();

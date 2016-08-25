@@ -5,6 +5,7 @@
 #include <QVariant>
 #include <QMap>
 #include <QList>
+#include <QValidator>
 
 class ZSettingsView;
 
@@ -25,6 +26,7 @@ public:
 
     void setValues(const Map& values);
     void setValue(const QString& key, const QVariant& value);
+    void setValidator(QValidator *validator);
     QVariant const& value(const QString& key, const QVariant &def = QVariant()) const;
 
     void clear();

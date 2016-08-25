@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     passwordchangedlg.cpp \
     zpasswordchange.cpp \
     zsettingsgui.cpp \
-    phonebook.cpp
+    phonebook.cpp \
+    zcommand.cpp
 
 HEADERS  += mainwindow.h \
     zchannel.h \
@@ -54,7 +55,8 @@ HEADERS  += mainwindow.h \
     passwordchangedlg.h \
     zpasswordchange.h \
     zsettingsgui.h \
-    phonebook.h
+    phonebook.h \
+    zcommand.h
 
 FORMS    += mainwindow.ui \
     connect.ui \
@@ -70,3 +72,4 @@ TRANSLATIONS += app_ru.ts
 DISTFILES += \
     icon.png
 
+RC_FILE = app.rc

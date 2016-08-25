@@ -20,6 +20,9 @@ bool ZFirmwareUpgrade::doRun()
 {
     bool res;
     QString command;
+    qint64 bytesSent = 0;
+    int blockNumber = 0;
+    QStringList result;
 
     QFile file(m_firmwareFile);
     res = file.open(QIODevice::ReadOnly);
@@ -36,6 +39,18 @@ bool ZFirmwareUpgrade::doRun()
         return false;
     }
 
+    file.seek(0x500);
+    char checkByte = 0;
+    if (file.read(&checkByte, 1) != 1)
+    {
+        setErrorString(tr("Fail to read harwave version from firmware file"));
+        return false;
+    }
+    file.reset();
+    checkByte ^= 0x27;
+
+    reportProgress(0, tr("Firmware Upgrade..."));
+
     command = QString("STOP=%1\r").arg(password());
     res = execute(command, QByteArray(), true);
     if (!res)
@@ -46,12 +61,41 @@ bool ZFirmwareUpgrade::doRun()
 
     msleep(500);
 
+    command = QString("VER=%1\r").arg(password());
+    res = execute(command, QByteArray(), true);
+    if (!res)
+    {
+        setErrorString(channel()->errorString());
+        goto out;
+    }
+
+    res = readout(&result, 1);
+    if (!res)
+    {
+        setErrorString(channel()->errorString());
+        goto out;
+    }
+
+    if (result.length() != 1)
+    {
+        setErrorString(tr("Unable to parse Modem hardware version"));
+        res = false;
+        goto out;
+    }
+
+    if (result.at(0).left(2).toUpper() != QString("%1").arg(checkByte, 2, 16, QChar('0')).toUpper())
+    {
+        setErrorString(tr("Unexpected Modem hardware version"));
+        res = false;
+        goto out;
+    }
+
     command = QString("ERF=%1\r").arg(password());
     res = execute(command);
     if (!res)
     {
         setErrorString(channel()->errorString());
-        return false;
+        goto out;
     }
 
     if (m_resetConfiguration)
@@ -61,12 +105,10 @@ bool ZFirmwareUpgrade::doRun()
         if (!res)
         {
             setErrorString(channel()->errorString());
-            return false;
+            goto out;
         }
     }
 
-    qint64 bytesSent = 0;
-    int blockNumber = 0;
     while (!file.atEnd())
     {
         char block[513];
@@ -77,8 +119,8 @@ bool ZFirmwareUpgrade::doRun()
         if (len < 0)
         {
             setErrorString(file.errorString());
-            file.close();
-            return false;
+            res = false;
+            goto out;
         }
         else if (len == 0)
         {
@@ -87,7 +129,7 @@ bool ZFirmwareUpgrade::doRun()
         else
         {
             unsigned char sum = 0;
-            for (int i = 0; i < sizeof(block) - 1; i++)
+            for (size_t i = 0; i < sizeof(block) - 1; i++)
             {
                 sum += (unsigned char)block[i];
             }
@@ -97,25 +139,28 @@ bool ZFirmwareUpgrade::doRun()
             if (!res)
             {
                 setErrorString(file.errorString());
-                file.close();
-                return false;
+                goto out;
             }
 
             bytesSent += sizeof(block) - 1;
-            reportProgress((double)bytesSent / firmwareSize, tr("Firmware Upgrade..."));
+            reportProgress((double)bytesSent / firmwareSize);
         }
 
         blockNumber += 1;
     }
-    file.close();
 
-    command = QString("ENF=%1\r").arg(password()).toUtf8();
+    command = QString("ENF=%1\r").arg(password());
     res = execute(command);
     if (!res)
     {
         setErrorString(channel()->errorString());
-        return false;
+        goto out;
     }
 
-    return true;
+out:
+    file.close();
+    command = QString("START=%1\r").arg(password());
+    (void)execute(command, QByteArray(), true);
+
+    return res;
 }

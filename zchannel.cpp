@@ -70,8 +70,6 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
     qint64 ret;
     qint64 bytesRead = 0;
 
-    m_progress->setProgress(-1, "");
-
     while (maxLength > 0)
     {
         ret = device()->read(&ch, 1);

@@ -10,6 +10,7 @@
 #include "firmwareupgrade.h"
 #include "passwordchangedlg.h"
 #include "zsettingsgui.h"
+#include "zcommand.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -26,9 +27,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     updateLanguage();
 
+    ui->txtPIN1->setValidator(new QIntValidator);
+    ui->txtPIN2->setValidator(new QIntValidator);
+
     m_modemSettings = new ZSettings(this);
     *m_modemSettings = ZSettings::defaultSettings();
-    m_modemSettings->addView(new ZSettingsTable(ui->tblSettings, this));
+    //m_modemSettings->addView(new ZSettingsTable(ui->tblSettings, this));
     m_modemSettings->addView(new ZSettingsGUI(ui, this));
 
     m_progress = new Progress(this);
@@ -113,6 +117,31 @@ void MainWindow::on_actionFirmwareUpgrade_triggered()
     delete dialog;
 }
 
+void MainWindow::on_actionReset_triggered()
+{
+    bool ret;
+
+    if (m_channel == 0)
+    {
+        statusBar()->showMessage(tr("Communication channel was not configured"));
+        return;
+    }
+
+    QString title = tr("Resetting Modem...");
+    statusBar()->showMessage(title);
+
+    ZCommand *command = new ZCommand("RST=%1\r", title, m_channel, m_progress, this);
+    ret = command->run();
+    if (!ret)
+    {
+        statusBar()->showMessage(tr("Error: ") + command->errorString());
+    }
+    else
+    {
+        statusBar()->showMessage(tr("Done"));
+    }
+}
+
 void MainWindow::on_actionCommunication_Log_triggered()
 {
     m_log->show();
@@ -132,6 +161,8 @@ void MainWindow::on_actionRussian_triggered()
 
 void MainWindow::on_actionReadSettings_triggered()
 {
+    bool ret;
+
     if (m_channel == 0)
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
@@ -142,16 +173,7 @@ void MainWindow::on_actionReadSettings_triggered()
 
     ZReadSettings *read = new ZReadSettings(m_channel, m_progress, this);
 
-    bool ret = read->connect();
-    if (!ret)
-    {
-        statusBar()->showMessage(read->errorString());
-        return;
-    }
-
     ret = read->run();
-    read->disconnect();
-
     if (!ret)
     {
         statusBar()->showMessage(tr("Error: ") + read->errorString());
@@ -165,6 +187,8 @@ void MainWindow::on_actionReadSettings_triggered()
 
 void MainWindow::on_actionWriteSettings_triggered()
 {
+    bool ret;
+
     if (m_channel == 0)
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
@@ -176,16 +200,7 @@ void MainWindow::on_actionWriteSettings_triggered()
     ZWriteSettings *write = new ZWriteSettings(m_channel, m_progress, this);
     write->setSettings(*m_modemSettings);
 
-    bool ret = write->connect();
-    if (!ret)
-    {
-        statusBar()->showMessage(write->errorString());
-        return;
-    }
-
     ret = write->run();
-    write->disconnect();
-
     if (!ret)
     {
         statusBar()->showMessage(tr("Error: ") + write->errorString());
@@ -227,6 +242,31 @@ void MainWindow::on_actionSaveSettings_triggered()
     if (!m_modemSettings->save(file))
     {
         statusBar()->showMessage(tr("Fail to save settings"));
+    }
+}
+
+void MainWindow::on_actionDefaultSettings_triggered()
+{
+    bool ret;
+
+    if (m_channel == 0)
+    {
+        statusBar()->showMessage(tr("Communication channel was not configured"));
+        return;
+    }
+
+    QString title = tr("Writing default Modem settings...");
+    statusBar()->showMessage(title);
+
+    ZCommand *command = new ZCommand("DEF=%1\r", title, m_channel, m_progress, this);
+    ret = command->run();
+    if (!ret)
+    {
+        statusBar()->showMessage(tr("Error: ") + command->errorString());
+    }
+    else
+    {
+        statusBar()->showMessage(tr("Done"));
     }
 }
 

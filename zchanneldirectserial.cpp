@@ -35,7 +35,13 @@ bool ZChannelDirectSerial::connect()
         };
 
         write(start, sizeof(start), 500);
-        read(input_buffer, sizeof(input_buffer), 1000);
+        qint64 r = read(input_buffer, sizeof(input_buffer), 1000);
+        if (r < 0)
+        {
+            m_port->close();
+            setErrorString(tr("Fail to communicate with meter"));
+            return false;
+        }
 
         static const char speed_change[] = {
             0x06, 0x30, 0x35, 0x31, 0x0D, 0x0A
@@ -52,6 +58,23 @@ bool ZChannelDirectSerial::connect()
             0x29, 0x03, 0x61
         };
 
+        int password_len = m_meterPassword.length();
+        if (password_len > 8)
+        {
+            password_len = 8;
+        }
+
+        for (int i = 0; i < password_len; i++)
+        {
+            password[i + 5] = m_meterPassword.at(i).toLatin1();
+        }
+
+        char sum = 0;
+        for (size_t i = 0; i < sizeof(password) - 2; i++)
+        {
+            sum ^= password[i + 1];
+        }
+
         write(password, sizeof(password), 1000);
         read(input_buffer, 1, 5000);
 
@@ -63,7 +86,13 @@ bool ZChannelDirectSerial::connect()
         };
 
         write(transparent, sizeof(transparent), 500);
-        read(input_buffer, 5, 1000);
+        r = read(input_buffer, 5, 1000);
+        if (r != 5)
+        {
+            setErrorString(tr("Unable to activate transparent mode"));
+            m_port->close();
+            return false;
+        }
     }
     else
     {
@@ -94,6 +123,11 @@ void ZChannelDirectSerial::setPortName(const QString &port)
 QString ZChannelDirectSerial::portName() const
 {
     return m_port->portName();
+}
+
+void ZChannelDirectSerial::setMeterPassword(const QString &password)
+{
+    m_meterPassword = password;
 }
 
 void ZChannelDirectSerial::setBaudRate(int baud)

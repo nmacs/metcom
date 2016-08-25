@@ -1,5 +1,6 @@
 #include "progress.h"
 #include "ui_progress.h"
+#include <QDebug>
 
 Progress::Progress(QWidget *parent) :
     QDialog(parent),
@@ -28,6 +29,7 @@ Progress::~Progress()
 
 void Progress::setProgress(double progress, const QString &message)
 {
+    qDebug() << "Report progress " << progress;
     if (progress < 0)
     {
         ui->progressBar->setMaximum(0);
@@ -35,16 +37,27 @@ void Progress::setProgress(double progress, const QString &message)
     }
     else
     {
-        ui->progressBar->setMaximum(100);
-        ui->progressBar->setValue(progress * ui->progressBar->maximum());
+        if (ui->progressBar->maximum() == 0)
+        {
+            ui->progressBar->setMaximum(100);
+        }
+        int value = progress * ui->progressBar->maximum();
+        qDebug() << "Report progress (value) " << value;
+        ui->progressBar->setValue(value);
     }
-    ui->lblMessage->setText(message);
+
+    if (!message.isEmpty())
+    {
+        ui->lblMessage->setText(message);
+    }
 }
 
 void Progress::start()
 {
+    ui->progressBar->setMaximum(100);
     m_timer->start();
     m_cancelRequest = false;
+    ui->lblMessage->clear();
 }
 
 void Progress::end()

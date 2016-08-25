@@ -108,7 +108,16 @@ bool ZProtocol::run()
         m_progress->start();
     }
 
-    ret = doRun();
+    reportProgress(-1, tr("Connecting to Modem..."));
+
+    ret = connect();
+
+    if (ret)
+    {
+        ret = doRun();
+    }
+
+    disconnect();
 
     if (m_progress)
     {
@@ -169,6 +178,7 @@ bool ZProtocol::execute(const QString& command, const QByteArray& tail, bool nor
 
         return false;
     }
+
 
     return true;
 }

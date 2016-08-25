@@ -12,22 +12,29 @@ PhoneBook::PhoneBook(QWidget *parent) :
     layout->setVerticalSpacing(20);
 
     QLabel *label = new QLabel(this);
-    label->setText("+7XXXXXXXXXX");
+    label->setText("+79XXXXXXXXX");
     label->setAlignment(Qt::AlignCenter);
-    layout->addWidget(label, 0, 0);
+    layout->addWidget(label, 0, 1);
 
     for (int i = 0; i < 10; i++)
     {
         QLabel *label = new QLabel(this);
         label->setText(QString::number(i + 1));
-        layout->addWidget(label, 0, i + 1);
+        layout->addWidget(label, i + 1, 0);
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        QLabel *label = new QLabel(this);
+        label->setText(QString::number(i + 1));
+        layout->addWidget(label, 0, i + 2);
     }
 
     for (int i = 0; i < 10; i++)
     {
         QLineEdit *edit = new QLineEdit(this);
         edit->setProperty("row", i);
-        layout->addWidget(edit, i + 1, 0);
+        layout->addWidget(edit, i + 1, 1);
 
         m_phones.push_back(edit);
 
@@ -42,7 +49,7 @@ PhoneBook::PhoneBook(QWidget *parent) :
             QCheckBox *check = new QCheckBox(this);
             check->setProperty("row", i);
             check->setProperty("col", j);
-            layout->addWidget(check, i + 1, j + 1);
+            layout->addWidget(check, i + 1, j + 2);
 
             m_mask.push_back(check);
 

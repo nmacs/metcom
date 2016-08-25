@@ -34,16 +34,7 @@ void PasswordChangeDlg::on_pushButton_clicked()
 
     proto->setNewPassword(ui->txtPassword->text());
 
-    res = proto->connect();
-    if (!res)
-    {
-        ui->lblStatus->setText(proto->errorString());
-        return;
-    }
-
     res = proto->run();
-    proto->disconnect();
-
     if (res)
     {
         ui->lblStatus->setText(tr("Done"));

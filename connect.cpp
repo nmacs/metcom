@@ -29,7 +29,13 @@ Connect::Connect(ZChannel *channel, QWidget *parent) :
       if (dynamic_cast<ZChannelDirectSerial*>(channel) != NULL)
       {
         ZChannelDirectSerial *ch = dynamic_cast<ZChannelDirectSerial*>(channel);
-        ui->cmbSerialPort->setCurrentText(ch->portName());
+        for (int c = 0; c < ui->cmbSerialPort->count(); c++)
+        {
+            if (ui->cmbSerialPort->itemData(c).toString() == ch->portName())
+            {
+                ui->cmbSerialPort->setCurrentIndex(c);
+            }
+        }
         ui->chkOpticalMode->setChecked(ch->opticalMode());
       }
     }
@@ -108,11 +114,29 @@ ZChannel* Connect::setupChannel()
     if (ui->txtPassword->text().isEmpty())
     {
         showError(ui->txtPassword, tr("Password is not entered"));
+        ui->txtPassword->setFocus();
         return NULL;
     }
 
     if (ui->groupSerialPort->isChecked())
     {
+        if (ui->chkOpticalMode->isChecked())
+        {
+            if (ui->txtMeterPassword->text().isEmpty())
+            {
+                showError(ui->txtMeterPassword, tr("Meter password is not entered"));
+                ui->txtMeterPassword->setFocus();
+                return NULL;
+            }
+            else if (ui->txtMeterPassword->text().length() != 8)
+            {
+                showError(ui->txtMeterPassword, tr("Meter password must be 8 symbols long"));
+                ui->txtMeterPassword->setFocus();
+                ui->txtMeterPassword->selectAll();
+                return NULL;
+            }
+        }
+
         QVariant portName = ui->cmbSerialPort->currentData();
         if (!portName.isValid())
         {
@@ -125,7 +149,12 @@ ZChannel* Connect::setupChannel()
         channel->setPassword(ui->txtPassword->text());
         channel->setBaudRate(QSerialPort::Baud115200);
         channel->setPortName(portName.toString());
-        channel->setOpticalMode(ui->chkOpticalMode->isChecked());
+
+        if (ui->chkOpticalMode->isChecked())
+        {
+            channel->setMeterPassword(ui->txtMeterPassword->text());
+            channel->setOpticalMode(true);
+        }
 
         return channel;
     }
@@ -151,4 +180,10 @@ void Connect::on_btnCancel_clicked()
 {
     m_channel = 0;
     reject();
+}
+
+void Connect::on_chkOpticalMode_toggled(bool checked)
+{
+    ui->lblMeterPassword->setEnabled(checked);
+    ui->txtMeterPassword->setEnabled(checked);
 }

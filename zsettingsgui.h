@@ -21,8 +21,8 @@ private slots:
     void on_APHN_toggled(bool checked);
     void on_radioSIM1_toggled(bool checked);
     void on_radioSIM2_toggled(bool checked);
-    void on_txtSIMSwapInterval_textChanged(const QString &text);
-    void on_txtRMNS_textChanged(const QString &text);
+    void on_txtSIMSwapInterval_valueChanged(int value);
+    void on_txtRMNS_valueChanged(int value);
     void on_txtAPN1_textChanged(const QString &text);
     void on_txtAPN2_textChanged(const QString &text);
     void on_txtLOG1_textChanged(const QString &text);

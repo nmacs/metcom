@@ -17,11 +17,11 @@ const ZSettings &ZSettings::defaultSettings()
     if (!initialized)
     {
         settings.setValue("TSIM", 0);
-        settings.setValue("SWAP", 5);
-        settings.setValue("RMNS", 5);
-        settings.setValue("APN1", "public.mc");
-        settings.setValue("LOG1", "gdata");
-        settings.setValue("PSW1", "gdata");
+        settings.setValue("SWAP", 10);
+        settings.setValue("RMNS", 10);
+        settings.setValue("APN1", "");
+        settings.setValue("LOG1", "");
+        settings.setValue("PSW1", "");
         settings.setValue("PIN1", "");
         settings.setValue("OFF1", 1);
         settings.setValue("NET1", 0);
@@ -30,7 +30,7 @@ const ZSettings &ZSettings::defaultSettings()
         settings.setValue("LOG2", "");
         settings.setValue("PSW2", "");
         settings.setValue("PIN2", "");
-        settings.setValue("OFF2", 1);
+        settings.setValue("OFF2", 0);
         settings.setValue("NET2", 0);
         settings.setValue("ROA2", 1);
         settings.setValue("MODE", 0);
@@ -65,7 +65,7 @@ const ZSettings &ZSettings::defaultSettings()
 
         for (int i = 0; i < 10; i++)
         {
-            settings.setValue(QString("PHN%0").arg(i), "");
+            settings.setValue(QString("PHN%0").arg(i), "+7");
             settings.setValue(QString("GRP%0").arg(i), "0000000000");
         }
 
@@ -174,6 +174,11 @@ void ZSettings::setValue(const QString &key, const QVariant &value)
 {
     m_values.insert(key, value);
     drawViews();
+}
+
+void ZSettings::setValidator(QValidator *validator)
+{
+    validator->setParent(this);
 }
 
 const QVariant &ZSettings::value(const QString &key, QVariant const& def) const

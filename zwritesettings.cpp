@@ -14,11 +14,16 @@ bool ZWriteSettings::doRun()
 {
     bool res;
     QString packet;
+    int index;
+    int count;
+
+    reportProgress(0, tr("Writing settings to modem..."));
 
     ZSettings::Map const& map = m_settings.values();
     ZSettings::Map::const_iterator iter;
 
-    for (iter = map.cbegin(); iter != map.cend(); iter++)
+    count = map.size();
+    for (iter = map.cbegin(), index = 0; iter != map.cend(); iter++, index++)
     {
         QString pair = QString("%1=%2;").arg(iter.key()).arg(iter.value().toString());
 
@@ -31,6 +36,8 @@ bool ZWriteSettings::doRun()
                 return false;
             }
             packet.clear();
+
+            reportProgress((double)index / count, "");
         }
 
         if (packet.isEmpty())

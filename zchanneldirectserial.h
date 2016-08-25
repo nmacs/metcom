@@ -17,6 +17,8 @@ public:
     void setPortName(const QString &port);
     QString portName() const;
 
+    void setMeterPassword(const QString &password);
+
     void setBaudRate(int baud);
     int baudRate() const;
 
@@ -31,6 +33,7 @@ public slots:
 
 private:
     QSerialPort *m_port;
+    QString m_meterPassword;
     bool m_optical;
 };
 

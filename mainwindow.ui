@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
+    <width>559</width>
     <height>640</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabMode">
      <attribute name="title">
@@ -173,22 +173,6 @@
          <string>Port</string>
         </property>
        </widget>
-       <widget class="IPCtrl" name="IPC1">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>20</y>
-          <width>130</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-       </widget>
        <widget class="QSpinBox" name="PTC1">
         <property name="geometry">
          <rect>
@@ -203,6 +187,19 @@
         </property>
         <property name="maximum">
          <number>65535</number>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="IPC1">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>20</y>
+          <width>130</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="maxLength">
+         <number>25</number>
         </property>
        </widget>
       </widget>
@@ -244,22 +241,6 @@
          <string>Port</string>
         </property>
        </widget>
-       <widget class="IPCtrl" name="IPC2">
-        <property name="geometry">
-         <rect>
-          <x>70</x>
-          <y>20</y>
-          <width>130</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Sunken</enum>
-        </property>
-       </widget>
        <widget class="QSpinBox" name="PTC2">
         <property name="geometry">
          <rect>
@@ -274,6 +255,19 @@
         </property>
         <property name="maximum">
          <number>65535</number>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="IPC2">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>20</y>
+          <width>130</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="maxLength">
+         <number>25</number>
         </property>
        </widget>
       </widget>
@@ -726,6 +720,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txtLOG1">
        <property name="geometry">
@@ -735,6 +732,9 @@
          <width>161</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="txtPSW1">
@@ -746,18 +746,27 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txtPIN1">
        <property name="geometry">
         <rect>
          <x>70</x>
          <y>160</y>
-         <width>31</width>
+         <width>60</width>
          <height>20</height>
         </rect>
        </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhDigitsOnly</set>
+       </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="maxLength">
+        <number>4</number>
        </property>
       </widget>
       <widget class="QComboBox" name="NET1">
@@ -891,25 +900,34 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txtLOG2">
        <property name="geometry">
         <rect>
-         <x>72</x>
+         <x>70</x>
          <y>100</y>
          <width>161</width>
          <height>20</height>
         </rect>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txtPSW2">
        <property name="geometry">
         <rect>
-         <x>72</x>
+         <x>70</x>
          <y>130</y>
          <width>161</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
        </property>
       </widget>
       <widget class="QLineEdit" name="txtPIN2">
@@ -917,9 +935,15 @@
         <rect>
          <x>70</x>
          <y>160</y>
-         <width>31</width>
+         <width>60</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhDigitsOnly</set>
+       </property>
+       <property name="maxLength">
+        <number>4</number>
        </property>
       </widget>
       <widget class="QComboBox" name="NET2">
@@ -986,32 +1010,6 @@
         <string>Main SIM card return interval</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="txtRMNS">
-       <property name="geometry">
-        <rect>
-         <x>180</x>
-         <y>40</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>10</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="txtSIMSwapInterval">
-       <property name="geometry">
-        <rect>
-         <x>180</x>
-         <y>10</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>10</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_45">
        <property name="geometry">
         <rect>
@@ -1038,8 +1036,49 @@
         <string>5..1440 min</string>
        </property>
       </widget>
+      <widget class="QSpinBox" name="txtSIMSwapInterval">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>10</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>5</number>
+       </property>
+       <property name="maximum">
+        <number>1440</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="txtRMNS">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>40</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>5</number>
+       </property>
+       <property name="maximum">
+        <number>1440</number>
+       </property>
+       <property name="value">
+        <number>10</number>
+       </property>
+      </widget>
      </widget>
      <widget class="QCheckBox" name="chkSIM1Enable">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -1056,6 +1095,9 @@
       </property>
      </widget>
      <widget class="QCheckBox" name="chkSIM2Enable">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -1113,6 +1155,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
       <widget class="QLabel" name="label_47">
        <property name="geometry">
@@ -1148,6 +1193,9 @@
          <width>161</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_49">
@@ -1227,7 +1275,7 @@
         <string>1..255min</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_52">
+      <widget class="QLabel" name="lblIPP2">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1253,7 +1301,7 @@
         <string>Enable DNS check</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_51">
+      <widget class="QLabel" name="lblIPP1">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1278,6 +1326,9 @@
        <property name="text">
         <string>google.com</string>
        </property>
+       <property name="maxLength">
+        <number>25</number>
+       </property>
       </widget>
       <widget class="QLineEdit" name="IPP1">
        <property name="geometry">
@@ -1290,6 +1341,9 @@
        </property>
        <property name="text">
         <string>yandex.ru</string>
+       </property>
+       <property name="maxLength">
+        <number>25</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_53">
@@ -1669,10 +1723,10 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Plain</enum>
       </property>
      </widget>
     </widget>
@@ -2825,8 +2879,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>839</width>
-     <height>21</height>
+     <width>559</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuOptions">
@@ -2861,7 +2915,7 @@
     </property>
     <addaction name="actionReadSettings"/>
     <addaction name="actionWriteSettings"/>
-    <addaction name="actionDefault_Settings"/>
+    <addaction name="actionDefaultSettings"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -2915,7 +2969,7 @@
     <string>Write Settings</string>
    </property>
   </action>
-  <action name="actionDefault_Settings">
+  <action name="actionDefaultSettings">
    <property name="text">
     <string>Write Default Settings</string>
    </property>

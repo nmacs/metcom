@@ -9,13 +9,14 @@ class ZPasswordChange : public ZProtocol
 public:
     explicit ZPasswordChange(ZChannel *channel = 0, Progress *progress = 0, QObject *parent = 0);
 
-    virtual bool doRun();
-
     void setNewPassword(QString const& password);
 
 signals:
 
 public slots:
+
+protected:
+    virtual bool doRun();
 
 private:
     QString m_newPassword;

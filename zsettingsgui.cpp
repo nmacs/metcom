@@ -36,12 +36,12 @@ ZSettingsGUI::ZSettingsGUI(Ui::MainWindow* gui, QObject *parent) :
             SLOT(on_GCSD_valueChanged(int)));
 
     connect(m_gui->IPC1,
-            &IPCtrl::textChanged,
+            &QLineEdit::textChanged,
             this,
             &ZSettingsGUI::on_IPC1_textChanged);
 
     connect(m_gui->IPC2,
-            &IPCtrl::textChanged,
+            &QLineEdit::textChanged,
             this,
             &ZSettingsGUI::on_IPC2_textChanged);
 
@@ -119,14 +119,14 @@ ZSettingsGUI::ZSettingsGUI(Ui::MainWindow* gui, QObject *parent) :
             &ZSettingsGUI::on_chkSIM2Enable_toggled);
 
     connect(m_gui->txtSIMSwapInterval,
-            &QLineEdit::textChanged,
+            SIGNAL(valueChanged(int)),
             this,
-            &ZSettingsGUI::on_txtSIMSwapInterval_textChanged);
+            SLOT(on_txtSIMSwapInterval_valueChanged(int)));
 
     connect(m_gui->txtRMNS,
-            &QLineEdit::textChanged,
+            SIGNAL(valueChanged(int)),
             this,
-            &ZSettingsGUI::on_txtRMNS_textChanged);
+            SLOT(on_txtRMNS_valueChanged(int)));
 
     connect(m_gui->txtAPN1,
             &QLineEdit::textChanged,
@@ -382,14 +382,14 @@ void ZSettingsGUI::on_chkSIM2Enable_toggled(bool checked)
     emitUpdated("OFF2", checked ? 1 : 0);
 }
 
-void ZSettingsGUI::on_txtSIMSwapInterval_textChanged(QString const& text)
+void ZSettingsGUI::on_txtSIMSwapInterval_valueChanged(int value)
 {
-    emitUpdated("SWAP", text.toInt());
+    emitUpdated("SWAP", value);
 }
 
-void ZSettingsGUI::on_txtRMNS_textChanged(QString const& text)
+void ZSettingsGUI::on_txtRMNS_valueChanged(int value)
 {
-    emitUpdated("RMNS", text.toInt());
+    emitUpdated("RMNS", value);
 }
 
 void ZSettingsGUI::on_txtAPN1_textChanged(QString const& text)
@@ -555,7 +555,7 @@ void ZSettingsGUI::on_ESCH_toggled(bool checked)
 
 void ZSettingsGUI::on_SCH1_IP_textChanged(QString const& text)
 {
-    emitUpdated("SCH1", text + ":" + m_gui->SCH1_PORT->text());
+    emitUpdated("SCH1", !text.isEmpty() ? text + ":" + m_gui->SCH1_PORT->text() : "");
 }
 
 void ZSettingsGUI::on_SCH1_PORT_valueChanged(int value)
@@ -565,7 +565,7 @@ void ZSettingsGUI::on_SCH1_PORT_valueChanged(int value)
 
 void ZSettingsGUI::on_SCH2_IP_textChanged(QString const& text)
 {
-    emitUpdated("SCH2", text + ":" + m_gui->SCH2_PORT->text());
+    emitUpdated("SCH2", !text.isEmpty() ? text + ":" + m_gui->SCH2_PORT->text() : "");
 }
 
 void ZSettingsGUI::on_SCH2_PORT_valueChanged(int value)
@@ -590,6 +590,11 @@ void ZSettingsGUI::on_IPP2_textChanged(QString const& text)
 
 void ZSettingsGUI::on_EDNS_toggled(bool checked)
 {
+    m_gui->lblIPP1->setEnabled(!checked);
+    m_gui->lblIPP2->setEnabled(!checked);
+    m_gui->IPP1->setEnabled(!checked);
+    m_gui->IPP2->setEnabled(!checked);
+
     emitUpdated("EDNS", checked ? 1 : 0);
 }
 
@@ -686,18 +691,18 @@ void ZSettingsGUI::draw(ZSettings *settings)
     }
 
     int SWAP = settings->value("SWAP", 10).toInt();
-    m_gui->txtSIMSwapInterval->setText(QString::number(SWAP));
+    m_gui->txtSIMSwapInterval->setValue(SWAP);
 
     int RMNS = settings->value("RMNS", 10).toInt();
-    m_gui->txtRMNS->setText(QString::number(RMNS));
+    m_gui->txtRMNS->setValue(RMNS);
 
-    QString APN1 = settings->value("APN1", "public.mc").toString();
+    QString APN1 = settings->value("APN1", "").toString();
     m_gui->txtAPN1->setText(APN1);
 
     QString APN2 = settings->value("APN2", "").toString();
     m_gui->txtAPN2->setText(APN2);
 
-    QString LOG1 = settings->value("LOG1", "gdata").toString();
+    QString LOG1 = settings->value("LOG1", "").toString();
     m_gui->txtLOG1->setText(LOG1);
 
     QString LOG2 = settings->value("LOG2", "").toString();
@@ -754,11 +759,11 @@ void ZSettingsGUI::draw(ZSettings *settings)
     int GCSD = settings->value("GCSD", 0).toInt();
     m_gui->GCSD->setValue(GCSD);
 
-    QString IPC1 = settings->value("IPC1", "0.0.0.0").toString();
-    m_gui->IPC1->setIP(IPC1);
+    QString IPC1 = settings->value("IPC1", "").toString();
+    m_gui->IPC1->setText(IPC1);
 
-    QString IPC2 = settings->value("IPC2", "0.0.0.0").toString();
-    m_gui->IPC2->setIP(IPC2);
+    QString IPC2 = settings->value("IPC2", "").toString();
+    m_gui->IPC2->setText(IPC2);
 
     int PTC1 = settings->value("PTC1", 1).toInt();
     m_gui->PTC1->setValue(PTC1);
@@ -859,7 +864,7 @@ void ZSettingsGUI::draw(ZSettings *settings)
 
     for (int i = 0; i < 10; i++)
     {
-        QString PHNx = settings->value(QString("PHN%1").arg(i), "").toString();
+        QString PHNx = settings->value(QString("PHN%1").arg(i), "+7").toString();
         QString GRPx = settings->value(QString("GRP%1").arg(i), "0000000000").toString();
         m_gui->phoneBook->setPhone(PHNx, i);
         m_gui->phoneBook->setGroupMask(GRPx, i);

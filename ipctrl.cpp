@@ -175,7 +175,7 @@ void IPCtrl::slotTextChanged( QLineEdit* pEdit )
     {
         if ( pEdit == m_pLineEdit[i] )
         {
-            if ( pEdit->text().size() == getIPItemStr( UCHAR_MAX ).size() &&
+            if ( pEdit->text().size() == (int)getIPItemStr( UCHAR_MAX ).size() &&
                  pEdit->text().size() == pEdit->cursorPosition() )
             {
                 // auto-move to next item

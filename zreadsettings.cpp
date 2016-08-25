@@ -12,6 +12,8 @@ bool ZReadSettings::doRun()
     QString command;
     QStringList lines;
 
+    reportProgress(-1, tr("Reading settings from modem..."));
+
     command = QString("STOP=%1\r").arg(password());
     res = execute(command, QByteArray(), true);
     if (!res)
