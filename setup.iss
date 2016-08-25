@@ -21,6 +21,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 SetupIconFile=icon.ico
+UninstallDisplayIcon={uninstallexe}
 DisableProgramGroupPage=yes
 OutputBaseFilename=MetCOMSetup
 Compression=lzma
