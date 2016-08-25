@@ -114,7 +114,13 @@ bool ZProtocol::run()
 
     if (ret)
     {
+        execute(QString("STOP=%1\r").arg(password()), QByteArray(), true);
+        msleep(500);
+
         ret = doRun();
+
+        execute(QString("START=%1\r").arg(password()), QByteArray(), true);
+        msleep(500);
     }
 
     disconnect();

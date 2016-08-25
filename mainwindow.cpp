@@ -66,7 +66,7 @@ void MainWindow::updateLanguage()
     ui->retranslateUi(this);
 }
 
-void MainWindow::on_actionConnect_triggered()
+bool MainWindow::setupChannel()
 {
     Connect *connect = new Connect(m_channel, this);
     QDialog::DialogCode code = (QDialog::DialogCode)connect->exec();
@@ -74,7 +74,7 @@ void MainWindow::on_actionConnect_triggered()
     if (code == QDialog::Rejected)
     {
         delete connect;
-        return;
+        return false;
     }
 
     ZChannel *channel = connect->channel();
@@ -90,10 +90,16 @@ void MainWindow::on_actionConnect_triggered()
     }
 
     delete connect;
+    return true;
+}
+
+void MainWindow::on_actionConnect_triggered()
+{
+    (void)setupChannel();
 }
 void MainWindow::on_actionPassword_Change_triggered()
-{
-    if (m_channel == 0)
+{    
+    if (m_channel == 0 && !setupChannel())
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
@@ -106,7 +112,7 @@ void MainWindow::on_actionPassword_Change_triggered()
 
 void MainWindow::on_actionFirmwareUpgrade_triggered()
 {
-    if (m_channel == 0)
+    if (m_channel == 0 && !setupChannel())
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
@@ -121,7 +127,7 @@ void MainWindow::on_actionReset_triggered()
 {
     bool ret;
 
-    if (m_channel == 0)
+    if (m_channel == 0 && !setupChannel())
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
@@ -163,7 +169,7 @@ void MainWindow::on_actionReadSettings_triggered()
 {
     bool ret;
 
-    if (m_channel == 0)
+    if (m_channel == 0 && !setupChannel())
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
@@ -189,7 +195,7 @@ void MainWindow::on_actionWriteSettings_triggered()
 {
     bool ret;
 
-    if (m_channel == 0)
+    if (m_channel == 0 && !setupChannel())
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
         return;
@@ -249,7 +255,7 @@ void MainWindow::on_actionDefaultSettings_triggered()
 {
     bool ret;
 
-    if (m_channel == 0)
+    if (m_channel == 0 && !setupChannel())
     {
         statusBar()->showMessage(tr("Communication channel was not configured"));
         return;

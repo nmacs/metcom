@@ -49,17 +49,7 @@ bool ZFirmwareUpgrade::doRun()
     file.reset();
     checkByte ^= 0x27;
 
-    reportProgress(0, tr("Firmware Upgrade..."));
-
-    command = QString("STOP=%1\r").arg(password());
-    res = execute(command, QByteArray(), true);
-    if (!res)
-    {
-        setErrorString(channel()->errorString());
-        return false;
-    }
-
-    msleep(500);
+    reportProgress(0, tr("Firmware Update..."));
 
     command = QString("VER=%1\r").arg(password());
     res = execute(command, QByteArray(), true);
@@ -159,8 +149,6 @@ bool ZFirmwareUpgrade::doRun()
 
 out:
     file.close();
-    command = QString("START=%1\r").arg(password());
-    (void)execute(command, QByteArray(), true);
 
     return res;
 }

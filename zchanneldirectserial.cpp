@@ -38,9 +38,13 @@ bool ZChannelDirectSerial::connect()
         qint64 r = read(input_buffer, sizeof(input_buffer), 1000);
         if (r < 0)
         {
-            m_port->close();
-            setErrorString(tr("Fail to communicate with meter"));
-            return false;
+            /*
+             * Unable to communicate with meter.
+             * Possibly transparent mode is active already.
+             * Skip further meter communication and try to execute commands against modem.
+             */
+            m_port->setBaudRate(9600);
+            goto skip;
         }
 
         static const char speed_change[] = {
@@ -99,6 +103,7 @@ bool ZChannelDirectSerial::connect()
         setBaudRate(115200);
     }
 
+skip:
     m_port->setParity(QSerialPort::NoParity);
     m_port->setDataBits(QSerialPort::Data8);
 

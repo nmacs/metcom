@@ -14,16 +14,6 @@ bool ZReadSettings::doRun()
 
     reportProgress(-1, tr("Reading settings from modem..."));
 
-    command = QString("STOP=%1\r").arg(password());
-    res = execute(command, QByteArray(), true);
-    if (!res)
-    {
-        setErrorString(channel()->errorString());
-        return false;
-    }
-
-    msleep(500);
-
     command = QString("GET=%1\r").arg(password());
     res = execute(command, QByteArray(), true);
     if (!res)
@@ -55,10 +45,6 @@ bool ZReadSettings::doRun()
 
         m_settings.setValue(rx.cap(1), rx.cap(2));
     }
-
-    command = QString("START=%1\r").arg(password());
-    (void)execute(command, QByteArray(), true);
-    msleep(500);
 
     return true;
 }

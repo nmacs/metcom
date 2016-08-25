@@ -47,6 +47,6 @@ void FirmwareUpgrade::on_btnUpgrade_clicked()
     }
     else
     {
-        ui->lblStatus->setText(tr("Upgrade Done"));
+        ui->lblStatus->setText(tr("Update Done"));
     }
 }

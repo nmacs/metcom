@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Firmware Upgrade</string>
+   <string>Firmware Update</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -81,7 +81,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Upgrade</string>
+    <string>Update</string>
    </property>
   </widget>
   <widget class="QLabel" name="lblStatus">
