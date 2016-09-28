@@ -15,14 +15,14 @@ bool ZReadSettings::doRun()
     reportProgress(-1, tr("Reading settings from modem..."));
 
     command = QString("GET=%1\r").arg(password());
-    res = execute(command, QByteArray(), true);
+    res = post(command);
     if (!res)
     {
         setErrorString(channel()->errorString());
         return false;
     }
 
-    res = readout(&lines, 1024);
+    res = readout(&lines, 1024, 2000);
     if (!res)
     {
         setErrorString(channel()->errorString());

@@ -45,7 +45,7 @@ void ZProtocol::setChannel(ZChannel *channel)
     m_channel = channel;
     if (m_channel)
     {
-        setTimeout(m_channel->defaultTimeout());
+        setCommunicationTimeout(m_channel->defaultTimeout());
         setPassword(m_channel->password());
     }
 }
@@ -55,9 +55,9 @@ void ZProtocol::setPassword(const QString &password)
     m_password = password;
 }
 
-void ZProtocol::setTimeout(int value)
+void ZProtocol::setCommunicationTimeout(int value)
 {
-    m_timeout = value;
+    m_communicationTimeout = value;
 }
 
 void ZProtocol::msleep(int msec)
@@ -70,126 +70,108 @@ void ZProtocol::msleep(int msec)
     }
 }
 
-bool ZProtocol::connect()
-{
-    bool res;
-
-    if (m_channel == 0)
-    {
-        return false;
-    }
-
-    res = m_channel->connect();
-    if (!res)
-    {
-        setErrorString((m_channel->errorString()));
-        return false;
-    }
-
-    return true;
-}
-
-void ZProtocol::disconnect()
-{
-    if (m_channel == 0)
-    {
-        return;
-    }
-
-    m_channel->disconnect();
-}
-
 bool ZProtocol::run()
 {
-    bool ret;
+	bool ret;
+
+	if (m_channel == 0)
+	{
+		setErrorString(tr("Communication Channel is not provided"));
+		return false;
+	}
+
+	if (!m_channel->connect())
+	{
+		setErrorString(m_channel->errorString());
+		return false;
+	}
 
     if (m_progress)
     {
         m_progress->start();
     }
 
-    reportProgress(-1, tr("Connecting to Modem..."));
-
-    ret = connect();
-
-    if (ret)
-    {
-        execute(QString("STOP=%1\r").arg(password()), QByteArray(), true);
-        msleep(500);
-
-        ret = doRun();
-
-        execute(QString("START=%1\r").arg(password()), QByteArray(), true);
-        msleep(500);
-    }
-
-    disconnect();
+    ret = doRun();
 
     if (m_progress)
     {
         m_progress->end();
     }
 
+	if (!m_channel->isLongConnect())
+	{
+		m_channel->disconnect();
+	}
+
     return ret;
 }
 
-bool ZProtocol::execute(const QString& command, const QByteArray& tail, bool noresponse)
+bool ZProtocol::post(const QByteArray& command)
 {
-    bool res;
-    char buffer[1024];
-    qint64 len;
-    QString response;
-    QByteArray request;
+	bool res;
 
-    request.append(command);
-    request.append(tail);
+	res = channel()->write(command.constData(), command.length(), m_communicationTimeout);
+	if (!res)
+	{
+		setErrorString(channel()->errorString());
+		return false;
+	}
 
-    res = channel()->write(request.constData(), request.length(), m_timeout);
-    if (!res)
-    {
-        setErrorString(channel()->errorString());
-        return false;
-    }
-
-    if (noresponse)
-    {
-        return true;
-    }
-
-    len = channel()->read(buffer, sizeof(buffer), m_timeout);
-    if (len < 0)
-    {
-        setErrorString(channel()->errorString());
-        return false;
-    }
-
-    if (len >= sizeof(buffer))
-    {
-        setErrorString(tr("Too long modem response"));
-        return false;
-    }
-    buffer[len] = '\0';
-
-    response = QString(buffer);
-    if (response != "OK\r\n")
-    {
-        if (response.left(7) == "ERROR: ")
-        {
-            handleErrorResponse(response);
-        }
-        else
-        {
-            setErrorString(tr("Invalid response format"));
-        }
-
-        return false;
-    }
-
-
-    return true;
+	return true;
 }
 
-bool ZProtocol::readout(QStringList *lines, int maxlines)
+bool ZProtocol::post(const QString& command)
+{
+	return post(command.toLatin1());
+}
+
+bool ZProtocol::execute(const QByteArray& command, int timeout /* = 500 */)
+{
+	qint64 len;
+	char buffer[1024];
+	QString response;
+
+	if (!post(command))
+		return false;
+
+	len = channel()->read(buffer, sizeof(buffer), m_communicationTimeout + timeout);
+	if (len < 0)
+	{
+		setErrorString(channel()->errorString());
+		return false;
+	}
+
+	if (len >= sizeof(buffer))
+	{
+		setErrorString(tr("Too long modem response"));
+		return false;
+	}
+	buffer[len] = '\0';
+	response = QString(buffer);
+	
+	if (response != "OK\r\n")
+	{
+		if (response.left(7) == "ERROR: ")
+		{
+			handleErrorResponse(response);
+		}
+		else
+		{
+			setErrorString(tr("Invalid response format"));
+		}
+
+		return false;
+	}
+
+	return true;
+}
+
+bool ZProtocol::execute(const QString& command, int timeout)
+{
+	return execute(command.toLatin1(), timeout);
+}
+
+bool ZProtocol::readout(QStringList *lines, int maxlines, int timeout /* = 500 */)
 {
     char buffer[1024];
     qint64 len;
@@ -197,7 +179,7 @@ bool ZProtocol::readout(QStringList *lines, int maxlines)
 
     while (maxlines > 0)
     {
-        len = channel()->read(buffer, sizeof(buffer), m_timeout);
+        len = channel()->read(buffer, sizeof(buffer), m_communicationTimeout + timeout);
 
         if (len < 0)
         {

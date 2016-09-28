@@ -22,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     settings = new QSettings("ZixLink", "ModemControl", this);
 
+	m_timer = new QTimer(this);
+	m_timer->setInterval(500);
+
+	connect(m_timer, &QTimer::timeout, this, &MainWindow::on_timer);
+
     translator = new QTranslator(this);
     qApp->installTranslator(translator);
 
@@ -43,7 +48,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+	delete m_channel;
     delete ui;
+}
+
+void MainWindow::on_timer()
+{
+	setConnectionTime(m_channel != 0 ? m_channel->connectionTime() : 0);
 }
 
 void MainWindow::updateLanguage()
@@ -64,20 +75,23 @@ void MainWindow::updateLanguage()
     QString translation = qApp->applicationDirPath() + "/translations/app_" + language.toString();
     translator->load(translation);
     ui->retranslateUi(this);
+
+	setConnectionStatus((m_channel != 0) ? (m_channel->isConnected() ? tr("Connected") : tr("Disconnected")) : tr("Disconnected"));
+	setConnectionTime(m_channel != 0 ? m_channel->connectionTime() : 0);
 }
 
 bool MainWindow::setupChannel()
 {
-    Connect *connect = new Connect(m_channel, this);
-    QDialog::DialogCode code = (QDialog::DialogCode)connect->exec();
+    Connect *dlg = new Connect(m_channel, this);
+    QDialog::DialogCode code = (QDialog::DialogCode)dlg->exec();
 
     if (code == QDialog::Rejected)
     {
-        delete connect;
+        delete dlg;
         return false;
     }
 
-    ZChannel *channel = connect->channel();
+    ZChannel *channel = dlg->channel();
     if (channel != 0)
     {
         if (m_channel)
@@ -85,25 +99,80 @@ bool MainWindow::setupChannel()
             delete m_channel;
         }
         m_channel = channel;
+
         m_channel->setCommLog(m_log->log());
-        m_channel->setProgress(m_progress);
+		m_channel->setProgress(m_progress);
+		connect(m_channel, &ZChannel::connected, this, &MainWindow::on_channelConnected);
     }
 
-    delete connect;
+    delete dlg;
+
     return true;
 }
 
-void MainWindow::on_actionConnect_triggered()
+void MainWindow::setConnectionStatus(QString const& status)
+{
+	ui->lblConnectionStatus->setText(QString(tr("Connection Status: %1")).arg(status));
+}
+
+void MainWindow::setConnectionTime(int time)
+{
+	ui->lblConnectionTime->setText(QString(tr("Connection Time: %1")).arg(time));
+}
+
+bool MainWindow::disconnectChannel()
+{
+	if (m_channel == 0)
+		return true;
+
+	setConnectionStatus(tr("Disconnecting..."));
+	m_channel->disconnect();
+	setConnectionTime(0);
+
+	return true;
+}
+
+void MainWindow::on_btnConfiguration_clicked()
 {
     (void)setupChannel();
 }
+
+void MainWindow::on_btnDisconnect_clicked()
+{
+	(void)disconnectChannel();
+}
+
+bool MainWindow::checkChannel()
+{
+	if (m_channel != 0)
+		return true;
+
+	return setupChannel();
+}
+
+void MainWindow::on_channelConnected(bool connected)
+{
+	if (connected)
+	{
+		setConnectionStatus(tr("Connected"));
+		m_timer->start();
+		ui->btnDisconnect->setEnabled(true);
+		ui->btnConfiguration->setEnabled(false);
+	}
+	else
+	{
+		m_timer->stop();
+		setConnectionStatus(tr("Disconnected"));
+		setConnectionTime(0);
+		ui->btnDisconnect->setEnabled(false);
+		ui->btnConfiguration->setEnabled(true);
+	}
+}
+
 void MainWindow::on_actionPassword_Change_triggered()
 {    
-    if (m_channel == 0 && !setupChannel())
-    {
-        statusBar()->showMessage(tr("Communication channel was not configured"));
+    if (!checkChannel())
         return;
-    }
 
     PasswordChangeDlg *dialog = new PasswordChangeDlg(m_channel, m_progress, this);
     dialog->exec();
@@ -112,11 +181,8 @@ void MainWindow::on_actionPassword_Change_triggered()
 
 void MainWindow::on_actionFirmwareUpgrade_triggered()
 {
-    if (m_channel == 0 && !setupChannel())
-    {
-        statusBar()->showMessage(tr("Communication channel was not configured"));
+    if (!checkChannel())
         return;
-    }
 
     FirmwareUpgrade *dialog = new FirmwareUpgrade(m_channel, m_progress, this);
     dialog->exec();
@@ -127,11 +193,8 @@ void MainWindow::on_actionReset_triggered()
 {
     bool ret;
 
-    if (m_channel == 0 && !setupChannel())
-    {
-        statusBar()->showMessage(tr("Communication channel was not configured"));
+    if (!checkChannel())
         return;
-    }
 
     QString title = tr("Resetting Modem...");
     statusBar()->showMessage(title);
@@ -169,11 +232,8 @@ void MainWindow::on_actionReadSettings_triggered()
 {
     bool ret;
 
-    if (m_channel == 0 && !setupChannel())
-    {
-        statusBar()->showMessage(tr("Communication channel was not configured"));
+    if (!checkChannel())
         return;
-    }
 
     statusBar()->showMessage(tr("Reading Settings from Modem..."));
 
@@ -195,11 +255,8 @@ void MainWindow::on_actionWriteSettings_triggered()
 {
     bool ret;
 
-    if (m_channel == 0 && !setupChannel())
-    {
-        statusBar()->showMessage(tr("Communication channel was not configured"));
+    if (!checkChannel())
         return;
-    }
 
     statusBar()->showMessage(tr("Writing Settings from Modem..."));
 
@@ -255,11 +312,8 @@ void MainWindow::on_actionDefaultSettings_triggered()
 {
     bool ret;
 
-    if (m_channel == 0 && !setupChannel())
-    {
-        statusBar()->showMessage(tr("Communication channel was not configured"));
+    if (!checkChannel())
         return;
-    }
 
     QString title = tr("Writing default Modem settings...");
     statusBar()->showMessage(title);

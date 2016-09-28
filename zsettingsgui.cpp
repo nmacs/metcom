@@ -590,11 +590,7 @@ void ZSettingsGUI::on_IPP2_textChanged(QString const& text)
 
 void ZSettingsGUI::on_EDNS_toggled(bool checked)
 {
-    m_gui->lblIPP1->setEnabled(!checked);
-    m_gui->lblIPP2->setEnabled(!checked);
-    m_gui->IPP1->setEnabled(!checked);
-    m_gui->IPP2->setEnabled(!checked);
-
+	m_gui->EPNG1->setEnabled(!checked);
     emitUpdated("EDNS", checked ? 1 : 0);
 }
 

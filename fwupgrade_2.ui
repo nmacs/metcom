@@ -94,7 +94,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Upgrade</string>
+    <string>Update</string>
    </property>
   </widget>
  </widget>

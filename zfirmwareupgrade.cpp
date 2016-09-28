@@ -52,7 +52,7 @@ bool ZFirmwareUpgrade::doRun()
     reportProgress(0, tr("Firmware Update..."));
 
     command = QString("VER=%1\r").arg(password());
-    res = execute(command, QByteArray(), true);
+    res = post(command);
     if (!res)
     {
         setErrorString(channel()->errorString());
@@ -75,7 +75,7 @@ bool ZFirmwareUpgrade::doRun()
 
     if (result.at(0).left(2).toUpper() != QString("%1").arg(checkByte, 2, 16, QChar('0')).toUpper())
     {
-        setErrorString(tr("Unexpected Modem hardware version"));
+        setErrorString(QString(tr("Unexpected Modem hardware version %1 %2")).arg(result.at(0)).arg(checkByte));
         res = false;
         goto out;
     }
@@ -125,7 +125,11 @@ bool ZFirmwareUpgrade::doRun()
             }
             block[512] = (char)sum;
 
-            res = execute(command, QByteArray(block, sizeof(block)));
+			QByteArray cmd;
+			cmd.append(command);
+			cmd.append(block, sizeof(block));
+
+            res = execute(cmd, 3000);
             if (!res)
             {
                 setErrorString(file.errorString());

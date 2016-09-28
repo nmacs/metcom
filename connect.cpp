@@ -6,12 +6,17 @@
 #include <QtSerialPort/QtSerialPort>
 
 #include "zchanneldirectserial.h"
+#include "zchannelopto.h"
+#include "zchannelcsd.h"
+#include "zchannelsocket.h"
 
 Connect::Connect(ZChannel *channel, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Connect)
 {
     ui->setupUi(this);
+
+	ui->txtIP->setIP("213.180.193.3");
 
     m_timer = new QTimer(this);
     m_timer->setInterval(500);
@@ -24,20 +29,61 @@ Connect::Connect(ZChannel *channel, QWidget *parent) :
 
     if (channel != NULL)
     {
-      ui->txtPassword->setText(channel->password());
+		ui->txtPassword->setText(channel->password());
 
-      if (dynamic_cast<ZChannelDirectSerial*>(channel) != NULL)
-      {
-        ZChannelDirectSerial *ch = dynamic_cast<ZChannelDirectSerial*>(channel);
-        for (int c = 0; c < ui->cmbSerialPort->count(); c++)
-        {
-            if (ui->cmbSerialPort->itemData(c).toString() == ch->portName())
-            {
-                ui->cmbSerialPort->setCurrentIndex(c);
-            }
-        }
-        ui->chkOpticalMode->setChecked(ch->opticalMode());
-      }
+		if (dynamic_cast<ZChannelCSD*>(channel) != NULL)
+		{
+			ui->groupSerialPort->setChecked(false);
+			ui->groupDialup->setChecked(true);
+			ui->groupInternet->setChecked(false);
+
+			ZChannelCSD *ch = dynamic_cast<ZChannelCSD*>(channel);
+			for (int c = 0; c < ui->cmbDialupSerialPort->count(); c++)
+			{
+				if (ui->cmbDialupSerialPort->itemData(c).toString() == ch->portName())
+				{
+					ui->cmbDialupSerialPort->setCurrentIndex(c);
+				}
+			}
+
+			ui->cmbBaud->setCurrentText(QString::number(ch->baudRate()));
+			ui->txtPhone->setText(ch->phoneNumbaer());
+		}
+		else if (dynamic_cast<ZChannelDirectSerial*>(channel) != NULL)
+		{
+			ui->groupSerialPort->setChecked(true);
+			ui->groupDialup->setChecked(false);
+			ui->groupInternet->setChecked(false);
+
+			ZChannelDirectSerial *ch = dynamic_cast<ZChannelDirectSerial*>(channel);
+			for (int c = 0; c < ui->cmbSerialPort->count(); c++)
+			{
+				if (ui->cmbSerialPort->itemData(c).toString() == ch->portName())
+				{
+					ui->cmbSerialPort->setCurrentIndex(c);
+				}
+			}
+
+			if (dynamic_cast<ZChannelOpto*>(channel) != NULL)
+			{
+				ui->chkOpticalMode->setChecked(true);
+			}
+			else
+			{
+				ui->chkOpticalMode->setChecked(false);
+			}
+		}
+		else if (dynamic_cast<ZChannelSocket*>(channel) != NULL)
+		{
+			ui->groupSerialPort->setChecked(false);
+			ui->groupDialup->setChecked(false);
+			ui->groupInternet->setChecked(true);
+
+			ZChannelSocket *ch = dynamic_cast<ZChannelSocket*>(channel);
+
+			ui->txtIP->setIP(ch->address());
+			ui->txtPort->setText(QString::number(ch->port()));
+		}
     }
 }
 
@@ -59,6 +105,7 @@ void Connect::refreshSerialPortList()
     for (int c = 0; c < ui->cmbSerialPort->count(); c++)
     {
         ui->cmbSerialPort->setItemData(c, "");
+		ui->cmbDialupSerialPort->setItemData(c, "");
     }
 
     for (i = ports.begin(); i != ports.end(); i++)
@@ -67,10 +114,16 @@ void Connect::refreshSerialPortList()
         QString data = i->portName();
 
         int ind = ui->cmbSerialPort->findText(text);
-        if (ind < 0)
-            ui->cmbSerialPort->addItem(text, data);
-        else
-            ui->cmbSerialPort->setItemData(ind, data);
+		if (ind < 0)
+		{
+			ui->cmbSerialPort->addItem(text, data);
+			ui->cmbDialupSerialPort->addItem(text, data);
+		}
+		else
+		{
+			ui->cmbSerialPort->setItemData(ind, data);
+			ui->cmbDialupSerialPort->setItemData(ind, data);
+		}
     }
 
     for (int c = 0; c < ui->cmbSerialPort->count();)
@@ -80,6 +133,14 @@ void Connect::refreshSerialPortList()
         else
             c++;
     }
+
+	for (int c = 0; c < ui->cmbDialupSerialPort->count();)
+	{
+		if (ui->cmbDialupSerialPort->itemData(c).toString() == "")
+			ui->cmbDialupSerialPort->removeItem(c);
+		else
+			c++;
+	}
 }
 
 void Connect::on_timeout()
@@ -144,20 +205,55 @@ ZChannel* Connect::setupChannel()
             return NULL;
         }
 
-        ZChannelDirectSerial *channel = new ZChannelDirectSerial(parent());
+		ZChannelDirectSerial *channel;
+		if (ui->chkOpticalMode->isChecked())
+		{
+			ZChannelOpto* opto = new ZChannelOpto(parent());
+
+			opto->setMeterPassword(ui->txtMeterPassword->text());
+
+			channel = opto;
+		}
+		else
+		{
+			channel = new ZChannelDirectSerial(parent());
+			channel->setBaudRate(QSerialPort::Baud115200);
+		}
 
         channel->setPassword(ui->txtPassword->text());
-        channel->setBaudRate(QSerialPort::Baud115200);
         channel->setPortName(portName.toString());
-
-        if (ui->chkOpticalMode->isChecked())
-        {
-            channel->setMeterPassword(ui->txtMeterPassword->text());
-            channel->setOpticalMode(true);
-        }
 
         return channel;
     }
+	else if (ui->groupDialup->isChecked())
+	{
+		QVariant portName = ui->cmbDialupSerialPort->currentData();
+		if (!portName.isValid())
+		{
+			showError(ui->cmbDialupSerialPort, tr("No serial port selected"));
+			return NULL;
+		}
+
+		ZChannelCSD *channel = new ZChannelCSD(parent());
+
+		channel->setBaudRate(ui->cmbBaud->currentText().toInt());
+		channel->setPassword(ui->txtPassword->text());
+		channel->setPortName(portName.toString());
+		channel->setPhoneNumber(ui->txtPhone->text());
+		
+		return channel;
+	}
+	else if (ui->groupInternet->isChecked())
+	{
+		ZChannelSocket *channel = new ZChannelSocket(parent());
+
+		channel->setAddress(ui->txtIP->IP());
+		channel->setPort(ui->txtPort->text().toUShort());
+
+		channel->setPassword(ui->txtPassword->text());
+
+		return channel;
+	}
 
     return NULL;
 }

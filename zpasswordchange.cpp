@@ -13,7 +13,7 @@ bool ZPasswordChange::doRun()
     reportProgress(-1, tr("Changing Password..."));
 
     command = QString("PSW=%1;%2\r").arg(password(), m_newPassword);
-    res = execute(command, QByteArray(), false);
+    res = execute(command);
     if (!res)
     {
         setErrorString(channel()->errorString());

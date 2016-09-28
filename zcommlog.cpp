@@ -30,7 +30,7 @@ void ZCommLog::log(const QByteArray &block, ZCommLog::Direction dir)
     {
         char byte = block.at(i);
         hex += QString::asprintf("%02X ", (unsigned char)byte);
-        ascii += isprint(byte) ? byte : '.';
+        ascii += isprint((unsigned char)byte) ? byte : '.';
 
         if (ascii.length() >= 16)
         {

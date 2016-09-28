@@ -16,13 +16,10 @@ public:
     ZChannel *channel();
     void setChannel(ZChannel *channel);
     void setPassword(const QString &password);
-    void setTimeout(int value);
+    void setCommunicationTimeout(int value);
     void setProgress(Progress *progress);
 
     static void msleep(int msec);
-
-    virtual bool connect();
-    virtual void disconnect();
 
     bool run();
 
@@ -39,8 +36,11 @@ protected:
     void setErrorString(const QString& error) { m_errorString = error; }
     void reportProgress(double progress, QString const& message = QString());
 
-    bool execute(const QString& command, const QByteArray& tail = QByteArray(), bool noresponse = false);
-    bool readout(QStringList *lines, int maxlines);
+	bool post(const QByteArray& commdand);
+	bool post(const QString& command);
+	bool execute(const QByteArray& command, int timeout = 500);
+    bool execute(const QString& command, int timeout = 500);
+    bool readout(QStringList *lines, int maxlines, int timeout = 500);
     bool cancelRequest() const;
 
 private:
@@ -50,7 +50,7 @@ private:
     Progress *m_progress;
     QString m_password;
     QString m_errorString;
-    int m_timeout;
+    int m_communicationTimeout;
 };
 
 #endif // ZPROTOCOL_H

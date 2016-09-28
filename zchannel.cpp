@@ -1,13 +1,38 @@
 #include "zchannel.h"
+#include "zprotocol.h"
 #include <QCoreApplication>
 #include <QDebug>
+#include <QThread>
 
 #define GUI_POLLING_INTERVAL_MS 30
 
 ZChannel::ZChannel(QObject *parent) : QObject(parent),
     m_progress(0),
-    m_log(0)
+    m_log(0),
+	m_isConnected(false)
 {
+}
+
+bool ZChannel::connect()
+{
+	m_connectedTime = QTime::currentTime();
+	m_isConnected = true;
+	emit connected(true);
+	return true;
+}
+
+void ZChannel::disconnect()
+{
+	m_isConnected = false;
+	emit connected(false);
+}
+
+int ZChannel::connectionTime() const
+{
+	if (!m_isConnected)
+		return 0;
+
+	return m_connectedTime.secsTo(QTime::currentTime());
 }
 
 bool ZChannel::write(const char* data, qint64 length, int timeout)
@@ -19,8 +44,9 @@ bool ZChannel::write(const char* data, qint64 length, int timeout)
             m_log->log(QByteArray(data, length), ZCommLog::LOG_OUTPUT);
         }
 
+		m_bytesWriten = 0;
         qint64 ret = device()->write(data, length);
-        if (ret < 0)
+        if (ret <= 0)
         {
             setErrorString(device()->errorString());
             return false;
@@ -32,11 +58,8 @@ bool ZChannel::write(const char* data, qint64 length, int timeout)
            return false;
         }
 
-        if (ret > 0)
-        {
-            length -= ret;
-            data += length;
-        }
+        length -= ret;
+        data += length;
 
         while (timeout > 0)
         {
@@ -46,12 +69,17 @@ bool ZChannel::write(const char* data, qint64 length, int timeout)
                return false;
             }
 
-            yield();
+			if (m_bytesWriten > 0)
+			{
+				ret -= m_bytesWriten;
+				m_bytesWriten = 0;
+			}
 
-            if (device()->waitForBytesWritten(GUI_POLLING_INTERVAL_MS))
-                break;
+			if (ret == 0)
+				break;
 
-            timeout -= GUI_POLLING_INTERVAL_MS;
+			ZProtocol::msleep(20);
+			timeout -= 20;
         }
 
         if (timeout <= 0)
@@ -67,8 +95,9 @@ bool ZChannel::write(const char* data, qint64 length, int timeout)
 qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
 {
     char ch;
-    qint64 ret;
+    qint64 ret = 0;
     qint64 bytesRead = 0;
+	int waittime = 0;
 
     while (maxLength > 0)
     {
@@ -76,62 +105,64 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
         if (ret < 0)
         {
             setErrorString(device()->errorString());
-            return -1;
+            ret = -1;
+			goto out;
         }
 
         if (m_progress != 0 && m_progress->cancelRequest())
         {
            setErrorString(tr("Operation cancelled"));
-           return -1;
+		   ret = 0;
+		   goto out;
         }
 
         if (ret > 0)
         {
-new_byte:
-            data[bytesRead] = ch;
-            qDebug() << "byte " << ch;
+		new_byte:
+			waittime = 0;
+			data[bytesRead] = ch;
+			qDebug() << "byte " << (unsigned)ch;
 
-            bytesRead += 1;
-            maxLength -= 1;
+			bytesRead += 1;
+			maxLength -= 1;
 
-            if (ch == '\n')
-            {
-                break;
-            }
+			if (ch == '\n')
+			{
+				break;
+			}
         }
         else
         {
-            while (timeout > 0)
+			m_readyRead = false;
+            while (waittime <= timeout)
             {
                 if (m_progress != 0 && m_progress->cancelRequest())
                 {
                    setErrorString(tr("Operation cancelled"));
-                   return -1;
+				   ret = -1;
+				   goto out;
                 }
 
-                yield();
+				if (m_readyRead)
+					break;
 
-                if (device()->waitForReadyRead(GUI_POLLING_INTERVAL_MS))
-                    break;
-
-                timeout -= GUI_POLLING_INTERVAL_MS;
-
-                ret = device()->read(&ch, 1);
-                if (ret > 0)
-                {
-                    goto new_byte;
-                }
+				ZProtocol::msleep(GUI_POLLING_INTERVAL_MS);
+                waittime += GUI_POLLING_INTERVAL_MS;
             }
 
-            if (timeout <= 0)
+            if (waittime >= timeout)
             {
                 setErrorString(tr("Channel read timeout."));
-                return -1;
+				ret = -1;
+				goto out;
             }
         }
     }
 
-    if (m_log)
+	ret = bytesRead;
+
+out:
+    if (m_log && bytesRead > 0)
     {
         m_log->log(QByteArray(data, bytesRead), ZCommLog::LOG_INPUT);
     }
@@ -139,14 +170,50 @@ new_byte:
     return bytesRead;
 }
 
-void ZChannel::yield()
+void ZChannel::attach(QIODevice *device)
 {
-    QCoreApplication::processEvents();
+	QObject::connect(device, &QIODevice::bytesWritten, this, &ZChannel::bytesWritten);
+	QObject::connect(device, &QIODevice::readyRead,    this, &ZChannel::readyRead);
+}
+
+void ZChannel::readyRead()
+{
+	m_readyRead = true;
+}
+
+void ZChannel::bytesWritten(qint64 bytes)
+{
+	m_bytesWriten = bytes;
 }
 
 void ZChannel::setProgress(Progress *progress)
 {
-    m_progress = progress;
+	m_progress = progress;
+}
+
+bool ZChannel::probeModem()
+{
+	char buffer[4];
+	qint64 len;
+
+	QString command = QString("WRX=%1\r").arg(password());
+
+	if (!write(command.toLatin1().constData(), command.length(), defaultTimeout()))
+		return false;
+	
+	len = read(buffer, sizeof(buffer), defaultTimeout());
+	if (len != sizeof(buffer))
+		return false;
+
+	if (memcmp(buffer, "OK\r\n", sizeof(buffer)) != 0)
+		return false;
+
+	return true;
+}
+
+void ZChannel::yield()
+{
+    QCoreApplication::processEvents();
 }
 
 void ZChannel::setCommLog(ZCommLog *log)

@@ -15,6 +15,7 @@ Progress::Progress(QWidget *parent) :
     ui->progressBar->setMinimum(0);
 
     setModal(true);
+	setWindowModality(Qt::WindowModal);
 
     m_timer = new QTimer(this);
     m_timer->setInterval(500);

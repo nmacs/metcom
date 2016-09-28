@@ -13,7 +13,7 @@ bool ZCommand::doRun()
 
     reportProgress(-1, m_title);
 
-    res = execute(m_command.arg(password()), QByteArray(), false);
+    res = execute(m_command.arg(password()));
     if (!res)
     {
         setErrorString(channel()->errorString());

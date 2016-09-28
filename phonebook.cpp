@@ -26,7 +26,7 @@ PhoneBook::PhoneBook(QWidget *parent) :
     for (int i = 0; i < 10; i++)
     {
         QLabel *label = new QLabel(this);
-        label->setText(QString::number(i + 1));
+        label->setText(QString::number(i));
         layout->addWidget(label, 0, i + 2);
     }
 

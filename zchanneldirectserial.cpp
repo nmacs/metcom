@@ -1,16 +1,25 @@
 #include "zchanneldirectserial.h"
+#include "zprotocol.h"
 #include <QThread>
 #include <QDebug>
 
 ZChannelDirectSerial::ZChannelDirectSerial(QObject *parent) : ZChannel(parent)
 {
-    m_optical = false;
     m_port = new QSerialPort(this);
+	attach(m_port);
+}
+
+ZChannelDirectSerial::~ZChannelDirectSerial()
+{
+	disconnect();
 }
 
 bool ZChannelDirectSerial::connect()
 {
     bool res;
+
+	if (isConnected())
+		return true;
 
     res = m_port->open(QIODevice::ReadWrite);
     if (!res)
@@ -19,100 +28,46 @@ bool ZChannelDirectSerial::connect()
         return false;
     }
 
+	if (m_progress)
+	{
+		m_progress->start();
+		m_progress->setProgress(-1, tr("Connecting..."));
+	}
+
     m_port->setStopBits(QSerialPort::OneStop);
     m_port->setFlowControl(QSerialPort::NoFlowControl);
+	m_port->setParity(QSerialPort::NoParity);
+	m_port->setDataBits(QSerialPort::Data8);
 
-    if (m_optical)
-    {
-        char input_buffer[128];
+    setBaudRate(115200);
 
-        m_port->setParity(QSerialPort::EvenParity);
-        m_port->setDataBits(QSerialPort::Data7);
-        setBaudRate(300);
+	QString stop = QString("STOP=%1\r").arg(password());
+	write(stop.toLatin1().constData(), stop.length(), defaultTimeout());
+	ZProtocol::msleep(500);
 
-        static const char start[] = {
-            0x2F, 0x3F, 0x21, 0x0D, 0x0A
-        };
+	if (!probeModem())
+	{
+		m_port->close();
+		if (m_progress)
+			m_progress->end();
+		setErrorString(tr("Fail to communicate with the Modem"));
+		return false;
+	}
 
-        write(start, sizeof(start), 500);
-        qint64 r = read(input_buffer, sizeof(input_buffer), 1000);
-        if (r < 0)
-        {
-            /*
-             * Unable to communicate with meter.
-             * Possibly transparent mode is active already.
-             * Skip further meter communication and try to execute commands against modem.
-             */
-            m_port->setBaudRate(9600);
-            goto skip;
-        }
+	if (m_progress)
+		m_progress->end();
 
-        static const char speed_change[] = {
-            0x06, 0x30, 0x35, 0x31, 0x0D, 0x0A
-        };
-
-        write(speed_change, sizeof(speed_change), 1000);
-        QThread::usleep(220000);
-        m_port->setBaudRate(9600);
-        read(input_buffer, 16, 500);
-
-        char password[] = {
-            0x01, 0x50, 0x31, 0x02, 0x28,
-            0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30,
-            0x29, 0x03, 0x61
-        };
-
-        int password_len = m_meterPassword.length();
-        if (password_len > 8)
-        {
-            password_len = 8;
-        }
-
-        for (int i = 0; i < password_len; i++)
-        {
-            password[i + 5] = m_meterPassword.at(i).toLatin1();
-        }
-
-        char sum = 0;
-        for (size_t i = 0; i < sizeof(password) - 2; i++)
-        {
-            sum ^= password[i + 1];
-        }
-
-        write(password, sizeof(password), 1000);
-        read(input_buffer, 1, 5000);
-
-        static const char transparent[] = {
-            0x01, 0x57, 0x31, 0x02,
-            0x53, 0x30, 0x4E, 0x28,
-            0x30, 0x41, 0x35, 0x30,
-            0x29, 0x03, 0x3F
-        };
-
-        write(transparent, sizeof(transparent), 500);
-        r = read(input_buffer, 5, 1000);
-        if (r != 5)
-        {
-            setErrorString(tr("Unable to activate transparent mode"));
-            m_port->close();
-            return false;
-        }
-    }
-    else
-    {
-        setBaudRate(115200);
-    }
-
-skip:
-    m_port->setParity(QSerialPort::NoParity);
-    m_port->setDataBits(QSerialPort::Data8);
-
-    return true;
+    return ZChannel::connect();
 }
 
 void ZChannelDirectSerial::disconnect()
 {
+	QString stop = QString("START=%1\r").arg(password());
+	write(stop.toLatin1().constData(), stop.length(), 500);
+	ZProtocol::msleep(500);
+
     m_port->close();
+	ZChannel::disconnect();
 }
 
 QIODevice* ZChannelDirectSerial::device()
@@ -130,11 +85,6 @@ QString ZChannelDirectSerial::portName() const
     return m_port->portName();
 }
 
-void ZChannelDirectSerial::setMeterPassword(const QString &password)
-{
-    m_meterPassword = password;
-}
-
 void ZChannelDirectSerial::setBaudRate(int baud)
 {
     m_port->setBaudRate(baud);
@@ -145,17 +95,7 @@ int ZChannelDirectSerial::baudRate() const
    return m_port->baudRate();
 }
 
-void ZChannelDirectSerial::setOpticalMode(bool enable)
-{
-    m_optical = enable;
-}
-
-bool ZChannelDirectSerial::opticalMode() const
-{
-    return m_optical;
-}
-
 int ZChannelDirectSerial::defaultTimeout()
 {
-    return 10000;
+    return 1500;
 }

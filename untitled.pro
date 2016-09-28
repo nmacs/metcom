@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT       += serialport
+QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,6 +18,9 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     zchannel.cpp \
     zchanneldirectserial.cpp \
+    zchannelopto.cpp \
+    zchannelcsd.cpp \
+    zchannelsocket.cpp \
     zprotocol.cpp \
     zfirmwareupgrade.cpp \
     ipctrl.cpp \
@@ -39,6 +43,9 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     zchannel.h \
     zchanneldirectserial.h \
+    zchannelopto.h \
+    zchannelcsd.h \
+    zchannelsocket.h \
     zprotocol.h \
     zfirmwareupgrade.h \
     ipctrl.h \
