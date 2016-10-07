@@ -24,8 +24,13 @@ signals:
 
 public slots:
 
+protected:
+	virtual void readyRead();
+
 private:
 	bool dialup();
+	void hookup();
+
 	QString m_phone;
 };
 

@@ -16,6 +16,7 @@ public:
     virtual bool connect();
     virtual void disconnect();
 	bool isConnected() const { return m_isConnected; }
+	virtual bool isMediaConnected() { return device()->isOpen(); }
 
     virtual QIODevice* device() = 0;
 
@@ -28,6 +29,7 @@ public:
     void setPassword(QString const& password);
     QString const& password() const;
 
+	bool write(const QString& data, int timeout);
     bool write(const char* data, qint64 length, int timeout);
     qint64 read(char* data, qint64 length, int timeout);
 
@@ -38,10 +40,13 @@ signals:
 	void connected(bool connected);
 
 private slots:
-	void readyRead();
-	void bytesWritten(qint64 bytes);
+	void on_readyRead();
+	void on_bytesWritten(qint64 bytes);
 
 protected:
+	virtual void readyRead() {}
+	virtual void bytesWritten(qint64 bytes) { (void)bytes;  }
+
 	void attach(QIODevice *device);
     void setErrorString(const QString& error) { m_errorString = error; }
     void yield();

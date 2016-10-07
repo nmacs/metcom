@@ -35,6 +35,11 @@ int ZChannel::connectionTime() const
 	return m_connectedTime.secsTo(QTime::currentTime());
 }
 
+bool ZChannel::write(const QString& data, int timeout)
+{
+	return write(data.toLatin1().constData(), data.length(), timeout);
+}
+
 bool ZChannel::write(const char* data, qint64 length, int timeout)
 {
     while (length > 0)
@@ -44,18 +49,23 @@ bool ZChannel::write(const char* data, qint64 length, int timeout)
             m_log->log(QByteArray(data, length), ZCommLog::LOG_OUTPUT);
         }
 
+		if (!isMediaConnected())
+		{
+			setErrorString(tr("Channel closed unexpectedly"));
+			return false;
+		}
+		else if (m_progress != 0 && m_progress->cancelRequest())
+		{
+			setErrorString(tr("Operation cancelled"));
+			return false;
+		}
+
 		m_bytesWriten = 0;
         qint64 ret = device()->write(data, length);
         if (ret <= 0)
         {
             setErrorString(device()->errorString());
             return false;
-        }
-
-        if (m_progress != 0 && m_progress->cancelRequest())
-        {
-           setErrorString(tr("Operation cancelled"));
-           return false;
         }
 
         length -= ret;
@@ -101,19 +111,19 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
 
     while (maxLength > 0)
     {
+		if (m_progress != 0 && m_progress->cancelRequest())
+		{
+			setErrorString(tr("Operation cancelled"));
+			ret = 0;
+			goto out;
+		}
+
         ret = device()->read(&ch, 1);
         if (ret < 0)
         {
             setErrorString(device()->errorString());
             ret = -1;
 			goto out;
-        }
-
-        if (m_progress != 0 && m_progress->cancelRequest())
-        {
-           setErrorString(tr("Operation cancelled"));
-		   ret = 0;
-		   goto out;
         }
 
         if (ret > 0)
@@ -128,11 +138,24 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
 
 			if (ch == '\n')
 			{
+				if (memcmp(data, "NO CARRIER", 10) == 0)
+				{
+					disconnect();
+					ret = -1;
+					goto out;
+				}
 				break;
 			}
         }
         else
         {
+			if (!isMediaConnected())
+			{
+				setErrorString(tr("Channel closed unexpectedly"));
+				ret = -1;
+				goto out;
+			}
+			
 			m_readyRead = false;
             while (waittime <= timeout)
             {
@@ -172,18 +195,20 @@ out:
 
 void ZChannel::attach(QIODevice *device)
 {
-	QObject::connect(device, &QIODevice::bytesWritten, this, &ZChannel::bytesWritten);
-	QObject::connect(device, &QIODevice::readyRead,    this, &ZChannel::readyRead);
+	QObject::connect(device, &QIODevice::bytesWritten, this, &ZChannel::on_bytesWritten);
+	QObject::connect(device, &QIODevice::readyRead,    this, &ZChannel::on_readyRead);
 }
 
-void ZChannel::readyRead()
+void ZChannel::on_readyRead()
 {
 	m_readyRead = true;
+	readyRead();
 }
 
-void ZChannel::bytesWritten(qint64 bytes)
+void ZChannel::on_bytesWritten(qint64 bytes)
 {
 	m_bytesWriten = bytes;
+	bytesWritten(bytes);
 }
 
 void ZChannel::setProgress(Progress *progress)

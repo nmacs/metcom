@@ -40,67 +40,94 @@
         <translation>Пароль к Счетчику</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="154"/>
+        <location filename="connect.ui" line="157"/>
         <source>Dialup</source>
         <translation>Дозвон</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="182"/>
+        <location filename="connect.ui" line="185"/>
         <source>Modem port selection</source>
         <translation>Выбор порта</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="208"/>
+        <location filename="connect.ui" line="240"/>
         <source>Phone number</source>
         <translation>Номер телефона</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="198"/>
+        <location filename="connect.ui" line="201"/>
         <source>Baud Rate</source>
         <translation>Скорость</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="248"/>
+        <location filename="connect.ui" line="208"/>
+        <location filename="connect.ui" line="232"/>
+        <source>115200</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="212"/>
+        <source>9600</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="217"/>
+        <source>19200</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="222"/>
+        <source>38400</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="227"/>
+        <source>57600</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="283"/>
         <source>Internet</source>
         <translation>Интернет</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="266"/>
+        <location filename="connect.ui" line="301"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP address&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP адрес&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="279"/>
+        <location filename="connect.ui" line="314"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Port number&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер порта&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="connect.ui" line="319"/>
+        <location filename="connect.ui" line="357"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="332"/>
+        <location filename="connect.ui" line="370"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="125"/>
+        <location filename="connect.cpp" line="178"/>
         <source>Password is not entered</source>
         <translation>Не введен пароль к Модему</translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="136"/>
+        <location filename="connect.cpp" line="189"/>
         <source>Meter password is not entered</source>
         <translation>Не введен пароль к Счетчику</translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="142"/>
+        <location filename="connect.cpp" line="195"/>
         <source>Meter password must be 8 symbols long</source>
         <translation>Дляна пароля к Счетчику должна быть 8 символов</translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="152"/>
+        <location filename="connect.cpp" line="205"/>
+        <location filename="connect.cpp" line="234"/>
         <source>No serial port selected</source>
         <translation>Не выбран последовательный порт</translation>
     </message>
@@ -129,7 +156,8 @@
     </message>
     <message>
         <location filename="fwupgrade_2.ui" line="97"/>
-        <source>Upgrade</source>
+        <source>Update</source>
+        <oldsource>Upgrade</oldsource>
         <translation>Обновить</translation>
     </message>
 </context>
@@ -221,23 +249,22 @@
         <translation>Интернет</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3021"/>
+        <location filename="mainwindow.ui" line="3062"/>
         <source>Write Default Settings</source>
         <translation>Записать Заводские Настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2981"/>
-        <location filename="mainwindow.ui" line="3026"/>
+        <location filename="mainwindow.ui" line="3067"/>
         <source>Connection</source>
         <translation>Подключение</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3031"/>
+        <location filename="mainwindow.ui" line="3072"/>
         <source>Change Password</source>
         <translation>Смена Пароля</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3036"/>
+        <location filename="mainwindow.ui" line="3077"/>
         <source>Firmware Update</source>
         <oldsource>Firmware Upgrade</oldsource>
         <translation>Обновление прошивки</translation>
@@ -265,7 +292,7 @@
         <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер порта&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2958"/>
+        <location filename="mainwindow.ui" line="3009"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -278,12 +305,12 @@
         <translation type="vanished">Свойства</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2970"/>
+        <location filename="mainwindow.ui" line="3021"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2951"/>
+        <location filename="mainwindow.ui" line="3002"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
@@ -878,120 +905,122 @@
     <message>
         <location filename="mainwindow.ui" line="2686"/>
         <source>Network work time (hh:mm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Время в сети (чч:мм)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2769"/>
         <source>Calls / SMS</source>
-        <translation type="unfinished"></translation>
+        <translation>Звонок / SMS</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2781"/>
         <source>Exit from sleep mode by incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation>Выход из спящего режима по звонку</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2794"/>
         <source>Enter sleep mode by incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation>Входв спящий режим по звонку</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2807"/>
         <location filename="mainwindow.ui" line="2840"/>
         <source>Phone group</source>
-        <translation type="unfinished"></translation>
+        <translation>Группа номеров</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2853"/>
         <source>SMS text for sleep mode exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Текст SMS для выхода из спящего режима</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2866"/>
         <source>SMS text for sleep mode enter</source>
-        <translation type="unfinished"></translation>
+        <translation>Текст SMS для входа в спящий режим</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2915"/>
+        <location filename="mainwindow.ui" line="2949"/>
         <source>Connection Status: Disconnected</source>
         <oldsource>Connection Status:</oldsource>
         <translation>Состояние Подключения: Отключено</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2928"/>
+        <location filename="mainwindow.ui" line="2962"/>
         <source>Connection Time: 0</source>
         <oldsource>Connection Time:</oldsource>
         <translation>Время Подключения: 0</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2943"/>
+        <location filename="mainwindow.ui" line="2994"/>
         <source>Service</source>
         <translation>Сервис</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2966"/>
+        <location filename="mainwindow.ui" line="3017"/>
         <source>Tools</source>
         <translation>Инструменты</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3051"/>
+        <location filename="mainwindow.ui" line="2936"/>
+        <location filename="mainwindow.ui" line="3092"/>
         <source>Configuration</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3056"/>
+        <location filename="mainwindow.ui" line="3097"/>
         <source>Connect</source>
         <translation>Подключить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3061"/>
+        <location filename="mainwindow.ui" line="2978"/>
+        <location filename="mainwindow.ui" line="3102"/>
         <source>Disconnect</source>
         <translation>Отключить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3066"/>
-        <location filename="mainwindow.ui" line="3079"/>
+        <location filename="mainwindow.ui" line="3107"/>
+        <location filename="mainwindow.ui" line="3120"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3071"/>
-        <location filename="mainwindow.ui" line="3087"/>
+        <location filename="mainwindow.ui" line="3112"/>
+        <location filename="mainwindow.ui" line="3128"/>
         <source>Русский</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3001"/>
+        <location filename="mainwindow.ui" line="3042"/>
         <source>Load Settings</source>
         <translation>Загрузить настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3006"/>
+        <location filename="mainwindow.ui" line="3047"/>
         <source>Save Settings</source>
         <translation>Сохранить настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3011"/>
+        <location filename="mainwindow.ui" line="3052"/>
         <source>Read Settings</source>
         <translation>Считать настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3016"/>
+        <location filename="mainwindow.ui" line="3057"/>
         <source>Write Settings</source>
         <translation>Записать настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3041"/>
+        <location filename="mainwindow.ui" line="3082"/>
         <source>Reset</source>
         <translation>Перезапуск</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3046"/>
+        <location filename="mainwindow.ui" line="3087"/>
         <source>Communication Log</source>
         <translation>Коммуникационный Лог</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="47"/>
+        <location filename="mainwindow.cpp" line="46"/>
         <source>Ready</source>
         <translation>Готов</translation>
     </message>
@@ -1029,38 +1058,37 @@
         <translation type="vanished">Не настроен Канал Коммуникации</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="134"/>
-        <location filename="mainwindow.cpp" line="151"/>
+        <location filename="mainwindow.cpp" line="79"/>
+        <location filename="mainwindow.cpp" line="165"/>
         <source>Disconnected</source>
         <translation>Отключено</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="124"/>
         <source>Communication Channel is not configured</source>
-        <translation>Не настроен канал связи</translation>
+        <translation type="vanished">Не настроен канал связи</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
+        <location filename="mainwindow.cpp" line="115"/>
         <source>Connection Status: %1</source>
         <translation>Состояние Подключения: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="115"/>
-        <source>Connection Time: %1</source>
-        <translation>Время Подключения: %1</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="129"/>
         <source>Connecting...</source>
-        <translation>Подключение...</translation>
+        <translation type="vanished">Подключение...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="79"/>
+        <location filename="mainwindow.cpp" line="157"/>
         <source>Connected</source>
         <translation>Подключено</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="149"/>
+        <location filename="mainwindow.cpp" line="120"/>
+        <source>Connection Time: %1 sec</source>
+        <translation>Время подключения: %1 сек</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Disconnecting...</source>
         <translation>Отключение...</translation>
     </message>
@@ -1196,35 +1224,68 @@
 <context>
     <name>ZChannel</name>
     <message>
-        <location filename="zchannel.cpp" line="53"/>
-        <location filename="zchannel.cpp" line="67"/>
-        <location filename="zchannel.cpp" line="108"/>
-        <location filename="zchannel.cpp" line="134"/>
+        <location filename="zchannel.cpp" line="54"/>
+        <location filename="zchannel.cpp" line="154"/>
+        <source>Channel closed unexpectedly</source>
+        <translation>Соединение прервано</translation>
+    </message>
+    <message>
+        <location filename="zchannel.cpp" line="59"/>
+        <location filename="zchannel.cpp" line="78"/>
+        <location filename="zchannel.cpp" line="116"/>
+        <location filename="zchannel.cpp" line="164"/>
         <source>Operation cancelled</source>
         <translation>Операция отменена</translation>
     </message>
     <message>
-        <location filename="zchannel.cpp" line="81"/>
+        <location filename="zchannel.cpp" line="97"/>
         <source>Channel write timeout.</source>
         <translation>Таймаут записи в канал.</translation>
     </message>
     <message>
-        <location filename="zchannel.cpp" line="155"/>
+        <location filename="zchannel.cpp" line="178"/>
         <source>Channel read timeout.</source>
         <translation>Таймаут чтения из канала.</translation>
     </message>
 </context>
 <context>
-    <name>ZChannelDirectSerial</name>
+    <name>ZChannelCSD</name>
     <message>
-        <location filename="zchanneldirectserial.cpp" line="27"/>
+        <location filename="zchannelcsd.cpp" line="30"/>
+        <location filename="zchannelcsd.cpp" line="41"/>
+        <location filename="zchannelcsd.cpp" line="54"/>
+        <location filename="zchannelcsd.cpp" line="64"/>
+        <source>No response from local modem: %1</source>
+        <translation>Нет ответа от локального модема: %1</translation>
+    </message>
+    <message>
+        <location filename="zchannelcsd.cpp" line="112"/>
         <source>Connecting...</source>
         <translation>Подключение...</translation>
     </message>
     <message>
+        <location filename="zchannelcsd.cpp" line="138"/>
+        <source>Remote modem is not responding</source>
+        <translation>Удаленный модем не отвечает</translation>
+    </message>
+    <message>
+        <location filename="zchannelcsd.cpp" line="156"/>
+        <source>Disconnecting...</source>
+        <translation>Отключение...</translation>
+    </message>
+</context>
+<context>
+    <name>ZChannelDirectSerial</name>
+    <message>
+        <location filename="zchanneldirectserial.cpp" line="34"/>
+        <source>Connecting...</source>
+        <translation>Подключение...</translation>
+    </message>
+    <message>
+        <location filename="zchanneldirectserial.cpp" line="53"/>
         <source>Fail to communicate with the Modem</source>
         <oldsource>Fail to communicate with meter</oldsource>
-        <translation type="vanished">Ошибка коммуникации с Модемом</translation>
+        <translation>Ошибка коммуникации с Модемом</translation>
     </message>
     <message>
         <source>Unable to activate transparent mode</source>
@@ -1234,17 +1295,17 @@
 <context>
     <name>ZChannelOpto</name>
     <message>
-        <location filename="zchannelopto.cpp" line="75"/>
+        <location filename="zchannelopto.cpp" line="80"/>
         <source>Unable to activate transparent mode</source>
         <translation>Не удалось перевести счетчик в &quot;прозрачный&quot; режим</translation>
     </message>
     <message>
-        <location filename="zchannelopto.cpp" line="107"/>
+        <location filename="zchannelopto.cpp" line="110"/>
         <source>Connecting...</source>
         <translation>Подключение...</translation>
     </message>
     <message>
-        <location filename="zchannelopto.cpp" line="131"/>
+        <location filename="zchannelopto.cpp" line="141"/>
         <source>Transparent mode is enabled but modem still not responding</source>
         <translation>&quot;Прозрачный&quot; режим включен, но Модем не отвечает</translation>
     </message>
@@ -1282,30 +1343,33 @@
         <translation type="vanished">Не указан пароль</translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="38"/>
         <source>Firmware file is too large</source>
-        <translation>Слишком большой файл прошивки</translation>
+        <translation type="vanished">Слишком большой файл прошивки</translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="46"/>
+        <location filename="zfirmwareupgrade.cpp" line="41"/>
         <source>Fail to read harwave version from firmware file</source>
         <translation>Ошибка чтения версии модема из файла прошивки </translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="52"/>
+        <location filename="zfirmwareupgrade.cpp" line="47"/>
         <source>Firmware Update...</source>
         <oldsource>Firmware Upgrade...</oldsource>
         <translation>Обновление прошивки...</translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="71"/>
+        <location filename="zfirmwareupgrade.cpp" line="66"/>
         <source>Unable to parse Modem hardware version</source>
         <translation>Неверный формат ответа от модема</translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="78"/>
+        <location filename="zfirmwareupgrade.cpp" line="73"/>
+        <source>Unexpected Modem hardware version %1 %2</source>
+        <translation>Неверная версия модема %1 %2</translation>
+    </message>
+    <message>
         <source>Unexpected Modem hardware version</source>
-        <translation>Файл пршики не подходит к модему</translation>
+        <translation type="vanished">Файл пршики не подходит к модему</translation>
     </message>
 </context>
 <context>
@@ -1319,8 +1383,8 @@
 <context>
     <name>ZProtocol</name>
     <message>
-        <location filename="zprotocol.cpp" line="142"/>
-        <location filename="zprotocol.cpp" line="189"/>
+        <location filename="zprotocol.cpp" line="146"/>
+        <location filename="zprotocol.cpp" line="197"/>
         <source>Too long modem response</source>
         <translation>Слишком длинный ответ модема</translation>
     </message>
@@ -1341,7 +1405,7 @@
     </message>
     <message>
         <location filename="zprotocol.cpp" line="34"/>
-        <location filename="zprotocol.cpp" line="156"/>
+        <location filename="zprotocol.cpp" line="160"/>
         <source>Invalid response format</source>
         <translation>Неправильный формат ответа</translation>
     </message>
@@ -1351,21 +1415,20 @@
         <translation>Не указан коммуникационный канал</translation>
     </message>
     <message>
-        <location filename="zprotocol.cpp" line="85"/>
         <source>Communication Channel is not connected</source>
-        <translation>Коммуникационный канал не подключен</translation>
+        <translation type="vanished">Коммуникационный канал не подключен</translation>
     </message>
     <message>
         <source>Connecting to Modem...</source>
         <translation type="vanished">Подключение к Модему...</translation>
     </message>
     <message>
-        <location filename="zprotocol.cpp" line="214"/>
+        <location filename="zprotocol.cpp" line="222"/>
         <source>Loo many lines in modem response.</source>
         <translation>Ответ от модема содержит слишком много строк.</translation>
     </message>
     <message>
-        <location filename="zprotocol.cpp" line="220"/>
+        <location filename="zprotocol.cpp" line="228"/>
         <source>No OK from modem. Response truncated.</source>
         <translation>От модема не получена строка OK.</translation>
     </message>

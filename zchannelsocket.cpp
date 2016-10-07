@@ -73,21 +73,61 @@ bool ZChannelSocket::connect()
 	if (m_progress)
 		m_progress->end();
 
+	if (!m_connected)
+	{
+		setErrorString(tr("Server closed connection"));
+		return false;
+	}
+
 	return ZChannel::connect();
 }
 
 void ZChannelSocket::disconnect()
 {
+	if (m_disconnected)
+	{
+		m_socket->abort();
+		ZChannel::disconnect();
+		return;
+	}
+
+	if (m_progress)
+	{
+		m_progress->start();
+		m_progress->setProgress(-1, tr("Disconnecting..."));
+	}
+
 	m_socket->disconnectFromHost();
+
+	int timeout = 10000;
+	while (timeout > 0)
+	{
+		ZProtocol::msleep(30);
+		timeout -= 30;
+		if (m_disconnected)
+		{
+			goto done;
+		}
+	}
+
+	m_socket->abort();
+
+done:
+	if (m_progress)
+		m_progress->end();
+
 	ZChannel::disconnect();
 }
 
 void ZChannelSocket::on_socket_connected()
 {
 	m_connected = true;
+	m_disconnected = false;
 }
 
 void ZChannelSocket::on_socket_disconnected()
 {
 	m_disconnected = true;
+	m_connected = false;
+	disconnect();
 }

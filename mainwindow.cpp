@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_progress = new Progress(this);
     m_log = new ZCommLogDialog(this);
+	
+	setConnectionTime(0);
 
     statusBar()->showMessage(tr("Ready"));
 }
@@ -117,7 +119,7 @@ void MainWindow::setConnectionStatus(QString const& status)
 
 void MainWindow::setConnectionTime(int time)
 {
-	ui->lblConnectionTime->setText(QString(tr("Connection Time: %1")).arg(time));
+	ui->lblConnectionTime->setText(QString(tr("Connection Time: %1 sec")).arg(time));
 }
 
 bool MainWindow::disconnectChannel()

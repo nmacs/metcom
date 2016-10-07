@@ -16,6 +16,7 @@ public:
 
 	virtual QIODevice* device() { return m_socket; }
 
+	virtual bool isMediaConnected() { return m_connected; }
 	virtual bool isLongConnect() const { return true; }
 	virtual int defaultTimeout() { return 10000; }
 

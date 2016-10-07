@@ -205,7 +205,7 @@
      <item row="0" column="1">
       <widget class="QComboBox" name="cmbBaud">
        <property name="currentText">
-        <string>115200</string>
+        <string>9600</string>
        </property>
        <item>
         <property name="text">

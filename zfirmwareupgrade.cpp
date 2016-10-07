@@ -33,11 +33,6 @@ bool ZFirmwareUpgrade::doRun()
     }
 
     qint64 firmwareSize = file.size();
-    if (firmwareSize > 64*1024)
-    {
-        setErrorString(tr("Firmware file is too large"));
-        return false;
-    }
 
     file.seek(0x500);
     char checkByte = 0;

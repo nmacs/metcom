@@ -16,7 +16,8 @@ Connect::Connect(ZChannel *channel, QWidget *parent) :
 {
     ui->setupUi(this);
 
-	ui->txtIP->setIP("213.180.193.3");
+	//ui->txtIP->setIP("10.7.42.111");
+	//ui->txtPort->setText("9999");
 
     m_timer = new QTimer(this);
     m_timer->setInterval(500);

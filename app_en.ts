@@ -40,67 +40,94 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="154"/>
+        <location filename="connect.ui" line="157"/>
         <source>Dialup</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="182"/>
+        <location filename="connect.ui" line="185"/>
         <source>Modem port selection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="208"/>
+        <location filename="connect.ui" line="240"/>
         <source>Phone number</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="198"/>
+        <location filename="connect.ui" line="201"/>
         <source>Baud Rate</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="248"/>
+        <location filename="connect.ui" line="208"/>
+        <location filename="connect.ui" line="232"/>
+        <source>115200</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="212"/>
+        <source>9600</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="217"/>
+        <source>19200</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="222"/>
+        <source>38400</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="227"/>
+        <source>57600</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="connect.ui" line="283"/>
         <source>Internet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="266"/>
+        <location filename="connect.ui" line="301"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP address&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="279"/>
+        <location filename="connect.ui" line="314"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Port number&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="319"/>
+        <location filename="connect.ui" line="357"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.ui" line="332"/>
+        <location filename="connect.ui" line="370"/>
         <source>Cancel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="125"/>
+        <location filename="connect.cpp" line="178"/>
         <source>Password is not entered</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="136"/>
+        <location filename="connect.cpp" line="189"/>
         <source>Meter password is not entered</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="142"/>
+        <location filename="connect.cpp" line="195"/>
         <source>Meter password must be 8 symbols long</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="connect.cpp" line="152"/>
+        <location filename="connect.cpp" line="205"/>
+        <location filename="connect.cpp" line="234"/>
         <source>No serial port selected</source>
         <translation></translation>
     </message>
@@ -129,8 +156,9 @@
     </message>
     <message>
         <location filename="fwupgrade_2.ui" line="97"/>
-        <source>Upgrade</source>
-        <translation>Upgrade</translation>
+        <source>Update</source>
+        <oldsource>Upgrade</oldsource>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -201,23 +229,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3021"/>
+        <location filename="mainwindow.ui" line="3062"/>
         <source>Write Default Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2981"/>
-        <location filename="mainwindow.ui" line="3026"/>
+        <location filename="mainwindow.ui" line="3067"/>
         <source>Connection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3031"/>
+        <location filename="mainwindow.ui" line="3072"/>
         <source>Change Password</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3036"/>
+        <location filename="mainwindow.ui" line="3077"/>
         <source>Firmware Update</source>
         <oldsource>Firmware Upgrade</oldsource>
         <translation></translation>
@@ -229,17 +256,17 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2958"/>
+        <location filename="mainwindow.ui" line="3009"/>
         <source>Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2970"/>
+        <location filename="mainwindow.ui" line="3021"/>
         <source>Language</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2951"/>
+        <location filename="mainwindow.ui" line="3002"/>
         <source>File</source>
         <translation></translation>
     </message>
@@ -826,120 +853,122 @@
     <message>
         <location filename="mainwindow.ui" line="2686"/>
         <source>Network work time (hh:mm)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2769"/>
         <source>Calls / SMS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2781"/>
         <source>Exit from sleep mode by incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2794"/>
         <source>Enter sleep mode by incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2807"/>
         <location filename="mainwindow.ui" line="2840"/>
         <source>Phone group</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2853"/>
         <source>SMS text for sleep mode exit</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2866"/>
         <source>SMS text for sleep mode enter</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2915"/>
+        <location filename="mainwindow.ui" line="2949"/>
         <source>Connection Status: Disconnected</source>
         <oldsource>Connection Status:</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2928"/>
+        <location filename="mainwindow.ui" line="2962"/>
         <source>Connection Time: 0</source>
         <oldsource>Connection Time:</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2943"/>
+        <location filename="mainwindow.ui" line="2994"/>
         <source>Service</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2966"/>
+        <location filename="mainwindow.ui" line="3017"/>
         <source>Tools</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3051"/>
+        <location filename="mainwindow.ui" line="2936"/>
+        <location filename="mainwindow.ui" line="3092"/>
         <source>Configuration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3056"/>
+        <location filename="mainwindow.ui" line="3097"/>
         <source>Connect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3061"/>
+        <location filename="mainwindow.ui" line="2978"/>
+        <location filename="mainwindow.ui" line="3102"/>
         <source>Disconnect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3066"/>
-        <location filename="mainwindow.ui" line="3079"/>
+        <location filename="mainwindow.ui" line="3107"/>
+        <location filename="mainwindow.ui" line="3120"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3071"/>
-        <location filename="mainwindow.ui" line="3087"/>
+        <location filename="mainwindow.ui" line="3112"/>
+        <location filename="mainwindow.ui" line="3128"/>
         <source>Русский</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3001"/>
+        <location filename="mainwindow.ui" line="3042"/>
         <source>Load Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3006"/>
+        <location filename="mainwindow.ui" line="3047"/>
         <source>Save Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3011"/>
+        <location filename="mainwindow.ui" line="3052"/>
         <source>Read Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3016"/>
+        <location filename="mainwindow.ui" line="3057"/>
         <source>Write Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3041"/>
+        <location filename="mainwindow.ui" line="3082"/>
         <source>Reset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3046"/>
+        <location filename="mainwindow.ui" line="3087"/>
         <source>Communication Log</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="47"/>
+        <location filename="mainwindow.cpp" line="46"/>
         <source>Ready</source>
         <translation></translation>
     </message>
@@ -960,38 +989,29 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="134"/>
-        <location filename="mainwindow.cpp" line="151"/>
+        <location filename="mainwindow.cpp" line="79"/>
+        <location filename="mainwindow.cpp" line="165"/>
         <source>Disconnected</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="110"/>
+        <location filename="mainwindow.cpp" line="115"/>
         <source>Connection Status: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="115"/>
-        <source>Connection Time: %1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="124"/>
-        <source>Communication Channel is not configured</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="129"/>
-        <source>Connecting...</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.cpp" line="139"/>
+        <location filename="mainwindow.cpp" line="79"/>
+        <location filename="mainwindow.cpp" line="157"/>
         <source>Connected</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="149"/>
+        <location filename="mainwindow.cpp" line="120"/>
+        <source>Connection Time: %1 sec</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="128"/>
         <source>Disconnecting...</source>
         <translation></translation>
     </message>
@@ -1111,46 +1131,83 @@
 <context>
     <name>ZChannel</name>
     <message>
-        <location filename="zchannel.cpp" line="53"/>
-        <location filename="zchannel.cpp" line="67"/>
-        <location filename="zchannel.cpp" line="108"/>
-        <location filename="zchannel.cpp" line="134"/>
+        <location filename="zchannel.cpp" line="54"/>
+        <location filename="zchannel.cpp" line="154"/>
+        <source>Channel closed unexpectedly</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="zchannel.cpp" line="59"/>
+        <location filename="zchannel.cpp" line="78"/>
+        <location filename="zchannel.cpp" line="116"/>
+        <location filename="zchannel.cpp" line="164"/>
         <source>Operation cancelled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="zchannel.cpp" line="81"/>
+        <location filename="zchannel.cpp" line="97"/>
         <source>Channel write timeout.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="zchannel.cpp" line="155"/>
+        <location filename="zchannel.cpp" line="178"/>
         <source>Channel read timeout.</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ZChannelCSD</name>
+    <message>
+        <location filename="zchannelcsd.cpp" line="30"/>
+        <location filename="zchannelcsd.cpp" line="41"/>
+        <location filename="zchannelcsd.cpp" line="54"/>
+        <location filename="zchannelcsd.cpp" line="64"/>
+        <source>No response from local modem: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="zchannelcsd.cpp" line="112"/>
+        <source>Connecting...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="zchannelcsd.cpp" line="138"/>
+        <source>Remote modem is not responding</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="zchannelcsd.cpp" line="156"/>
+        <source>Disconnecting...</source>
         <translation></translation>
     </message>
 </context>
 <context>
     <name>ZChannelDirectSerial</name>
     <message>
-        <location filename="zchanneldirectserial.cpp" line="27"/>
+        <location filename="zchanneldirectserial.cpp" line="34"/>
         <source>Connecting...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="zchanneldirectserial.cpp" line="53"/>
+        <source>Fail to communicate with the Modem</source>
         <translation></translation>
     </message>
 </context>
 <context>
     <name>ZChannelOpto</name>
     <message>
-        <location filename="zchannelopto.cpp" line="75"/>
+        <location filename="zchannelopto.cpp" line="80"/>
         <source>Unable to activate transparent mode</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="zchannelopto.cpp" line="107"/>
+        <location filename="zchannelopto.cpp" line="110"/>
         <source>Connecting...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="zchannelopto.cpp" line="131"/>
+        <location filename="zchannelopto.cpp" line="141"/>
         <source>Transparent mode is enabled but modem still not responding</source>
         <translation></translation>
     </message>
@@ -1184,29 +1241,24 @@
 <context>
     <name>ZFirmwareUpgrade</name>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="38"/>
-        <source>Firmware file is too large</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="zfirmwareupgrade.cpp" line="46"/>
+        <location filename="zfirmwareupgrade.cpp" line="41"/>
         <source>Fail to read harwave version from firmware file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="52"/>
+        <location filename="zfirmwareupgrade.cpp" line="47"/>
         <source>Firmware Update...</source>
         <oldsource>Firmware Upgrade...</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="71"/>
+        <location filename="zfirmwareupgrade.cpp" line="66"/>
         <source>Unable to parse Modem hardware version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="zfirmwareupgrade.cpp" line="78"/>
-        <source>Unexpected Modem hardware version</source>
+        <location filename="zfirmwareupgrade.cpp" line="73"/>
+        <source>Unexpected Modem hardware version %1 %2</source>
         <translation></translation>
     </message>
 </context>
@@ -1221,8 +1273,8 @@
 <context>
     <name>ZProtocol</name>
     <message>
-        <location filename="zprotocol.cpp" line="142"/>
-        <location filename="zprotocol.cpp" line="189"/>
+        <location filename="zprotocol.cpp" line="146"/>
+        <location filename="zprotocol.cpp" line="197"/>
         <source>Too long modem response</source>
         <translation></translation>
     </message>
@@ -1243,7 +1295,7 @@
     </message>
     <message>
         <location filename="zprotocol.cpp" line="34"/>
-        <location filename="zprotocol.cpp" line="156"/>
+        <location filename="zprotocol.cpp" line="160"/>
         <source>Invalid response format</source>
         <translation></translation>
     </message>
@@ -1253,17 +1305,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="zprotocol.cpp" line="85"/>
-        <source>Communication Channel is not connected</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="zprotocol.cpp" line="214"/>
+        <location filename="zprotocol.cpp" line="222"/>
         <source>Loo many lines in modem response.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="zprotocol.cpp" line="220"/>
+        <location filename="zprotocol.cpp" line="228"/>
         <source>No OK from modem. Response truncated.</source>
         <translation></translation>
     </message>
