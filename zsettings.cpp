@@ -61,7 +61,7 @@ const ZSettings &ZSettings::defaultSettings()
         settings.setValue("BDRT", 4);
         settings.setValue("BITS", 3);
         settings.setValue("PRTY", 4);
-        settings.setValue("STOP", 0);
+        settings.setValue("SSTB", 0);
 
         for (int i = 0; i < 10; i++)
         {
@@ -71,17 +71,40 @@ const ZSettings &ZSettings::defaultSettings()
 
         settings.setValue("DBEN", 0);
         settings.setValue("DBMD", 1);
-        settings.setValue("DBIP", "37.28.187.11");
+        settings.setValue("DBIP", "");
         settings.setValue("DBPC", 9001);
         settings.setValue("DBPS", 9002);
         settings.setValue("DBAF", 0);
         settings.setValue("DBPG", 1);
+
         settings.setValue("RSIT", 1);
         settings.setValue("RSHR", 24);
         settings.setValue("RSDT", 1);
         settings.setValue("DTHR", 16);
         settings.setValue("DTMN", 30);
         settings.setValue("GPHR", 2);
+		settings.setValue("NTPE", 0);
+		settings.setValue("NTP1", ":");
+		settings.setValue("NTP2", ":");
+		settings.setValue("NTP3", ":");
+		settings.setValue("NTPZ", "+12");
+
+		settings.setValue("WMMD", 0);
+		settings.setValue("WMTP", 0);
+		settings.setValue("WMWT", "01:00");
+		settings.setValue("WMON", "06:00");
+		settings.setValue("WME1", "0:00:00:00");
+		settings.setValue("WME2", "0:00:00:00");
+		settings.setValue("WME3", "0:00:00:00");
+		settings.setValue("WME4", "0:00:00:00");
+		settings.setValue("WME5", "0:00:00:00");
+		settings.setValue("WMES", 0);
+		settings.setValue("WMGI", 3);
+		settings.setValue("WMIS", 0);
+		settings.setValue("WMGO", 4);
+		settings.setValue("WMSI", "start");
+		settings.setValue("WMSO", "stop");
+		settings.setValue("WMIT", 10);
 
         initialized = true;
     }

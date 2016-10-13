@@ -276,6 +276,10 @@ ZSettingsGUI::ZSettingsGUI(Ui::MainWindow* gui, QObject *parent) :
             this,
             SLOT(on_STOP_currentIndexChanged(int)));
 
+	/*
+	* Reset/Time
+	*/
+
     connect(m_gui->RSIT,
             &QRadioButton::toggled,
             this,
@@ -306,6 +310,46 @@ ZSettingsGUI::ZSettingsGUI(Ui::MainWindow* gui, QObject *parent) :
             this,
             SLOT(on_GPHR_valueChanged(int)));
 
+	connect(m_gui->NTPE,
+			SIGNAL(toggled(bool)),
+			this,
+			SLOT(on_NTPE_toggeld(bool)));
+
+	connect(m_gui->NTPZ,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_NTPZ_valueChanged(int)));
+
+	connect(m_gui->NTP1,
+			SIGNAL(textChanged(const QString&)),
+			this,
+			SLOT(on_NTP1_textChanged(const QString&)));
+
+	connect(m_gui->NTP1_P,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_NTP1_P_valueChanged(int)));
+
+	connect(m_gui->NTP2,
+			SIGNAL(textChanged(const QString&)),
+			this,
+			SLOT(on_NTP2_textChanged(const QString&)));
+
+	connect(m_gui->NTP2_P,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_NTP2_P_valueChanged(int)));
+
+	connect(m_gui->NTP3,
+			SIGNAL(textChanged(const QString&)),
+			this,
+			SLOT(on_NTP3_textChanged(const QString&)));
+
+	connect(m_gui->NTP3_P,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_NTP3_P_valueChanged(int)));
+
     /*
      * Phone Book
      */
@@ -318,6 +362,213 @@ ZSettingsGUI::ZSettingsGUI(Ui::MainWindow* gui, QObject *parent) :
             &PhoneBook::phoneGroupChanged,
             this,
             &ZSettingsGUI::on_phoneBook_phoneGroupChanged);
+
+	/*
+	* Access
+	*/
+	connect(m_gui->DBEN,
+		    SIGNAL(toggled(bool)),
+		    this,
+		    SLOT(on_DBEN_toggled(bool)));
+
+	connect(m_gui->DBMD_C,
+			SIGNAL(toggled(bool)),
+			this,
+			SLOT(on_DBMD_C_toggled(bool)));
+
+	connect(m_gui->DBMD_S,
+			SIGNAL(toggled(bool)),
+			this,
+			SLOT(on_DBMD_S_toggled(bool)));
+
+	connect(m_gui->DBIP,
+			SIGNAL(textChanged(const QString&)),
+			this,
+			SLOT(on_DBIP_textChanged(const QSTring&)));
+
+	connect(m_gui->DBPC,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_DBPC_valueChanged(int)));
+
+	connect(m_gui->DBPS,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_DBPS_valueChanged(int)));
+
+	connect(m_gui->DBAF,
+			SIGNAL(toggled(bool)),
+			this,
+			SLOT(on_DBAF_toggled(bool)));
+
+	connect(m_gui->DBPG,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_DBPG_valueChanged(int)));
+
+
+	/*
+	 *Schedule
+	 */
+	connect(m_gui->WMMD,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WMMD_toggled(bool)));
+
+	connect(m_gui->WMWT_H,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WMWT_H_valueChanged(int)));
+
+	connect(m_gui->WMWT_M,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WMWT_M_valueChanged(int)));
+
+	connect(m_gui->WMTP,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WMTP_toggled(bool)));
+
+	connect(m_gui->WMON_H,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WMON_H_valueChanged(int)));
+
+	connect(m_gui->WMON_M,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WMON_M_valueChanged(int)));
+
+	connect(m_gui->WME1_EN,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WME1_EN_toggled(bool)));
+
+	connect(m_gui->WME1_EV,
+		SIGNAL(currentIndexChanged(int)),
+		this,
+		SLOT(on_WME1_EV_valueChanged(int)));
+
+	connect(m_gui->WME1_H,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME1_H_valueChanged(int)));
+
+	connect(m_gui->WME1_M,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME1_M_valueChanged(int)));
+
+	connect(m_gui->WME2_EN,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WME2_EN_toggled(bool)));
+
+	connect(m_gui->WME2_EV,
+		SIGNAL(currentIndexChanged(int)),
+		this,
+		SLOT(on_WME2_EV_valueChanged(int)));
+
+	connect(m_gui->WME2_H,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME2_H_valueChanged(int)));
+
+	connect(m_gui->WME2_M,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME2_M_valueChanged(int)));
+
+	connect(m_gui->WME3_EN,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WME3_EN_toggled(bool)));
+
+	connect(m_gui->WME3_EV,
+		SIGNAL(currentIndexChanged(int)),
+		this,
+		SLOT(on_WME3_EV_valueChanged(int)));
+
+	connect(m_gui->WME3_H,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME3_H_valueChanged(int)));
+
+	connect(m_gui->WME3_M,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME3_M_valueChanged(int)));
+
+	connect(m_gui->WME4_EN,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WME4_EN_toggled(bool)));
+
+	connect(m_gui->WME4_EV,
+		SIGNAL(currentIndexChanged(int)),
+		this,
+		SLOT(on_WME4_EV_valueChanged(int)));
+
+	connect(m_gui->WME4_H,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME4_H_valueChanged(int)));
+
+	connect(m_gui->WME4_M,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME4_M_valueChanged(int)));
+
+	connect(m_gui->WME5_EN,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WME5_EN_toggled(bool)));
+
+	connect(m_gui->WME5_EV,
+		SIGNAL(currentIndexChanged(int)),
+		this,
+		SLOT(on_WME5_EV_valueChanged(int)));
+
+	connect(m_gui->WME5_H,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME5_H_valueChanged(int)));
+
+	connect(m_gui->WME5_M,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WME5_M_valueChanged(int)));
+
+	connect(m_gui->WMES,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WMES_toggled(bool)));
+
+	connect(m_gui->WMGI,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WMGI_valueChanged(int)));
+
+	connect(m_gui->WMIS,
+		SIGNAL(toggled(bool)),
+		this,
+		SLOT(on_WMIS_toggled(bool)));
+
+	connect(m_gui->WMGO,
+		SIGNAL(valueChanged(int)),
+		this,
+		SLOT(on_WMGO_valueChanged(int)));
+
+	connect(m_gui->WMSI,
+		SIGNAL(textChanged(const QString&)),
+		this,
+		SLOT(on_WMSI_textChanged(const QString&)));
+
+	connect(m_gui->WMSO,
+		SIGNAL(textChanged(const QString&)),
+		this,
+		SLOT(on_WMSO_textChanged(const QString&)));
 }
 
 void ZSettingsGUI::on_phoneBook_phoneChanged(QString const& phone, int index)
@@ -633,7 +884,7 @@ void ZSettingsGUI::on_PRTY_currentIndexChanged(int index)
 
 void ZSettingsGUI::on_STOP_currentIndexChanged(int index)
 {
-    emitUpdated("STOP", index);
+    emitUpdated("SSTB", index);
 }
 
 void ZSettingsGUI::on_RSIT_toggled(bool checked)
@@ -672,6 +923,276 @@ void ZSettingsGUI::on_DTMN_valueChanged(int value)
 void ZSettingsGUI::on_GPHR_valueChanged(int value)
 {
     emitUpdated("GPHR", value);
+}
+
+void ZSettingsGUI::on_NTPE_toggeld(bool checked)
+{
+	emitUpdated("NTPE", checked ? 1 : 0);
+	m_gui->groupNTP->setEnabled(checked);
+}
+
+void ZSettingsGUI::on_NTPZ_valueChanged(int value)
+{
+	QString NTPZ;
+	if (value > 0)
+		NTPZ = QString("+%1").arg(value);
+	else
+		NTPZ = QString("%1").arg(value);
+
+	emitUpdated("NTPZ", NTPZ);
+}
+
+void ZSettingsGUI::on_NTP1_textChanged(const QString&)
+{
+	emitUpdated("NTP1", m_gui->NTP1->text().isEmpty() ? ":" : QString("%1:%2").arg(m_gui->NTP1->text()).arg(m_gui->NTP1_P->value()));
+}
+
+void ZSettingsGUI::on_NTP1_P_valueChanged(int)
+{
+	emitUpdated("NTP1", m_gui->NTP1->text().isEmpty() ? ":" : QString("%1:%2").arg(m_gui->NTP1->text()).arg(m_gui->NTP1_P->value()));
+}
+
+void ZSettingsGUI::on_NTP2_textChanged(const QString&)
+{
+	emitUpdated("NTP2", m_gui->NTP2->text().isEmpty() ? ":" : QString("%1:%2").arg(m_gui->NTP2->text()).arg(m_gui->NTP2_P->value()));
+}
+
+void ZSettingsGUI::on_NTP2_P_valueChanged(int)
+{
+	emitUpdated("NTP2", m_gui->NTP2->text().isEmpty() ? ":" : QString("%1:%2").arg(m_gui->NTP2->text()).arg(m_gui->NTP2_P->value()));
+}
+
+void ZSettingsGUI::on_NTP3_textChanged(const QString&)
+{
+	emitUpdated("NTP3", m_gui->NTP3->text().isEmpty() ? ":" : QString("%1:%2").arg(m_gui->NTP3->text()).arg(m_gui->NTP3_P->value()));
+}
+
+void ZSettingsGUI::on_NTP3_P_valueChanged(int)
+{
+	emitUpdated("NTP3", m_gui->NTP3->text().isEmpty() ? ":" : QString("%1:%2").arg(m_gui->NTP3->text()).arg(m_gui->NTP3_P->value()));
+}
+
+void ZSettingsGUI::on_DBEN_toggled(bool checked)
+{
+	emitUpdated("DBEN", checked ? 1 : 0);
+}
+
+void ZSettingsGUI::on_DBMD_C_toggled(bool checked)
+{
+	if (checked)
+		emitUpdated("DBMD", 0);
+
+	m_gui->DBIP->setEnabled(checked);
+	m_gui->DBPC->setEnabled(checked);
+}
+
+void ZSettingsGUI::on_DBMD_S_toggled(bool checked)
+{
+	if (checked)
+		emitUpdated("DBMD", 1);
+
+	m_gui->DBPS->setEnabled(checked);
+}
+
+void ZSettingsGUI::on_DBIP_textChanged(const QString& text)
+{
+	emitUpdated("DBIP", text);
+}
+
+void ZSettingsGUI::on_DBPC_valueChanged(int value)
+{
+	emitUpdated("DBPC", value);
+}
+
+void ZSettingsGUI::on_DBPS_valueChanged(int value)
+{
+	emitUpdated("DBPS", value);
+}
+
+void ZSettingsGUI::on_DBAF_toggled(bool checked)
+{
+	emitUpdated("DBAF", checked ? 1 : 0);
+	m_gui->DBPG->setEnabled(!checked);
+}
+
+void ZSettingsGUI::on_DBPG_valueChanged(int value)
+{
+	emitUpdated("DBPG", value);
+}
+
+void ZSettingsGUI::on_WMMD_toggled(bool checked)
+{
+	emitUpdated("WMMD", checked ? 1 : 0);
+}
+
+void ZSettingsGUI::on_WMWT_H_valueChanged(int)
+{
+	emitUpdated("WMWT", QString().sprintf("%02d:%02d", m_gui->WMWT_H->value(), m_gui->WMWT_M->value()));
+}
+
+void ZSettingsGUI::on_WMWT_M_valueChanged(int value)
+{
+	emitUpdated("WMWT", QString().sprintf("%02d:%02d", m_gui->WMWT_H->value(), m_gui->WMWT_M->value()));
+}
+
+void ZSettingsGUI::on_WMTP_toggled(bool checked)
+{
+	emitUpdated("WMTP", checked ? 0 : 1);
+	m_gui->WMON_H->setEnabled(checked);
+	m_gui->WMON_M->setEnabled(checked);
+	m_gui->frmTimes->setEnabled(!checked);
+}
+
+void ZSettingsGUI::on_WMON_H_valueChanged(int value)
+{
+	emitUpdated("WMON", QString().sprintf("%02d:%02d", m_gui->WMON_H->value(), m_gui->WMON_M->value()));
+}
+
+void ZSettingsGUI::on_WMON_M_valueChanged(int value)
+{
+	emitUpdated("WMON", QString().sprintf("%02d:%02d", m_gui->WMON_H->value(), m_gui->WMON_M->value()));
+}
+
+void ZSettingsGUI::update_WME(QString const& param, QCheckBox* en, QComboBox* ev, QSpinBox* hh, QSpinBox* mm)
+{
+	emitUpdated(param, QString().sprintf("%d:%02d:%02d:%02d",
+		en->isChecked() ? 1 : 0,
+		ev->currentIndex(),
+		hh->value(),
+		mm->value()));
+}
+
+void ZSettingsGUI::on_WME1_EN_toggled(bool checked)
+{
+	update_WME("WME1", m_gui->WME1_EN, m_gui->WME1_EV, m_gui->WME1_H, m_gui->WME1_M);
+
+}
+
+void ZSettingsGUI::on_WME1_EV_valueChanged(int value)
+{
+	update_WME("WME1", m_gui->WME1_EN, m_gui->WME1_EV, m_gui->WME1_H, m_gui->WME1_M);
+}
+
+void ZSettingsGUI::on_WME1_H_valueChanged(int value)
+{
+	update_WME("WME1", m_gui->WME1_EN, m_gui->WME1_EV, m_gui->WME1_H, m_gui->WME1_M);
+}
+
+void ZSettingsGUI::on_WME1_M_valueChanged(int value)
+{
+	update_WME("WME1", m_gui->WME1_EN, m_gui->WME1_EV, m_gui->WME1_H, m_gui->WME1_M);
+}
+
+void ZSettingsGUI::on_WME2_EN_toggled(bool checked)
+{
+	update_WME("WME2", m_gui->WME2_EN, m_gui->WME2_EV, m_gui->WME2_H, m_gui->WME2_M);
+}
+
+void ZSettingsGUI::on_WME2_EV_valueChanged(int value)
+{
+	update_WME("WME2", m_gui->WME2_EN, m_gui->WME2_EV, m_gui->WME2_H, m_gui->WME2_M);
+}
+
+void ZSettingsGUI::on_WME2_H_valueChanged(int value)
+{
+	update_WME("WME2", m_gui->WME2_EN, m_gui->WME2_EV, m_gui->WME2_H, m_gui->WME2_M);
+}
+
+void ZSettingsGUI::on_WME2_M_valueChanged(int value)
+{
+	update_WME("WME2", m_gui->WME2_EN, m_gui->WME2_EV, m_gui->WME2_H, m_gui->WME2_M);
+}
+
+void ZSettingsGUI::on_WME3_EN_toggled(bool checked)
+{
+	update_WME("WME3", m_gui->WME3_EN, m_gui->WME3_EV, m_gui->WME3_H, m_gui->WME3_M);
+}
+
+void ZSettingsGUI::on_WME3_EV_valueChanged(int value)
+{
+	update_WME("WME3", m_gui->WME3_EN, m_gui->WME3_EV, m_gui->WME3_H, m_gui->WME3_M);
+}
+
+void ZSettingsGUI::on_WME3_H_valueChanged(int value)
+{
+	update_WME("WME3", m_gui->WME3_EN, m_gui->WME3_EV, m_gui->WME3_H, m_gui->WME3_M);
+}
+
+void ZSettingsGUI::on_WME3_M_valueChanged(int value)
+{
+	update_WME("WME3", m_gui->WME3_EN, m_gui->WME3_EV, m_gui->WME3_H, m_gui->WME3_M);
+}
+
+void ZSettingsGUI::on_WME4_EN_toggled(bool checked)
+{
+	update_WME("WME4", m_gui->WME4_EN, m_gui->WME4_EV, m_gui->WME4_H, m_gui->WME4_M);
+}
+
+void ZSettingsGUI::on_WME4_EV_valueChanged(int value)
+{
+	update_WME("WME4", m_gui->WME4_EN, m_gui->WME4_EV, m_gui->WME4_H, m_gui->WME4_M);
+}
+
+void ZSettingsGUI::on_WME4_H_valueChanged(int value)
+{
+	update_WME("WME4", m_gui->WME4_EN, m_gui->WME4_EV, m_gui->WME4_H, m_gui->WME4_M);
+}
+
+void ZSettingsGUI::on_WME4_M_valueChanged(int value)
+{
+	update_WME("WME4", m_gui->WME4_EN, m_gui->WME4_EV, m_gui->WME4_H, m_gui->WME4_M);
+}
+
+void ZSettingsGUI::on_WME5_EN_toggled(bool checked)
+{
+	update_WME("WME5", m_gui->WME5_EN, m_gui->WME5_EV, m_gui->WME5_H, m_gui->WME5_M);
+}
+
+void ZSettingsGUI::on_WME5_EV_valueChanged(int value)
+{
+	update_WME("WME5", m_gui->WME5_EN, m_gui->WME5_EV, m_gui->WME5_H, m_gui->WME5_M);
+}
+
+void ZSettingsGUI::on_WME5_H_valueChanged(int value)
+{
+	update_WME("WME5", m_gui->WME5_EN, m_gui->WME5_EV, m_gui->WME5_H, m_gui->WME5_M);
+}
+
+void ZSettingsGUI::on_WME5_M_valueChanged(int value)
+{
+	update_WME("WME5", m_gui->WME5_EN, m_gui->WME5_EV, m_gui->WME5_H, m_gui->WME5_M);
+}
+
+void ZSettingsGUI::on_WMES_toggled(bool checked)
+{
+	emitUpdated("WMES", checked ? 1 : 0);
+	m_gui->WMGI->setEnabled(checked);
+}
+
+void ZSettingsGUI::on_WMGI_valueChanged(int value)
+{
+	emitUpdated("WMGI", value);
+}
+
+void ZSettingsGUI::on_WMIS_toggled(bool checked)
+{
+	emitUpdated("WMIS", checked ? 1 : 0);
+	m_gui->WMGO->setEnabled(checked);
+}
+
+void ZSettingsGUI::on_WMGO_valueChanged(int value)
+{
+	emitUpdated("WMGO", value);
+}
+
+void ZSettingsGUI::on_WMSI_textChanged(const QString& text)
+{
+	emitUpdated("WMSI", text);
+}
+
+void ZSettingsGUI::on_WMSO_textChanged(const QString& text)
+{
+	emitUpdated("WMSO", text);
 }
 
 void ZSettingsGUI::draw(ZSettings *settings)
@@ -837,8 +1358,8 @@ void ZSettingsGUI::draw(ZSettings *settings)
     int PRTY = settings->value("PRTY", 4).toInt();
     m_gui->PRTY->setCurrentIndex(PRTY);
 
-    int STOP = settings->value("STOP", 0).toInt();
-    m_gui->STOP->setCurrentIndex(STOP);
+    int SSTB = settings->value("SSTB", 0).toInt();
+    m_gui->STOP->setCurrentIndex(SSTB);
 
     int RSIT = settings->value("RSIT", 1).toInt();
     m_gui->RSIT->setChecked(RSIT != 0 ? true : false);
@@ -865,4 +1386,108 @@ void ZSettingsGUI::draw(ZSettings *settings)
         m_gui->phoneBook->setPhone(PHNx, i);
         m_gui->phoneBook->setGroupMask(GRPx, i);
     }
+
+	int DBEN = settings->value("DBEN", 0).toInt();
+	m_gui->DBEN->setChecked(DBEN != 0 ? true : false);
+
+	int DBMD = settings->value("DBMD", 1).toInt();
+	if (DBMD == 0)
+		m_gui->DBMD_S->setChecked(true);
+	else
+		m_gui->DBMD_C->setChecked(true);
+
+	QString DBIP = settings->value("DBIP", "").toString();
+	m_gui->DBIP->setText(DBIP);
+
+	int DBPC = settings->value("DBPC", 9001).toInt();
+	m_gui->DBPC->setValue(DBPC);
+
+	int DBPS = settings->value("DBPS", 9001).toInt();
+	m_gui->DBPS->setValue(DBPS);
+
+	int DBAF = settings->value("DBAF", 0).toInt();
+	m_gui->DBAF->setChecked(DBAF != 0);
+
+	int DBPG = settings->value("DBPG", "1").toInt();
+	m_gui->DBPG->setValue(DBPG);
+
+	int NTPE = settings->value("NTPE", 0).toInt();
+	m_gui->NTPE->setChecked(NTPE != 0);
+
+	QString NTP1 = settings->value("NTP1", ":").toString();
+	QStringList NTP1_items = NTP1.split(':');
+	m_gui->NTP1->setText(NTP1_items.length() > 0 ? NTP1_items[0] : "");
+	m_gui->NTP1_P->setValue(NTP1_items.length() > 1 ? NTP1_items[1].toInt() : 1);
+
+	QString NTP2 = settings->value("NTP2", ":").toString();
+	QStringList NTP2_items = NTP2.split(':');
+	m_gui->NTP2->setText(NTP2_items.length() > 0 ? NTP2_items[0] : "");
+	m_gui->NTP2_P->setValue(NTP2_items.length() > 1 ? NTP2_items[1].toInt() : 1);
+
+	QString NTP3 = settings->value("NTP3", ":").toString();
+	QStringList NTP3_items = NTP3.split(':');
+	m_gui->NTP3->setText(NTP3_items.length() > 0 ? NTP3_items[0] : "");
+	m_gui->NTP3_P->setValue(NTP3_items.length() > 1 ? NTP3_items[1].toInt() : 1);
+
+	QString NTPZ = settings->value("NTPZ", "+12").toString();
+	int NTPZ_int = NTPZ.toInt();
+	m_gui->NTPZ->setValue(NTPZ_int);
+
+	int WMMD = settings->value("WMMD", 0).toInt();
+	m_gui->WMMD->setChecked(WMMD != 0);
+
+	int WMTP = settings->value("WMTP", 0).toInt();
+	if (WMTP == 0)
+		m_gui->WMTP->setChecked(true);
+	else
+		m_gui->WMTP_2->setChecked(true);
+
+	QStringList WMWT = settings->value("WMWT", "01:00").toString().split(':');
+	m_gui->WMWT_H->setValue(WMWT.length() > 0 ? WMWT[0].toInt() : 1);
+	m_gui->WMWT_M->setValue(WMWT.length() > 1 ? WMWT[1].toInt() : 0);
+
+	QStringList WMON = settings->value("WMON", "06:00").toString().split(':');
+	m_gui->WMON_H->setValue(WMON.length() > 0 ? WMON[0].toInt() : 6);
+	m_gui->WMON_M->setValue(WMON.length() > 1 ? WMON[1].toInt() : 0);
+
+	QStringList WME1 = settings->value("WME1", "0:00:00:00").toString().split(':');
+	render_WME(WME1, m_gui->WME1_EN, m_gui->WME1_EV, m_gui->WME1_H, m_gui->WME1_M);
+
+	QStringList WME2 = settings->value("WME2", "0:00:00:00").toString().split(':');
+	render_WME(WME2, m_gui->WME2_EN, m_gui->WME2_EV, m_gui->WME2_H, m_gui->WME2_M);
+
+	QStringList WME3 = settings->value("WME3", "0:00:00:00").toString().split(':');
+	render_WME(WME3, m_gui->WME3_EN, m_gui->WME3_EV, m_gui->WME3_H, m_gui->WME3_M);
+
+	QStringList WME4 = settings->value("WME4", "0:00:00:00").toString().split(':');
+	render_WME(WME4, m_gui->WME4_EN, m_gui->WME4_EV, m_gui->WME4_H, m_gui->WME4_M);
+
+	QStringList WME5 = settings->value("WME5", "0:00:00:00").toString().split(':');
+	render_WME(WME5, m_gui->WME5_EN, m_gui->WME5_EV, m_gui->WME5_H, m_gui->WME5_M);
+
+	int WMES = settings->value("WMES", 0).toInt();
+	m_gui->WMES->setChecked(WMES != 0);
+
+	int WMGI = settings->value("WMGI", 3).toInt();
+	m_gui->WMGI->setValue(WMGI);
+
+	int WMIS = settings->value("WMIS", 0).toInt();
+	m_gui->WMIS->setChecked(WMIS != 0);
+
+	int WMGO = settings->value("WMGO", 4).toInt();
+	m_gui->WMGO->setValue(WMGO);
+
+	QString WMSI = settings->value("WMSI", "start").toString();
+	m_gui->WMSI->setText(WMSI);
+
+	QString WMSO = settings->value("WMSO", "stop").toString();
+	m_gui->WMSO->setText(WMSO);
+}
+
+void ZSettingsGUI::render_WME(QStringList const& params, QCheckBox* en, QComboBox* ev, QSpinBox* hh, QSpinBox* mm)
+{
+	en->setChecked(params.length() > 0 ? (params[0].toInt() != 0 ? true : false) : false);
+	ev->setCurrentIndex(params.length() > 1 ? params[1].toInt() : 0);
+	hh->setValue(params.length() > 2 ? params[2].toInt() : 0);
+	mm->setValue(params.length() > 3 ? params[3].toInt() : 0);
 }

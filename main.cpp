@@ -8,6 +8,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+	a.setApplicationVersion(APP_VERSION);
+
 	//QMainWindow logWindow;
 	//logWindow.setLayout(new QHBoxLayout());
 	//logWindow.layout()->addWidget(&logDlg);

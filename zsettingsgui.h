@@ -3,6 +3,9 @@
 
 #include "mainwindow.h"
 #include "zsettingsview.h"
+#include <QCheckBox>
+#include <QSpinBox>
+#include <QComboBox>
 
 class ZSettingsGUI : public ZSettingsView
 {
@@ -73,8 +76,60 @@ private slots:
     void on_GPHR_valueChanged(int value);
     void on_phoneBook_phoneChanged(const QString &phone, int index);
     void on_phoneBook_phoneGroupChanged(const QString &phone, const QString &mask, int index);
+	void on_DBEN_toggled(bool checked);
+	void on_DBMD_C_toggled(bool checked);
+	void on_DBMD_S_toggled(bool checked);
+	void on_DBIP_textChanged(const QString& text);
+	void on_DBPC_valueChanged(int value);
+	void on_DBPS_valueChanged(int value);
+	void on_DBAF_toggled(bool checked);
+	void on_DBPG_valueChanged(int value);
+	void on_NTPE_toggeld(bool checked);
+	void on_NTPZ_valueChanged(int value);
+	void on_NTP1_textChanged(const QString& text);
+	void on_NTP1_P_valueChanged(int value);
+	void on_NTP2_textChanged(const QString& text);
+	void on_NTP2_P_valueChanged(int value);
+	void on_NTP3_textChanged(const QString& text);
+	void on_NTP3_P_valueChanged(int value);
+
+	void on_WMMD_toggled(bool checked);
+	void on_WMWT_H_valueChanged(int value);
+	void on_WMWT_M_valueChanged(int value);
+	void on_WMTP_toggled(bool checked);
+	void on_WMON_H_valueChanged(int value);
+	void on_WMON_M_valueChanged(int value);
+	void on_WME1_EN_toggled(bool checked);
+	void on_WME1_EV_valueChanged(int value);
+	void on_WME1_H_valueChanged(int value);
+	void on_WME1_M_valueChanged(int value);
+	void on_WME2_EN_toggled(bool checked);
+	void on_WME2_EV_valueChanged(int value);
+	void on_WME2_H_valueChanged(int value);
+	void on_WME2_M_valueChanged(int value);
+	void on_WME3_EN_toggled(bool checked);
+	void on_WME3_EV_valueChanged(int value);
+	void on_WME3_H_valueChanged(int value);
+	void on_WME3_M_valueChanged(int value);
+	void on_WME4_EN_toggled(bool checked);
+	void on_WME4_EV_valueChanged(int value);
+	void on_WME4_H_valueChanged(int value);
+	void on_WME4_M_valueChanged(int value);
+	void on_WME5_EN_toggled(bool checked);
+	void on_WME5_EV_valueChanged(int value);
+	void on_WME5_H_valueChanged(int value);
+	void on_WME5_M_valueChanged(int value);
+	void on_WMES_toggled(bool checked);
+	void on_WMGI_valueChanged(int value);
+	void on_WMIS_toggled(bool checked);
+	void on_WMGO_valueChanged(int value);
+	void on_WMSI_textChanged(const QString& text);
+	void on_WMSO_textChanged(const QString& text);
 
 private:
+	void update_WME(QString const& param, QCheckBox* en, QComboBox* ev, QSpinBox* hh, QSpinBox* mm);
+	void render_WME(QStringList const& params, QCheckBox* en, QComboBox* ev, QSpinBox* hh, QSpinBox* mm);
+
     Ui::MainWindow* m_gui;
 };
 

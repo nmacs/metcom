@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+VERSION = 1.0.0
+
 QT       += core gui
 QT       += serialport
 QT       += network
@@ -38,7 +40,8 @@ SOURCES += main.cpp\
     zpasswordchange.cpp \
     zsettingsgui.cpp \
     phonebook.cpp \
-    zcommand.cpp
+    zcommand.cpp \
+    info.cpp
 
 HEADERS  += mainwindow.h \
     zchannel.h \
@@ -63,7 +66,8 @@ HEADERS  += mainwindow.h \
     zpasswordchange.h \
     zsettingsgui.h \
     phonebook.h \
-    zcommand.h
+    zcommand.h \
+    info.h
 
 FORMS    += mainwindow.ui \
     connect.ui \
@@ -71,12 +75,15 @@ FORMS    += mainwindow.ui \
     firmwareupgrade.ui \
     progress.ui \
     zcommlogdialog.ui \
-    passwordchangedlg.ui
+    passwordchangedlg.ui \
+    info.ui
 
 TRANSLATIONS += app_en.ts
 TRANSLATIONS += app_ru.ts
 
 DISTFILES += \
     icon.png
+
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 RC_FILE = app.rc

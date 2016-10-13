@@ -42,6 +42,7 @@ private slots:
     void on_actionPassword_Change_triggered();
     void on_actionFirmwareUpgrade_triggered();
     void on_actionReset_triggered();
+	void on_actionInfo_triggered();
 
 	void on_timer();
 

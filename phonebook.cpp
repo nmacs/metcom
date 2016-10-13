@@ -33,6 +33,7 @@ PhoneBook::PhoneBook(QWidget *parent) :
     for (int i = 0; i < 10; i++)
     {
         QLineEdit *edit = new QLineEdit(this);
+		edit->setMaxLength(15);
         edit->setProperty("row", i);
         layout->addWidget(edit, i + 1, 1);
 

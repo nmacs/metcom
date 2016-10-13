@@ -11,6 +11,7 @@
 #include "passwordchangedlg.h"
 #include "zsettingsgui.h"
 #include "zcommand.h"
+#include "info.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -80,6 +81,8 @@ void MainWindow::updateLanguage()
 
 	setConnectionStatus((m_channel != 0) ? (m_channel->isConnected() ? tr("Connected") : tr("Disconnected")) : tr("Disconnected"));
 	setConnectionTime(m_channel != 0 ? m_channel->connectionTime() : 0);
+
+	this->setWindowTitle(this->windowTitle() + " " + QApplication::applicationVersion());
 }
 
 bool MainWindow::setupChannel()
@@ -211,6 +214,16 @@ void MainWindow::on_actionReset_triggered()
     {
         statusBar()->showMessage(tr("Done"));
     }
+}
+
+void MainWindow::on_actionInfo_triggered()
+{
+	if (!checkChannel())
+		return;
+
+	Info *dialog = new Info(m_channel, m_progress, this);
+	dialog->exec();
+	delete dialog;
 }
 
 void MainWindow::on_actionCommunication_Log_triggered()
