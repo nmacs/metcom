@@ -9,6 +9,8 @@ Info::Info(ZChannel *channel, Progress *progress, QWidget *parent)
 	m_progress(progress)
 {
 	ui->setupUi(this);
+
+	this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 	ui->lblStatus->setText("");
 	ui->txtInfo->setPlainText("");
 
@@ -52,7 +54,7 @@ void Info::drawInfo(QStringList const& info)
 		QString const& item = iter.next();
 
 		QString name = item.left(4);
-		QString value = item.right(item.length() - 5);
+		QString value = item.right(item.length() - 5).trimmed();
 
 		QString line = QString().sprintf("%-25s%s\r\n", m_infoMap.value(name, name).toString().toLatin1().constData(), value.toLatin1().constData());
 		text.append(line);

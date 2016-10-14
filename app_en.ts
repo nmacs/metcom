@@ -817,7 +817,8 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="2010"/>
-        <source>1..99 hour</source>
+        <source>1..99 hour(s)</source>
+        <oldsource>1..99 hour</oldsource>
         <translation></translation>
     </message>
     <message>

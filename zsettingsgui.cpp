@@ -1414,20 +1414,20 @@ void ZSettingsGUI::draw(ZSettings *settings)
 	int NTPE = settings->value("NTPE", 0).toInt();
 	m_gui->NTPE->setChecked(NTPE != 0);
 
-	QString NTP1 = settings->value("NTP1", ":").toString();
+	QString NTP1 = settings->value("NTP1", "ntp2.stratum2.ru:123").toString();
 	QStringList NTP1_items = NTP1.split(':');
-	m_gui->NTP1->setText(NTP1_items.length() > 0 ? NTP1_items[0] : "");
-	m_gui->NTP1_P->setValue(NTP1_items.length() > 1 ? NTP1_items[1].toInt() : 1);
+	m_gui->NTP1->setText(NTP1_items.length() > 0 ? NTP1_items[0] : "ntp2.stratum2.ru");
+	m_gui->NTP1_P->setValue(NTP1_items.length() > 1 ? NTP1_items[1].toInt() : 123);
 
-	QString NTP2 = settings->value("NTP2", ":").toString();
+	QString NTP2 = settings->value("NTP2", "ntp3.stratum2.ru:123").toString();
 	QStringList NTP2_items = NTP2.split(':');
-	m_gui->NTP2->setText(NTP2_items.length() > 0 ? NTP2_items[0] : "");
-	m_gui->NTP2_P->setValue(NTP2_items.length() > 1 ? NTP2_items[1].toInt() : 1);
+	m_gui->NTP2->setText(NTP2_items.length() > 0 ? NTP2_items[0] : "ntp3.stratum2.ru");
+	m_gui->NTP2_P->setValue(NTP2_items.length() > 1 ? NTP2_items[1].toInt() : 123);
 
-	QString NTP3 = settings->value("NTP3", ":").toString();
+	QString NTP3 = settings->value("NTP3", "ntp4.stratum2.ru:123").toString();
 	QStringList NTP3_items = NTP3.split(':');
-	m_gui->NTP3->setText(NTP3_items.length() > 0 ? NTP3_items[0] : "");
-	m_gui->NTP3_P->setValue(NTP3_items.length() > 1 ? NTP3_items[1].toInt() : 1);
+	m_gui->NTP3->setText(NTP3_items.length() > 0 ? NTP3_items[0] : "ntp4.stratum2.ru");
+	m_gui->NTP3_P->setValue(NTP3_items.length() > 1 ? NTP3_items[1].toInt() : 123);
 
 	QString NTPZ = settings->value("NTPZ", "+12").toString();
 	int NTPZ_int = NTPZ.toInt();

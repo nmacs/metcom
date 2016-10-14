@@ -869,8 +869,9 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="2010"/>
-        <source>1..99 hour</source>
-        <translation>1..99 часов</translation>
+        <source>1..99 hour(s)</source>
+        <oldsource>1..99 hour</oldsource>
+        <translation>1..99 час(ов)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2043"/>
@@ -986,7 +987,7 @@
     <message>
         <location filename="mainwindow.ui" line="3993"/>
         <source>Enter sleep mode by incoming call</source>
-        <translation>Входв спящий режим по звонку</translation>
+        <translation>Вход в спящий режим по звонку</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="4006"/>
@@ -1067,7 +1068,7 @@
     <message>
         <location filename="mainwindow.ui" line="2489"/>
         <source>Network operation period (hh:mm)</source>
-        <translation>Период нахождения в сети (чч:мм)</translation>
+        <translation>Длительность работы в сети (чч:мм)</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="2840"/>

@@ -73,7 +73,7 @@ const ZSettings &ZSettings::defaultSettings()
         settings.setValue("DBMD", 1);
         settings.setValue("DBIP", "");
         settings.setValue("DBPC", 9001);
-        settings.setValue("DBPS", 9002);
+        settings.setValue("DBPS", 9001);
         settings.setValue("DBAF", 0);
         settings.setValue("DBPG", 1);
 
@@ -84,9 +84,9 @@ const ZSettings &ZSettings::defaultSettings()
         settings.setValue("DTMN", 30);
         settings.setValue("GPHR", 2);
 		settings.setValue("NTPE", 0);
-		settings.setValue("NTP1", ":");
-		settings.setValue("NTP2", ":");
-		settings.setValue("NTP3", ":");
+		settings.setValue("NTP1", "ntp2.stratum2.ru:123");
+		settings.setValue("NTP2", "ntp3.stratum2.ru:123");
+		settings.setValue("NTP3", "ntp4.stratum2.ru:123");
 		settings.setValue("NTPZ", "+12");
 
 		settings.setValue("WMMD", 0);
