@@ -16,8 +16,10 @@ Info::Info(ZChannel *channel, Progress *progress, QWidget *parent)
 
 	m_infoMap.insert("HARD", tr("Hardware ID"));
 	m_infoMap.insert("SOFT", tr("Software ID"));
+	m_infoMap.insert("TYPE", tr("Device Model"));
 	m_infoMap.insert("CELL", tr("Network Technology"));
-	m_infoMap.insert("CGMM", tr("Module Software ID"));
+	m_infoMap.insert("CGMM", tr("Module Type"));
+	m_infoMap.insert("CGMR", tr("Module Software ID"));
 	m_infoMap.insert("IMEI", tr("IMEI"));
 	m_infoMap.insert("IMSI", tr("IMSI"));
 	m_infoMap.insert("CCID", tr("CCID"));
@@ -56,7 +58,7 @@ void Info::drawInfo(QStringList const& info)
 		QString name = item.left(4);
 		QString value = item.right(item.length() - 5).trimmed();
 
-		QString line = QString().sprintf("%-25s%s\r\n", m_infoMap.value(name, name).toString().toLatin1().constData(), value.toLatin1().constData());
+		QString line = QString().sprintf("%-33s%s\r\n", m_infoMap.value(name, name).toString().toUtf8().constData(), value.toUtf8().constData());
 		text.append(line);
 	}
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>563</width>
+    <width>675</width>
     <height>415</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>541</width>
+     <width>651</width>
      <height>321</height>
     </rect>
    </property>
@@ -39,7 +39,7 @@
   <widget class="QPushButton" name="btnRefresh">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>260</x>
      <y>340</y>
      <width>121</width>
      <height>41</height>
@@ -65,7 +65,7 @@
   <widget class="QPushButton" name="btnCopy">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>540</x>
      <y>340</y>
      <width>121</width>
      <height>41</height>

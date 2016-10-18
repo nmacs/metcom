@@ -95,6 +95,11 @@ ZSettingsGUI::ZSettingsGUI(Ui::MainWindow* gui, QObject *parent) :
             this,
             SLOT(on_SITT_valueChanged(int)));
 
+	connect(m_gui->DTAD,
+			SIGNAL(valueChanged(int)),
+			this,
+			SLOT(on_DTAD_valueChanged(int)));
+
     /*
      * SIM
      */
@@ -712,18 +717,12 @@ void ZSettingsGUI::on_radioModeModem_toggled(bool checked)
 void ZSettingsGUI::on_radioModeClient_toggled(bool checked)
 {
     m_gui->groupModeClient->setEnabled(checked);
-    m_gui->groupModeServerClient->setEnabled(
-                m_gui->radioModeClient->isChecked() |
-                m_gui->radioModeServer->isChecked());
     emitUpdated("MODE", 1);
 }
 
 void ZSettingsGUI::on_radioModeServer_toggled(bool checked)
 {
     m_gui->groupModeServer->setEnabled(checked);
-    m_gui->groupModeServerClient->setEnabled(
-                m_gui->radioModeClient->isChecked() |
-                m_gui->radioModeServer->isChecked());
     emitUpdated("MODE", 2);
 }
 
@@ -797,6 +796,11 @@ void ZSettingsGUI::on_TRDT_valueChanged(int value)
 void ZSettingsGUI::on_SITT_valueChanged(int value)
 {
     emitUpdated("SITT", value);
+}
+
+void ZSettingsGUI::on_DTAD_valueChanged(int value)
+{
+	emitUpdated("DTAD", value);
 }
 
 void ZSettingsGUI::on_ESCH_toggled(bool checked)
@@ -1065,7 +1069,9 @@ void ZSettingsGUI::update_WME(QString const& param, QCheckBox* en, QComboBox* ev
 void ZSettingsGUI::on_WME1_EN_toggled(bool checked)
 {
 	update_WME("WME1", m_gui->WME1_EN, m_gui->WME1_EV, m_gui->WME1_H, m_gui->WME1_M);
-
+	m_gui->WME1_EV->setEnabled(checked);
+	m_gui->WME1_H->setEnabled(checked);
+	m_gui->WME1_M->setEnabled(checked);
 }
 
 void ZSettingsGUI::on_WME1_EV_valueChanged(int value)
@@ -1086,6 +1092,9 @@ void ZSettingsGUI::on_WME1_M_valueChanged(int value)
 void ZSettingsGUI::on_WME2_EN_toggled(bool checked)
 {
 	update_WME("WME2", m_gui->WME2_EN, m_gui->WME2_EV, m_gui->WME2_H, m_gui->WME2_M);
+	m_gui->WME2_EV->setEnabled(checked);
+	m_gui->WME2_H->setEnabled(checked);
+	m_gui->WME2_M->setEnabled(checked);
 }
 
 void ZSettingsGUI::on_WME2_EV_valueChanged(int value)
@@ -1106,6 +1115,9 @@ void ZSettingsGUI::on_WME2_M_valueChanged(int value)
 void ZSettingsGUI::on_WME3_EN_toggled(bool checked)
 {
 	update_WME("WME3", m_gui->WME3_EN, m_gui->WME3_EV, m_gui->WME3_H, m_gui->WME3_M);
+	m_gui->WME3_EV->setEnabled(checked);
+	m_gui->WME3_H->setEnabled(checked);
+	m_gui->WME3_M->setEnabled(checked);
 }
 
 void ZSettingsGUI::on_WME3_EV_valueChanged(int value)
@@ -1126,6 +1138,9 @@ void ZSettingsGUI::on_WME3_M_valueChanged(int value)
 void ZSettingsGUI::on_WME4_EN_toggled(bool checked)
 {
 	update_WME("WME4", m_gui->WME4_EN, m_gui->WME4_EV, m_gui->WME4_H, m_gui->WME4_M);
+	m_gui->WME4_EV->setEnabled(checked);
+	m_gui->WME4_H->setEnabled(checked);
+	m_gui->WME4_M->setEnabled(checked);
 }
 
 void ZSettingsGUI::on_WME4_EV_valueChanged(int value)
@@ -1146,6 +1161,9 @@ void ZSettingsGUI::on_WME4_M_valueChanged(int value)
 void ZSettingsGUI::on_WME5_EN_toggled(bool checked)
 {
 	update_WME("WME5", m_gui->WME5_EN, m_gui->WME5_EV, m_gui->WME5_H, m_gui->WME5_M);
+	m_gui->WME5_EV->setEnabled(checked);
+	m_gui->WME5_H->setEnabled(checked);
+	m_gui->WME5_M->setEnabled(checked);
 }
 
 void ZSettingsGUI::on_WME5_EV_valueChanged(int value)
@@ -1312,6 +1330,9 @@ void ZSettingsGUI::draw(ZSettings *settings)
     int SITT = settings->value("SITT", 600).toInt();
     m_gui->SITT->setValue(SITT);
 
+	int DTAD = settings->value("DTAD", 1).toInt();
+	m_gui->DTAD->setValue(DTAD);
+
     int ESCH = settings->value("ESCH", 0).toInt();
     m_gui->ESCH->setChecked(ESCH != 0 ? true : false);
 
@@ -1387,11 +1408,11 @@ void ZSettingsGUI::draw(ZSettings *settings)
         m_gui->phoneBook->setGroupMask(GRPx, i);
     }
 
-	int DBEN = settings->value("DBEN", 0).toInt();
+	int DBEN = settings->value("DBEN", 1).toInt();
 	m_gui->DBEN->setChecked(DBEN != 0 ? true : false);
 
 	int DBMD = settings->value("DBMD", 1).toInt();
-	if (DBMD == 0)
+	if (DBMD != 0)
 		m_gui->DBMD_S->setChecked(true);
 	else
 		m_gui->DBMD_C->setChecked(true);

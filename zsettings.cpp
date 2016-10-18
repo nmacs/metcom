@@ -5,7 +5,8 @@
 #include <QFileInfo>
 
 ZSettings::ZSettings(QObject *parent) :
-    QObject(parent)
+    QObject(parent),
+	m_locked(false)
 {
 }
 
@@ -62,6 +63,7 @@ const ZSettings &ZSettings::defaultSettings()
         settings.setValue("BITS", 3);
         settings.setValue("PRTY", 4);
         settings.setValue("SSTB", 0);
+		settings.setValue("DTAD", 1);
 
         for (int i = 0; i < 10; i++)
         {
@@ -69,7 +71,7 @@ const ZSettings &ZSettings::defaultSettings()
             settings.setValue(QString("GRP%0").arg(i), "0000000000");
         }
 
-        settings.setValue("DBEN", 0);
+        settings.setValue("DBEN", 1);
         settings.setValue("DBMD", 1);
         settings.setValue("DBIP", "");
         settings.setValue("DBPC", 9001);
@@ -210,6 +212,11 @@ const QVariant &ZSettings::value(const QString &key, QVariant const& def) const
     return item != m_values.end() ? item.value() : def;
 }
 
+void ZSettings::redraw()
+{
+	drawViews();
+}
+
 void ZSettings::clear()
 {
     m_values.clear();
@@ -228,6 +235,9 @@ void ZSettings::addView(ZSettingsView *view)
 
 void ZSettings::update(ZSettingsView *sender, const QString &key, const QVariant &value)
 {
+	if (m_locked)
+		return;
+
     m_values.insert(key, value);
     drawViews(sender);
 }

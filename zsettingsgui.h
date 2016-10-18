@@ -51,6 +51,7 @@ private slots:
     void on_MPSZ_valueChanged(int value);
     void on_TRDT_valueChanged(int value);
     void on_SITT_valueChanged(int value);
+	void on_DTAD_valueChanged(int value);
     void on_ESCH_toggled(bool checked);
     void on_SCH1_IP_textChanged(const QString &text);
     void on_SCH1_PORT_valueChanged(int value);

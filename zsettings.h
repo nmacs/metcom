@@ -29,7 +29,9 @@ public:
     void setValidator(QValidator *validator);
     QVariant const& value(const QString& key, const QVariant &def = QVariant()) const;
 
+	void redraw();
     void clear();
+	void setLocked(bool value) { m_locked = value; }
 
     const Map& values() const { return m_values; }
 
@@ -46,6 +48,7 @@ private:
 private:
     Map m_values;
     QList<ZSettingsView*> m_views;
+	bool m_locked;
 };
 
 #endif // ZSETTINGS_H

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MetCOM"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "ZixLink"
 #define MyAppURL "http://zixlink.com"
 #define MyAppExeName "MetCOM.exe"

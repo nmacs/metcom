@@ -31,8 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
     translator = new QTranslator(this);
     qApp->installTranslator(translator);
 
-    updateLanguage();
-
     ui->txtPIN1->setValidator(new QIntValidator);
     ui->txtPIN2->setValidator(new QIntValidator);
 
@@ -40,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     *m_modemSettings = ZSettings::defaultSettings();
     //m_modemSettings->addView(new ZSettingsTable(ui->tblSettings, this));
     m_modemSettings->addView(new ZSettingsGUI(ui, this));
+
+	updateLanguage();
 
     m_progress = new Progress(this);
     m_log = new ZCommLogDialog(this);
@@ -77,12 +77,16 @@ void MainWindow::updateLanguage()
 
     QString translation = qApp->applicationDirPath() + "/translations/app_" + language.toString();
     translator->load(translation);
+
+	m_modemSettings->setLocked(true);
     ui->retranslateUi(this);
 
 	setConnectionStatus((m_channel != 0) ? (m_channel->isConnected() ? tr("Connected") : tr("Disconnected")) : tr("Disconnected"));
 	setConnectionTime(m_channel != 0 ? m_channel->connectionTime() : 0);
 
-	this->setWindowTitle(this->windowTitle() + " " + QApplication::applicationVersion());
+	setWindowTitle(windowTitle() + " " + QApplication::applicationVersion());
+	m_modemSettings->redraw();
+	m_modemSettings->setLocked(false);
 }
 
 bool MainWindow::setupChannel()

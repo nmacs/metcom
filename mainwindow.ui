@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tabMode">
      <attribute name="title">
@@ -65,7 +65,7 @@
         <x>10</x>
         <y>10</y>
         <width>511</width>
-        <height>61</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="title">
@@ -93,8 +93,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>160</x>
-         <y>30</y>
+         <x>340</x>
+         <y>10</y>
          <width>111</width>
          <height>16</height>
         </rect>
@@ -109,8 +109,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>280</x>
-         <y>30</y>
+         <x>460</x>
+         <y>10</y>
          <width>42</width>
          <height>22</height>
         </rect>
@@ -127,7 +127,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>80</y>
+        <y>60</y>
         <width>511</width>
         <height>131</height>
        </rect>
@@ -292,7 +292,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>220</y>
+        <y>200</y>
         <width>511</width>
         <height>141</height>
        </rect>
@@ -409,14 +409,14 @@
      </widget>
      <widget class="QGroupBox" name="groupModeServerClient">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>370</y>
+        <y>350</y>
         <width>511</width>
-        <height>101</height>
+        <height>131</height>
        </rect>
       </property>
       <property name="title">
@@ -427,7 +427,7 @@
         <rect>
          <x>30</x>
          <y>10</y>
-         <width>200</width>
+         <width>250</width>
          <height>16</height>
         </rect>
        </property>
@@ -440,7 +440,7 @@
         <rect>
          <x>30</x>
          <y>40</y>
-         <width>200</width>
+         <width>250</width>
          <height>16</height>
         </rect>
        </property>
@@ -453,7 +453,7 @@
         <rect>
          <x>30</x>
          <y>70</y>
-         <width>200</width>
+         <width>250</width>
          <height>16</height>
         </rect>
        </property>
@@ -464,7 +464,7 @@
       <widget class="QLabel" name="label_17">
        <property name="geometry">
         <rect>
-         <x>340</x>
+         <x>380</x>
          <y>10</y>
          <width>91</width>
          <height>16</height>
@@ -477,7 +477,7 @@
       <widget class="QLabel" name="label_18">
        <property name="geometry">
         <rect>
-         <x>340</x>
+         <x>380</x>
          <y>40</y>
          <width>91</width>
          <height>16</height>
@@ -490,7 +490,7 @@
       <widget class="QLabel" name="label_19">
        <property name="geometry">
         <rect>
-         <x>340</x>
+         <x>380</x>
          <y>70</y>
          <width>91</width>
          <height>16</height>
@@ -503,7 +503,7 @@
       <widget class="QSpinBox" name="MPSZ">
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>280</x>
          <y>10</y>
          <width>90</width>
          <height>22</height>
@@ -522,7 +522,7 @@
       <widget class="QSpinBox" name="TRDT">
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>280</x>
          <y>40</y>
          <width>90</width>
          <height>22</height>
@@ -541,7 +541,7 @@
       <widget class="QSpinBox" name="SITT">
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>280</x>
          <y>70</y>
          <width>90</width>
          <height>22</height>
@@ -555,6 +555,51 @@
        </property>
        <property name="value">
         <number>600</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_26">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>100</y>
+         <width>250</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Disconnection Timeout on No Data</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_27">
+       <property name="geometry">
+        <rect>
+         <x>380</x>
+         <y>100</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>(0..99 min)</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="DTAD">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>100</y>
+         <width>90</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>99</number>
+       </property>
+       <property name="value">
+        <number>1</number>
        </property>
       </widget>
      </widget>
@@ -1384,9 +1429,9 @@
      <widget class="QGroupBox" name="groupBox_10">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>30</x>
         <y>20</y>
-        <width>341</width>
+        <width>470</width>
         <height>251</height>
        </rect>
       </property>
@@ -1482,7 +1527,7 @@
       <widget class="QLabel" name="label_55">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>160</x>
          <y>30</y>
          <width>120</width>
          <height>20</height>
@@ -1524,7 +1569,7 @@
       <widget class="QRadioButton" name="MPRT_RS232">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>70</x>
          <y>30</y>
          <width>82</width>
          <height>17</height>
@@ -1543,14 +1588,14 @@
       <widget class="QRadioButton" name="MPRT_RS485">
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>280</x>
          <y>30</y>
-         <width>82</width>
+         <width>111</width>
          <height>17</height>
         </rect>
        </property>
        <property name="text">
-        <string>RS485</string>
+        <string>RS485(RS422)</string>
        </property>
       </widget>
       <widget class="QComboBox" name="MAPT">
@@ -1558,23 +1603,23 @@
         <rect>
          <x>160</x>
          <y>70</y>
-         <width>170</width>
+         <width>261</width>
          <height>22</height>
         </rect>
        </property>
        <item>
         <property name="text">
-         <string>AUX Off</string>
+         <string>Auxiliary Interface Off</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>NET&lt;-&gt;PORT</string>
+         <string>Both Interfaces On</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>AUX_PORT&lt;-&gt;MAIN PORT</string>
+         <string>Bridge Mode Between Interfaces</string>
         </property>
        </item>
       </widget>
@@ -1753,7 +1798,7 @@
        <bool>true</bool>
       </property>
       <property name="checked">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <widget class="QRadioButton" name="DBMD_C">
        <property name="geometry">
@@ -1785,6 +1830,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="DBIP">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>110</x>
@@ -1843,6 +1891,9 @@
        </property>
       </widget>
       <widget class="QSpinBox" name="DBPC">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>330</x>
@@ -2537,6 +2588,9 @@
         <enum>QFrame::Raised</enum>
        </property>
        <widget class="QSpinBox" name="WME2_H">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -2553,6 +2607,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME1_H">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -2569,6 +2626,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME3_M">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>370</x>
@@ -2598,6 +2658,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME5_H">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -2627,6 +2690,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME5_M">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>370</x>
@@ -2669,6 +2735,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME4_M">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>370</x>
@@ -2685,6 +2754,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME2_M">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>370</x>
@@ -2727,6 +2799,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME4_H">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -2756,6 +2831,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME1_M">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>370</x>
@@ -2811,6 +2889,9 @@
         </property>
        </widget>
        <widget class="QSpinBox" name="WME3_H">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>310</x>
@@ -2827,6 +2908,9 @@
         </property>
        </widget>
        <widget class="QComboBox" name="WME1_EV">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -3037,6 +3121,9 @@
         </item>
        </widget>
        <widget class="QComboBox" name="WME2_EV">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -3247,6 +3334,9 @@
         </item>
        </widget>
        <widget class="QComboBox" name="WME3_EV">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -3457,6 +3547,9 @@
         </item>
        </widget>
        <widget class="QComboBox" name="WME4_EV">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>90</x>
@@ -3667,6 +3760,9 @@
         </item>
        </widget>
        <widget class="QComboBox" name="WME5_EV">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>90</x>
