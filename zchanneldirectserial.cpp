@@ -38,6 +38,7 @@ bool ZChannelDirectSerial::connect()
     m_port->setFlowControl(QSerialPort::NoFlowControl);
 	m_port->setParity(QSerialPort::NoParity);
 	m_port->setDataBits(QSerialPort::Data8);
+	m_port->setDataTerminalReady(true);
 
     setBaudRate(115200);
 
