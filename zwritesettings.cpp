@@ -51,7 +51,7 @@ bool ZWriteSettings::doRun()
     if (!packet.isEmpty())
     {
         packet.append('#');
-        res = execute(packet);
+        res = execute(packet, 15000); // setting write on telit could take 8-9 seconds
         if (!res)
         {
             return false;

@@ -77,7 +77,7 @@
      <item>
       <widget class="QCheckBox" name="chkOpticalMode">
        <property name="text">
-        <string>Optical Port</string>
+        <string>RS232/RS485/Optical Port</string>
        </property>
       </widget>
      </item>

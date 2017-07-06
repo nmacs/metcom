@@ -63,12 +63,15 @@ bool ZChannelDirectSerial::connect()
 
 void ZChannelDirectSerial::disconnect()
 {
+	char buffer[16];
+
 	if (!isConnected())
 		return;
 
 	QString stop = QString("START=%1\r").arg(password());
 	write(stop.toLatin1().constData(), stop.length(), 500);
-	ZProtocol::msleep(500);
+
+	read(buffer, sizeof(buffer), 1000);
 
     m_port->close();
 	ZChannel::disconnect();

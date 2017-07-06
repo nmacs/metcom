@@ -338,6 +338,7 @@ void MainWindow::on_actionDefaultSettings_triggered()
     statusBar()->showMessage(title);
 
     ZCommand *command = new ZCommand("DEF=%1\r", title, m_channel, m_progress, this);
+	command->setTimeout(15000);
     ret = command->run();
     if (!ret)
     {

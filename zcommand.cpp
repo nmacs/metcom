@@ -4,7 +4,8 @@ ZCommand::ZCommand(const QString &command, const QString &title, ZChannel *chann
     ZProtocol(channel, progress, parent),
 	m_haveResponse(false),
     m_command(command),
-    m_title(title)
+    m_title(title),
+	m_timeout(1000)
 {
 }
 
@@ -16,7 +17,7 @@ bool ZCommand::doRun()
 
 	if (!m_haveResponse)
 	{
-		res = execute(m_command.arg(password()));
+		res = execute(m_command.arg(password()), m_timeout);
 		if (!res)
 		{
 			setErrorString(channel()->errorString());
@@ -32,7 +33,7 @@ bool ZCommand::doRun()
 			return false;
 		}
 
-		res = readout(&m_response, 128, 1000);
+		res = readout(&m_response, 128, m_timeout);
 		if (!res)
 		{
 			setErrorString(channel()->errorString());

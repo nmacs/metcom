@@ -23,6 +23,7 @@ bool ZFirmwareUpgrade::doRun()
     qint64 bytesSent = 0;
     int blockNumber = 0;
     QStringList result;
+	char checkByte = 0;
 
     QFile file(m_firmwareFile);
     res = file.open(QIODevice::ReadOnly);
@@ -33,16 +34,34 @@ bool ZFirmwareUpgrade::doRun()
     }
 
     qint64 firmwareSize = file.size();
+	QByteArray data = file.readAll();
+	file.reset();
 
-    file.seek(0x500);
-    char checkByte = 0;
-    if (file.read(&checkByte, 1) != 1)
-    {
-        setErrorString(tr("Fail to read harwave version from firmware file"));
-        return false;
-    }
-    file.reset();
-    checkByte ^= 0x27;
+	for (int i = 0; i < data.length(); i++)
+	{
+		data.data()[i] ^= 0x27;
+	}
+
+	if (data.left(4) == QByteArray("2DOM", 4))
+	{
+		int index = data.indexOf("$$$$$");
+
+		if (index < 0)
+		{
+			setErrorString(tr("Fail to read harwave version from firmware file"));
+			return false;
+		}
+
+		// $$$$$09.01.C0.17
+		//               ^
+		QString checkByteStr(QByteArray(&data.data()[index + 14], 2));
+
+		checkByte = checkByteStr.toInt(0, 16);
+	}
+	else
+	{
+		checkByte = data.at(500);
+	}
 
     reportProgress(0, tr("Firmware Update..."));
 
@@ -70,7 +89,7 @@ bool ZFirmwareUpgrade::doRun()
 
     if (result.at(0).left(2).toUpper() != QString("%1").arg(checkByte, 2, 16, QChar('0')).toUpper())
     {
-        setErrorString(QString(tr("Unexpected Modem hardware version %1 %2")).arg(result.at(0)).arg(checkByte));
+        setErrorString(QString(tr("Unexpected Modem hardware version %1 %2")).arg(result.at(0).left(2).toUpper()).arg(QString("%1").arg(checkByte, 2, 16, QChar('0')).toUpper()));
         res = false;
         goto out;
     }
