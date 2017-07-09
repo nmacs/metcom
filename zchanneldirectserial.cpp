@@ -40,10 +40,10 @@ bool ZChannelDirectSerial::connect()
 	m_port->setDataBits(QSerialPort::Data8);
 	m_port->setDataTerminalReady(true);
 
-    setBaudRate(115200);
+    setBaudRate(9600);
 
-	QString stop = QString("STOP=%1\r").arg(password());
-	write(stop.toLatin1().constData(), stop.length(), defaultTimeout());
+	//QString stop = QString("STOP=%1\r").arg(password());
+	//write(stop.toLatin1().constData(), stop.length(), defaultTimeout());
 	ZProtocol::msleep(500);
 
 	if (!probeModem())
@@ -66,8 +66,8 @@ void ZChannelDirectSerial::disconnect()
 	if (!isConnected())
 		return;
 
-	QString stop = QString("START=%1\r").arg(password());
-	write(stop.toLatin1().constData(), stop.length(), 500);
+	//QString stop = QString("START=%1\r").arg(password());
+	//write(stop.toLatin1().constData(), stop.length(), 500);
 	ZProtocol::msleep(500);
 
     m_port->close();

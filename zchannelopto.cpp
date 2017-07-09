@@ -4,7 +4,7 @@
 
 #include "zprotocol.h"
 
-ZChannelOpto::ZChannelOpto(QObject *parent) : ZChannelDirectSerial(parent)
+ZChannelOpto::ZChannelOpto(PortMode mode /*= mode_7E1*/, QObject *parent) : ZChannelDirectSerial(parent), m_mode(mode)
 {
 }
 
@@ -17,8 +17,16 @@ bool ZChannelOpto::enterTransparentMode()
 {
 	char input_buffer[128];
 
-	m_port->setParity(QSerialPort::EvenParity);
-	m_port->setDataBits(QSerialPort::Data7);
+	if (m_mode == mode_7E1)
+	{
+		m_port->setParity(QSerialPort::EvenParity);
+		m_port->setDataBits(QSerialPort::Data7);
+	}
+	else
+	{
+		m_port->setParity(QSerialPort::NoParity);
+		m_port->setDataBits(QSerialPort::Data8);
+	}
 	setBaudRate(300);
 
 	static const char start[] = {

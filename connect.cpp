@@ -32,10 +32,10 @@ Connect::Connect(ZChannel *channel, QWidget *parent) :
     {
 		ui->txtPassword->setText(channel->password());
 
-		if (dynamic_cast<ZChannelCSD*>(channel) != NULL)
+		/*if (dynamic_cast<ZChannelCSD*>(channel) != NULL)
 		{
 			ui->groupSerialPort->setChecked(false);
-			ui->groupDialup->setChecked(true);
+			//ui->groupDialup->setChecked(true);
 			ui->groupInternet->setChecked(false);
 
 			ZChannelCSD *ch = dynamic_cast<ZChannelCSD*>(channel);
@@ -50,10 +50,11 @@ Connect::Connect(ZChannel *channel, QWidget *parent) :
 			ui->cmbBaud->setCurrentText(QString::number(ch->baudRate()));
 			ui->txtPhone->setText(ch->phoneNumbaer());
 		}
-		else if (dynamic_cast<ZChannelDirectSerial*>(channel) != NULL)
+		else */
+		if (dynamic_cast<ZChannelDirectSerial*>(channel) != NULL)
 		{
 			ui->groupSerialPort->setChecked(true);
-			ui->groupDialup->setChecked(false);
+			//ui->groupDialup->setChecked(false);
 			ui->groupInternet->setChecked(false);
 
 			ZChannelDirectSerial *ch = dynamic_cast<ZChannelDirectSerial*>(channel);
@@ -68,6 +69,7 @@ Connect::Connect(ZChannel *channel, QWidget *parent) :
 			if (dynamic_cast<ZChannelOpto*>(channel) != NULL)
 			{
 				ui->chkOpticalMode->setChecked(true);
+				ui->mode_7E1->setChecked(dynamic_cast<ZChannelOpto*>(channel)->getMode() == ZChannelOpto::mode_7E1);
 			}
 			else
 			{
@@ -77,7 +79,7 @@ Connect::Connect(ZChannel *channel, QWidget *parent) :
 		else if (dynamic_cast<ZChannelSocket*>(channel) != NULL)
 		{
 			ui->groupSerialPort->setChecked(false);
-			ui->groupDialup->setChecked(false);
+			//ui->groupDialup->setChecked(false);
 			ui->groupInternet->setChecked(true);
 
 			ZChannelSocket *ch = dynamic_cast<ZChannelSocket*>(channel);
@@ -106,7 +108,7 @@ void Connect::refreshSerialPortList()
     for (int c = 0; c < ui->cmbSerialPort->count(); c++)
     {
         ui->cmbSerialPort->setItemData(c, "");
-		ui->cmbDialupSerialPort->setItemData(c, "");
+		//ui->cmbDialupSerialPort->setItemData(c, "");
     }
 
     for (i = ports.begin(); i != ports.end(); i++)
@@ -118,12 +120,12 @@ void Connect::refreshSerialPortList()
 		if (ind < 0)
 		{
 			ui->cmbSerialPort->addItem(text, data);
-			ui->cmbDialupSerialPort->addItem(text, data);
+			//ui->cmbDialupSerialPort->addItem(text, data);
 		}
 		else
 		{
 			ui->cmbSerialPort->setItemData(ind, data);
-			ui->cmbDialupSerialPort->setItemData(ind, data);
+			//ui->cmbDialupSerialPort->setItemData(ind, data);
 		}
     }
 
@@ -135,13 +137,13 @@ void Connect::refreshSerialPortList()
             c++;
     }
 
-	for (int c = 0; c < ui->cmbDialupSerialPort->count();)
+	/*for (int c = 0; c < ui->cmbDialupSerialPort->count();)
 	{
 		if (ui->cmbDialupSerialPort->itemData(c).toString() == "")
 			ui->cmbDialupSerialPort->removeItem(c);
 		else
 			c++;
-	}
+	}*/
 }
 
 void Connect::on_timeout()
@@ -152,7 +154,7 @@ void Connect::on_timeout()
 void Connect::on_groupSerialPort_clicked()
 {
     ui->groupSerialPort->setChecked(true);
-    ui->groupDialup->setChecked(false);
+    //ui->groupDialup->setChecked(false);
     ui->groupInternet->setChecked(false);
 }
 
@@ -160,14 +162,14 @@ void Connect::on_groupSerialPort_clicked()
 void Connect::on_groupDialup_clicked()
 {
     ui->groupSerialPort->setChecked(false);
-    ui->groupDialup->setChecked(true);
+    //ui->groupDialup->setChecked(true);
     ui->groupInternet->setChecked(false);
 }
 
 void Connect::on_groupInternet_clicked()
 {
     ui->groupSerialPort->setChecked(false);
-    ui->groupDialup->setChecked(false);
+    //ui->groupDialup->setChecked(false);
     ui->groupInternet->setChecked(true);
 }
 
@@ -209,7 +211,7 @@ ZChannel* Connect::setupChannel()
 		ZChannelDirectSerial *channel;
 		if (ui->chkOpticalMode->isChecked())
 		{
-			ZChannelOpto* opto = new ZChannelOpto(parent());
+			ZChannelOpto* opto = new ZChannelOpto(ui->mode_7E1->isChecked() ? ZChannelOpto::mode_7E1 : ZChannelOpto::mode_8N1, parent());
 
 			opto->setMeterPassword(ui->txtMeterPassword->text());
 
@@ -226,7 +228,8 @@ ZChannel* Connect::setupChannel()
 
         return channel;
     }
-	else if (ui->groupDialup->isChecked())
+	else 
+	/*if (ui->groupDialup->isChecked())
 	{
 		QVariant portName = ui->cmbDialupSerialPort->currentData();
 		if (!portName.isValid())
@@ -244,7 +247,8 @@ ZChannel* Connect::setupChannel()
 		
 		return channel;
 	}
-	else if (ui->groupInternet->isChecked())
+	else */
+	if (ui->groupInternet->isChecked())
 	{
 		ZChannelSocket *channel = new ZChannelSocket(parent());
 
@@ -283,4 +287,6 @@ void Connect::on_chkOpticalMode_toggled(bool checked)
 {
     ui->lblMeterPassword->setEnabled(checked);
     ui->txtMeterPassword->setEnabled(checked);
+	ui->mode_7E1->setEnabled(checked);
+	ui->mode_8N1->setEnabled(checked);
 }

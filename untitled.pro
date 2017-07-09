@@ -26,6 +26,7 @@ SOURCES += main.cpp\
     zprotocol.cpp \
     zfirmwareupgrade.cpp \
     ipctrl.cpp \
+    macctrl.cpp \
     zreadsettings.cpp \
     zsettings.cpp \
     zsettingsview.cpp \
@@ -52,6 +53,7 @@ HEADERS  += mainwindow.h \
     zprotocol.h \
     zfirmwareupgrade.h \
     ipctrl.h \
+    macctrl.h \
     zreadsettings.h \
     zsettings.h \
     zsettingsview.h \

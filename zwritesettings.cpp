@@ -1,7 +1,8 @@
 #include "zwritesettings.h"
 
 ZWriteSettings::ZWriteSettings(ZChannel *channel, Progress *progress, QObject *parent) :
-    ZProtocol(channel, progress, parent)
+    ZProtocol(channel, progress, parent),
+	m_singleMode(true)
 {
 }
 
@@ -25,38 +26,65 @@ bool ZWriteSettings::doRun()
     count = map.size();
     for (iter = map.cbegin(), index = 0; iter != map.cend(); iter++, index++)
     {
-        QString pair = QString("%1=%2;").arg(iter.key()).arg(iter.value().toString());
+		if (m_singleMode)
+		{
+			packet = QString("PUT=%1;%2=%3\r").arg(password()).arg(iter.key()).arg(iter.value().toString());
+			res = execute(packet);
+			if (!res)
+			{
+				return false;
+			}
+			packet.clear();
 
-        if (packet.length() + pair.length() >= 1024)
-        {
-            packet.append('*');
-            res = execute(packet);
-            if (!res)
-            {
-                return false;
-            }
-            packet.clear();
+			reportProgress((double)index / count, "");
+		}
+		else
+		{
+			QString pair = QString("%1=%2;").arg(iter.key()).arg(iter.value().toString());
 
-            reportProgress((double)index / count, "");
-        }
+			if (packet.length() + pair.length() >= 1024)
+			{
+				packet.append('*');
+				res = execute(packet);
+				if (!res)
+				{
+					return false;
+				}
+				packet.clear();
 
-        if (packet.isEmpty())
-        {
-            packet = QString("PUT=%1;").arg(password());
-        }
+				reportProgress((double)index / count, "");
+			}
 
-        packet.append(pair);
+			if (packet.isEmpty())
+			{
+				packet = QString("PUT=%1;").arg(password());
+			}
+
+			packet.append(pair);
+		}
     }
 
-    if (!packet.isEmpty())
-    {
-        packet.append('#');
-        res = execute(packet);
-        if (!res)
-        {
-            return false;
-        }
-    }
+	if (m_singleMode)
+	{
+		packet = QString("SAVE=%1\r").arg(password());
+		res = execute(packet);
+		if (!res)
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (!packet.isEmpty())
+		{
+			packet.append('#');
+			res = execute(packet);
+			if (!res)
+			{
+				return false;
+			}
+		}
+	}
 
     return true;
 }

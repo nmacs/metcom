@@ -4,6 +4,8 @@
 #include <QSettings>
 #include <QFileInfo>
 
+#define CONFIG_METCOM_ETHERNET
+
 ZSettings::ZSettings(QObject *parent) :
     QObject(parent),
 	m_locked(false)
@@ -17,6 +19,7 @@ const ZSettings &ZSettings::defaultSettings()
 
     if (!initialized)
     {
+#ifndef CONFIG_METCOM_ETHERNET
         settings.setValue("TSIM", 0);
         settings.setValue("SWAP", 10);
         settings.setValue("RMNS", 10);
@@ -107,6 +110,55 @@ const ZSettings &ZSettings::defaultSettings()
 		settings.setValue("WMSI", "start");
 		settings.setValue("WMSO", "stop");
 		settings.setValue("WMIT", 10);
+#else
+		settings.setValue("DHCP", 1);
+		settings.setValue("MAC", "1E:30:6C:00:00:00");
+		settings.setValue("LOCALIP", "192.168.1.200");
+		settings.setValue("SUBMASK", "255.255.255.0");
+		settings.setValue("DEFGWAY", "192.168.1.1");
+		settings.setValue("PRIDNS", "192.168.1.1");
+		settings.setValue("SECDNS", "192.168.1.1");
+		settings.setValue("MODE", 1);
+		settings.setValue("SPORT", 9000);
+
+		settings.setValue("ENIP1", "0.0.0.0");
+		settings.setValue("ENIP2", "0.0.0.0");
+		settings.setValue("ENIP3", "0.0.0.0");
+		settings.setValue("ENIP4", "0.0.0.0");
+		settings.setValue("IP1", "");
+		settings.setValue("PORT1", 9000);
+		settings.setValue("IP2", "");
+		settings.setValue("PORT2", 9002);
+		settings.setValue("ENPING", 1);
+		settings.setValue("PINGIP1", "8.8.8.8");
+
+		settings.setValue("PINGIP2", "yandex.ru");
+		settings.setValue("PINGDNS", 1);
+		settings.setValue("TIMEPING", 10);
+		settings.setValue("ENDBG", 1);
+		settings.setValue("MODEDBG", 1);
+		settings.setValue("IPDBG", "");
+		settings.setValue("PORTDBG", 9001);
+		settings.setValue("PORTSDBG", 9001);
+		settings.setValue("MPSIZE", 1024);
+		settings.setValue("TOUT", 500);
+
+		settings.setValue("SITOUT", 600);
+		settings.setValue("INTTIM", 1);
+		settings.setValue("PINTTIM", 24);
+		settings.setValue("DLYTIM", 0);
+		settings.setValue("HOURTIM", 23);
+		settings.setValue("MINTIM", 59);
+		settings.setValue("ENNTP", 0);
+		settings.setValue("NTP1", "ntp2.stratum2.ru");
+		settings.setValue("NTP2", "ntp3.stratum2.ru");
+		settings.setValue("NTP3", "ntp4.stratum2.ru");
+
+		settings.setValue("TZONE", "+12");
+		settings.setValue("BDRT", 5);
+		settings.setValue("SETUART", 0);
+		settings.setValue("PORTTN", 23);
+#endif
 
         initialized = true;
     }

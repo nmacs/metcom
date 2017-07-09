@@ -31,12 +31,10 @@ MainWindow::MainWindow(QWidget *parent) :
     translator = new QTranslator(this);
     qApp->installTranslator(translator);
 
-    ui->txtPIN1->setValidator(new QIntValidator);
-    ui->txtPIN2->setValidator(new QIntValidator);
-
     m_modemSettings = new ZSettings(this);
     *m_modemSettings = ZSettings::defaultSettings();
-    //m_modemSettings->addView(new ZSettingsTable(ui->tblSettings, this));
+    
+	//m_modemSettings->addView(new ZSettingsTable(ui->tblSettings, this));
     m_modemSettings->addView(new ZSettingsGUI(ui, this));
 
 	updateLanguage();

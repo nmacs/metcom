@@ -20,6 +20,7 @@ private slots:
 private:
     QTableView* m_table;
     QStandardItemModel *m_model;
+	bool m_internalEdit;
 };
 
 #endif // ZSETTINGSTABLE_H
