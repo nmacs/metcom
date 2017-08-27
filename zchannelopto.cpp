@@ -30,13 +30,15 @@ bool ZChannelOpto::enterTransparentMode()
 	setBaudRate(300);
 
 	static const char start[] = {
-		0x2F, 0x3F, 0x21, 0x0D, 0x0A
+		0x01, 0x42, 0x30, 0x03, 0x71, 0x0D, 0x0A, 0x2F, 0x3F, 0x21, 0x0D, 0x0A
 	};
 
 	write(start, sizeof(start), 500);
 	qint64 r = read(input_buffer, sizeof(input_buffer), 1500);
 	if (r < 0)
 		return false;
+
+	ZProtocol::msleep(220);
 
 	static const char speed_change[] = {
 		0x06, 0x30, 0x35, 0x31, 0x0D, 0x0A
@@ -71,6 +73,8 @@ bool ZChannelOpto::enterTransparentMode()
 	}
 	password[sizeof(password) - 1] = sum;
 
+	ZProtocol::msleep(220);
+
 	write(password, sizeof(password), 1000);
 	read(input_buffer, 1, 5000);
 
@@ -80,6 +84,8 @@ bool ZChannelOpto::enterTransparentMode()
 		0x30, 0x41, 0x35, 0x30,
 		0x29, 0x03, 0x3F
 	};
+
+	ZProtocol::msleep(220);
 
 	write(transparent, sizeof(transparent), 500);
 	r = read(input_buffer, 5, 1000);
@@ -141,7 +147,9 @@ bool ZChannelOpto::connect()
 		*/
 	ZProtocol::msleep(1000);
 
-	if (!probeModem())
+	// Meter can response with garbage data to first request
+	// So make 5 retries
+	if (!probeModem(5))
 	{
 		if (m_progress)
 			m_progress->end();

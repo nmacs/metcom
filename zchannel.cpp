@@ -114,7 +114,7 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
 		if (m_progress != 0 && m_progress->cancelRequest())
 		{
 			setErrorString(tr("Operation cancelled"));
-			ret = 0;
+			ret = -1;
 			goto out;
 		}
 
@@ -128,7 +128,6 @@ qint64 ZChannel::read(char *data, qint64 maxLength, int timeout)
 
         if (ret > 0)
         {
-		new_byte:
 			waittime = 0;
 			data[bytesRead] = ch;
 			qDebug() << "byte " << (unsigned)ch;
@@ -216,24 +215,37 @@ void ZChannel::setProgress(Progress *progress)
 	m_progress = progress;
 }
 
-bool ZChannel::probeModem()
+bool ZChannel::probeModem(int retries /*= 1*/)
 {
-	char buffer[4];
+	char buffer[1024];
 	qint64 len;
 
-	QString command = QString("WRX=%1\r").arg(password());
+	while (1)
+	{
+		retries--;
 
-	if (!write(command.toLatin1().constData(), command.length(), defaultTimeout()))
-		return false;
-	
-	len = read(buffer, sizeof(buffer), defaultTimeout());
-	if (len != sizeof(buffer))
-		return false;
+		QString command = QString("WRX=%1\r").arg(password());
 
-	if (memcmp(buffer, "OK\r\n", sizeof(buffer)) != 0)
-		return false;
+		if (!write(command.toLatin1().constData(), command.length(), defaultTimeout()))
+			goto error;
 
-	return true;
+		len = read(buffer, sizeof(buffer), defaultTimeout());
+		if (len != 4)
+			goto error;
+
+		if (memcmp(buffer, "OK\r\n", 4) != 0)
+			goto error;
+
+		return true;
+
+	error:
+		if (retries > 0)
+			ZProtocol::msleep(500);
+		else
+			return false;
+	} 
+
+	return false;
 }
 
 void ZChannel::yield()

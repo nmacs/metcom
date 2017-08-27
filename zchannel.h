@@ -50,7 +50,7 @@ protected:
 	void attach(QIODevice *device);
     void setErrorString(const QString& error) { m_errorString = error; }
     void yield();
-	bool probeModem();
+	bool probeModem(int retries = 1);
 
 protected:
 	Progress *m_progress;
