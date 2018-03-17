@@ -1,13 +1,13 @@
 mkdir package
 cd package
 
-copy %CD%\..\Release\MetCOM.exe MetCOM.exe
+copy %CD%\..\Release\TGlobal.exe TGlobal.exe
 
-windeployqt MetCOM.exe
+windeployqt TGlobal.exe
 copy %CD%\..\*.qm translations\
 
 cd ..
 
-copy %CD%\package\MetCOM.exe E:\tmp\MetCOM.exe.txt
+copy %CD%\package\TGlobal.exe E:\tmp\TGlobal.exe.txt
 
 pause
