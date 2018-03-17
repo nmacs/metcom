@@ -322,23 +322,23 @@
         <translation>Интернет</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4352"/>
+        <location filename="mainwindow.ui" line="4407"/>
         <source>Write Default Settings</source>
         <translation>Записать Заводские Настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4225"/>
-        <location filename="mainwindow.ui" line="4357"/>
+        <location filename="mainwindow.ui" line="4270"/>
+        <location filename="mainwindow.ui" line="4412"/>
         <source>Connection</source>
         <translation>Подключение</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4362"/>
+        <location filename="mainwindow.ui" line="4417"/>
         <source>Change Password</source>
         <translation>Смена Пароля</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4367"/>
+        <location filename="mainwindow.ui" line="4422"/>
         <source>Firmware Update</source>
         <oldsource>Firmware Upgrade</oldsource>
         <translation>Обновление прошивки</translation>
@@ -366,7 +366,7 @@
         <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Номер порта&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4299"/>
+        <location filename="mainwindow.ui" line="4344"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -379,23 +379,18 @@
         <translation type="vanished">Свойства</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4311"/>
+        <location filename="mainwindow.ui" line="4356"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4292"/>
+        <location filename="mainwindow.ui" line="4337"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
         <source>Modem</source>
         <translation type="vanished">Модем</translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="14"/>
-        <source>MetCOM</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="31"/>
@@ -657,11 +652,11 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1465"/>
-        <location filename="mainwindow.ui" line="2931"/>
-        <location filename="mainwindow.ui" line="3141"/>
-        <location filename="mainwindow.ui" line="3351"/>
-        <location filename="mainwindow.ui" line="3561"/>
-        <location filename="mainwindow.ui" line="3771"/>
+        <location filename="mainwindow.ui" line="2964"/>
+        <location filename="mainwindow.ui" line="3177"/>
+        <location filename="mainwindow.ui" line="3390"/>
+        <location filename="mainwindow.ui" line="3603"/>
+        <location filename="mainwindow.ui" line="3816"/>
         <source>1</source>
         <translation></translation>
     </message>
@@ -672,11 +667,11 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1475"/>
-        <location filename="mainwindow.ui" line="2936"/>
-        <location filename="mainwindow.ui" line="3146"/>
-        <location filename="mainwindow.ui" line="3356"/>
-        <location filename="mainwindow.ui" line="3566"/>
-        <location filename="mainwindow.ui" line="3776"/>
+        <location filename="mainwindow.ui" line="2969"/>
+        <location filename="mainwindow.ui" line="3182"/>
+        <location filename="mainwindow.ui" line="3395"/>
+        <location filename="mainwindow.ui" line="3608"/>
+        <location filename="mainwindow.ui" line="3821"/>
         <source>2</source>
         <translation></translation>
     </message>
@@ -887,11 +882,11 @@
         <location filename="mainwindow.ui" line="2135"/>
         <location filename="mainwindow.ui" line="2553"/>
         <location filename="mainwindow.ui" line="2566"/>
-        <location filename="mainwindow.ui" line="2706"/>
-        <location filename="mainwindow.ui" line="2719"/>
-        <location filename="mainwindow.ui" line="2806"/>
-        <location filename="mainwindow.ui" line="2835"/>
-        <location filename="mainwindow.ui" line="2848"/>
+        <location filename="mainwindow.ui" line="2721"/>
+        <location filename="mainwindow.ui" line="2734"/>
+        <location filename="mainwindow.ui" line="2830"/>
+        <location filename="mainwindow.ui" line="2862"/>
+        <location filename="mainwindow.ui" line="2875"/>
         <source>:</source>
         <translation></translation>
     </message>
@@ -950,23 +945,23 @@
         <translation type="vanished">Время</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2677"/>
+        <location filename="mainwindow.ui" line="2689"/>
         <source>Time1</source>
         <translation>Время 1</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2777"/>
+        <location filename="mainwindow.ui" line="2798"/>
         <source>Time2</source>
         <translation>Время2 </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2764"/>
+        <location filename="mainwindow.ui" line="2785"/>
         <source>Time3</source>
         <translation>Время 3</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2648"/>
-        <location filename="mainwindow.ui" line="2861"/>
+        <location filename="mainwindow.ui" line="2657"/>
+        <location filename="mainwindow.ui" line="2888"/>
         <source>Time4</source>
         <translation>Время 4</translation>
     </message>
@@ -975,90 +970,95 @@
         <translation type="vanished">Время в сети (чч:мм)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4019"/>
+        <location filename="mainwindow.ui" line="4064"/>
         <source>Calls / SMS</source>
         <translation>Звонок / SMS</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4031"/>
+        <location filename="mainwindow.ui" line="4076"/>
         <source>Exit from sleep mode by incoming call</source>
         <translation>Выход из спящего режима по звонку</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4044"/>
+        <location filename="mainwindow.ui" line="4089"/>
         <source>Enter sleep mode by incoming call</source>
         <translation>Вход в спящий режим по звонку</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4057"/>
-        <location filename="mainwindow.ui" line="4073"/>
+        <location filename="mainwindow.ui" line="4102"/>
+        <location filename="mainwindow.ui" line="4118"/>
         <source>Phone group</source>
         <translation>Группа номеров</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4089"/>
+        <location filename="mainwindow.ui" line="4134"/>
         <source>SMS text for sleep mode exit</source>
         <translation>Текст SMS для выхода из спящего режима</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4102"/>
+        <location filename="mainwindow.ui" line="4147"/>
         <source>SMS text for sleep mode enter</source>
         <translation>Текст SMS для входа в спящий режим</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4238"/>
+        <location filename="mainwindow.ui" line="4283"/>
         <source>Connection Status: Disconnected</source>
         <oldsource>Connection Status:</oldsource>
         <translation>Состояние Подключения: Отключено</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4251"/>
+        <location filename="mainwindow.ui" line="4296"/>
         <source>Connection Time: 0</source>
         <oldsource>Connection Time:</oldsource>
         <translation>Время Подключения: 0</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4283"/>
+        <location filename="mainwindow.ui" line="4328"/>
         <source>Service</source>
         <translation>Сервис</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4307"/>
+        <location filename="mainwindow.ui" line="4352"/>
         <source>Tools</source>
         <translation>Инструменты</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4382"/>
+        <location filename="mainwindow.ui" line="4437"/>
         <source>Configuration</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4387"/>
+        <location filename="mainwindow.ui" line="4442"/>
         <source>Connect</source>
         <translation>Подключить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4267"/>
-        <location filename="mainwindow.ui" line="4392"/>
+        <location filename="mainwindow.ui" line="4312"/>
+        <location filename="mainwindow.ui" line="4447"/>
         <source>Disconnect</source>
         <translation>Отключить</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4397"/>
-        <location filename="mainwindow.ui" line="4410"/>
+        <location filename="mainwindow.ui" line="4452"/>
+        <location filename="mainwindow.ui" line="4465"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4402"/>
-        <location filename="mainwindow.ui" line="4418"/>
+        <location filename="mainwindow.ui" line="4457"/>
+        <location filename="mainwindow.ui" line="4473"/>
         <source>Русский</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4332"/>
+        <location filename="mainwindow.ui" line="4387"/>
         <source>Load Settings</source>
         <translation>Загрузить настройки</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="14"/>
+        <source>TGlobal</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="570"/>
@@ -1096,386 +1096,411 @@
         <translation>Длительность работы в сети (чч:мм)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2891"/>
-        <location filename="mainwindow.ui" line="3101"/>
-        <location filename="mainwindow.ui" line="3311"/>
-        <location filename="mainwindow.ui" line="3521"/>
-        <location filename="mainwindow.ui" line="3731"/>
+        <location filename="mainwindow.ui" line="2924"/>
+        <location filename="mainwindow.ui" line="3137"/>
+        <location filename="mainwindow.ui" line="3350"/>
+        <location filename="mainwindow.ui" line="3563"/>
+        <location filename="mainwindow.ui" line="3776"/>
         <source>Every Day</source>
         <translation>Каждый День</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2896"/>
-        <location filename="mainwindow.ui" line="3106"/>
-        <location filename="mainwindow.ui" line="3316"/>
-        <location filename="mainwindow.ui" line="3526"/>
-        <location filename="mainwindow.ui" line="3736"/>
+        <location filename="mainwindow.ui" line="2929"/>
+        <location filename="mainwindow.ui" line="3142"/>
+        <location filename="mainwindow.ui" line="3355"/>
+        <location filename="mainwindow.ui" line="3568"/>
+        <location filename="mainwindow.ui" line="3781"/>
         <source>Monday</source>
         <translation>Понедельник</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2901"/>
-        <location filename="mainwindow.ui" line="3111"/>
-        <location filename="mainwindow.ui" line="3321"/>
-        <location filename="mainwindow.ui" line="3531"/>
-        <location filename="mainwindow.ui" line="3741"/>
+        <location filename="mainwindow.ui" line="2934"/>
+        <location filename="mainwindow.ui" line="3147"/>
+        <location filename="mainwindow.ui" line="3360"/>
+        <location filename="mainwindow.ui" line="3573"/>
+        <location filename="mainwindow.ui" line="3786"/>
         <source>Tuesday</source>
         <translation>Вторник</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2906"/>
-        <location filename="mainwindow.ui" line="3116"/>
-        <location filename="mainwindow.ui" line="3326"/>
-        <location filename="mainwindow.ui" line="3536"/>
-        <location filename="mainwindow.ui" line="3746"/>
+        <location filename="mainwindow.ui" line="2939"/>
+        <location filename="mainwindow.ui" line="3152"/>
+        <location filename="mainwindow.ui" line="3365"/>
+        <location filename="mainwindow.ui" line="3578"/>
+        <location filename="mainwindow.ui" line="3791"/>
         <source>Wednesday</source>
         <translation>Среда</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2911"/>
-        <location filename="mainwindow.ui" line="3121"/>
-        <location filename="mainwindow.ui" line="3331"/>
-        <location filename="mainwindow.ui" line="3541"/>
-        <location filename="mainwindow.ui" line="3751"/>
+        <location filename="mainwindow.ui" line="2944"/>
+        <location filename="mainwindow.ui" line="3157"/>
+        <location filename="mainwindow.ui" line="3370"/>
+        <location filename="mainwindow.ui" line="3583"/>
+        <location filename="mainwindow.ui" line="3796"/>
         <source>Thursday</source>
         <translation>Четверг</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2916"/>
-        <location filename="mainwindow.ui" line="3126"/>
-        <location filename="mainwindow.ui" line="3336"/>
-        <location filename="mainwindow.ui" line="3546"/>
-        <location filename="mainwindow.ui" line="3756"/>
+        <location filename="mainwindow.ui" line="2949"/>
+        <location filename="mainwindow.ui" line="3162"/>
+        <location filename="mainwindow.ui" line="3375"/>
+        <location filename="mainwindow.ui" line="3588"/>
+        <location filename="mainwindow.ui" line="3801"/>
         <source>Friday</source>
         <translation>Пятница</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2921"/>
-        <location filename="mainwindow.ui" line="3131"/>
-        <location filename="mainwindow.ui" line="3341"/>
-        <location filename="mainwindow.ui" line="3551"/>
-        <location filename="mainwindow.ui" line="3761"/>
+        <location filename="mainwindow.ui" line="2954"/>
+        <location filename="mainwindow.ui" line="3167"/>
+        <location filename="mainwindow.ui" line="3380"/>
+        <location filename="mainwindow.ui" line="3593"/>
+        <location filename="mainwindow.ui" line="3806"/>
         <source>Saturday</source>
         <translation>Суббота</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2926"/>
-        <location filename="mainwindow.ui" line="3136"/>
-        <location filename="mainwindow.ui" line="3346"/>
-        <location filename="mainwindow.ui" line="3556"/>
-        <location filename="mainwindow.ui" line="3766"/>
+        <location filename="mainwindow.ui" line="2959"/>
+        <location filename="mainwindow.ui" line="3172"/>
+        <location filename="mainwindow.ui" line="3385"/>
+        <location filename="mainwindow.ui" line="3598"/>
+        <location filename="mainwindow.ui" line="3811"/>
         <source>Sunday</source>
         <translation>Воскресенье</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2941"/>
-        <location filename="mainwindow.ui" line="3151"/>
-        <location filename="mainwindow.ui" line="3361"/>
-        <location filename="mainwindow.ui" line="3571"/>
-        <location filename="mainwindow.ui" line="3781"/>
+        <location filename="mainwindow.ui" line="2974"/>
+        <location filename="mainwindow.ui" line="3187"/>
+        <location filename="mainwindow.ui" line="3400"/>
+        <location filename="mainwindow.ui" line="3613"/>
+        <location filename="mainwindow.ui" line="3826"/>
         <source>3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2946"/>
-        <location filename="mainwindow.ui" line="3156"/>
-        <location filename="mainwindow.ui" line="3366"/>
-        <location filename="mainwindow.ui" line="3576"/>
-        <location filename="mainwindow.ui" line="3786"/>
+        <location filename="mainwindow.ui" line="2979"/>
+        <location filename="mainwindow.ui" line="3192"/>
+        <location filename="mainwindow.ui" line="3405"/>
+        <location filename="mainwindow.ui" line="3618"/>
+        <location filename="mainwindow.ui" line="3831"/>
         <source>4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2951"/>
-        <location filename="mainwindow.ui" line="3161"/>
-        <location filename="mainwindow.ui" line="3371"/>
-        <location filename="mainwindow.ui" line="3581"/>
-        <location filename="mainwindow.ui" line="3791"/>
+        <location filename="mainwindow.ui" line="2984"/>
+        <location filename="mainwindow.ui" line="3197"/>
+        <location filename="mainwindow.ui" line="3410"/>
+        <location filename="mainwindow.ui" line="3623"/>
+        <location filename="mainwindow.ui" line="3836"/>
         <source>5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2956"/>
-        <location filename="mainwindow.ui" line="3166"/>
-        <location filename="mainwindow.ui" line="3376"/>
-        <location filename="mainwindow.ui" line="3586"/>
-        <location filename="mainwindow.ui" line="3796"/>
+        <location filename="mainwindow.ui" line="2989"/>
+        <location filename="mainwindow.ui" line="3202"/>
+        <location filename="mainwindow.ui" line="3415"/>
+        <location filename="mainwindow.ui" line="3628"/>
+        <location filename="mainwindow.ui" line="3841"/>
         <source>6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2961"/>
-        <location filename="mainwindow.ui" line="3171"/>
-        <location filename="mainwindow.ui" line="3381"/>
-        <location filename="mainwindow.ui" line="3591"/>
-        <location filename="mainwindow.ui" line="3801"/>
+        <location filename="mainwindow.ui" line="2994"/>
+        <location filename="mainwindow.ui" line="3207"/>
+        <location filename="mainwindow.ui" line="3420"/>
+        <location filename="mainwindow.ui" line="3633"/>
+        <location filename="mainwindow.ui" line="3846"/>
         <source>7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2966"/>
-        <location filename="mainwindow.ui" line="3176"/>
-        <location filename="mainwindow.ui" line="3386"/>
-        <location filename="mainwindow.ui" line="3596"/>
-        <location filename="mainwindow.ui" line="3806"/>
+        <location filename="mainwindow.ui" line="2999"/>
+        <location filename="mainwindow.ui" line="3212"/>
+        <location filename="mainwindow.ui" line="3425"/>
+        <location filename="mainwindow.ui" line="3638"/>
+        <location filename="mainwindow.ui" line="3851"/>
         <source>8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2971"/>
-        <location filename="mainwindow.ui" line="3181"/>
-        <location filename="mainwindow.ui" line="3391"/>
-        <location filename="mainwindow.ui" line="3601"/>
-        <location filename="mainwindow.ui" line="3811"/>
+        <location filename="mainwindow.ui" line="3004"/>
+        <location filename="mainwindow.ui" line="3217"/>
+        <location filename="mainwindow.ui" line="3430"/>
+        <location filename="mainwindow.ui" line="3643"/>
+        <location filename="mainwindow.ui" line="3856"/>
         <source>9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2976"/>
-        <location filename="mainwindow.ui" line="3186"/>
-        <location filename="mainwindow.ui" line="3396"/>
-        <location filename="mainwindow.ui" line="3606"/>
-        <location filename="mainwindow.ui" line="3816"/>
+        <location filename="mainwindow.ui" line="3009"/>
+        <location filename="mainwindow.ui" line="3222"/>
+        <location filename="mainwindow.ui" line="3435"/>
+        <location filename="mainwindow.ui" line="3648"/>
+        <location filename="mainwindow.ui" line="3861"/>
         <source>10</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2981"/>
-        <location filename="mainwindow.ui" line="3191"/>
-        <location filename="mainwindow.ui" line="3401"/>
-        <location filename="mainwindow.ui" line="3611"/>
-        <location filename="mainwindow.ui" line="3821"/>
+        <location filename="mainwindow.ui" line="3014"/>
+        <location filename="mainwindow.ui" line="3227"/>
+        <location filename="mainwindow.ui" line="3440"/>
+        <location filename="mainwindow.ui" line="3653"/>
+        <location filename="mainwindow.ui" line="3866"/>
         <source>11</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2986"/>
-        <location filename="mainwindow.ui" line="3196"/>
-        <location filename="mainwindow.ui" line="3406"/>
-        <location filename="mainwindow.ui" line="3616"/>
-        <location filename="mainwindow.ui" line="3826"/>
+        <location filename="mainwindow.ui" line="3019"/>
+        <location filename="mainwindow.ui" line="3232"/>
+        <location filename="mainwindow.ui" line="3445"/>
+        <location filename="mainwindow.ui" line="3658"/>
+        <location filename="mainwindow.ui" line="3871"/>
         <source>12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2991"/>
-        <location filename="mainwindow.ui" line="3201"/>
-        <location filename="mainwindow.ui" line="3411"/>
-        <location filename="mainwindow.ui" line="3621"/>
-        <location filename="mainwindow.ui" line="3831"/>
+        <location filename="mainwindow.ui" line="3024"/>
+        <location filename="mainwindow.ui" line="3237"/>
+        <location filename="mainwindow.ui" line="3450"/>
+        <location filename="mainwindow.ui" line="3663"/>
+        <location filename="mainwindow.ui" line="3876"/>
         <source>13</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2996"/>
-        <location filename="mainwindow.ui" line="3206"/>
-        <location filename="mainwindow.ui" line="3416"/>
-        <location filename="mainwindow.ui" line="3626"/>
-        <location filename="mainwindow.ui" line="3836"/>
+        <location filename="mainwindow.ui" line="3029"/>
+        <location filename="mainwindow.ui" line="3242"/>
+        <location filename="mainwindow.ui" line="3455"/>
+        <location filename="mainwindow.ui" line="3668"/>
+        <location filename="mainwindow.ui" line="3881"/>
         <source>14</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3001"/>
-        <location filename="mainwindow.ui" line="3211"/>
-        <location filename="mainwindow.ui" line="3421"/>
-        <location filename="mainwindow.ui" line="3631"/>
-        <location filename="mainwindow.ui" line="3841"/>
+        <location filename="mainwindow.ui" line="3034"/>
+        <location filename="mainwindow.ui" line="3247"/>
+        <location filename="mainwindow.ui" line="3460"/>
+        <location filename="mainwindow.ui" line="3673"/>
+        <location filename="mainwindow.ui" line="3886"/>
         <source>15</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3006"/>
-        <location filename="mainwindow.ui" line="3216"/>
-        <location filename="mainwindow.ui" line="3426"/>
-        <location filename="mainwindow.ui" line="3636"/>
-        <location filename="mainwindow.ui" line="3846"/>
+        <location filename="mainwindow.ui" line="3039"/>
+        <location filename="mainwindow.ui" line="3252"/>
+        <location filename="mainwindow.ui" line="3465"/>
+        <location filename="mainwindow.ui" line="3678"/>
+        <location filename="mainwindow.ui" line="3891"/>
         <source>16</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3011"/>
-        <location filename="mainwindow.ui" line="3221"/>
-        <location filename="mainwindow.ui" line="3431"/>
-        <location filename="mainwindow.ui" line="3641"/>
-        <location filename="mainwindow.ui" line="3851"/>
+        <location filename="mainwindow.ui" line="3044"/>
+        <location filename="mainwindow.ui" line="3257"/>
+        <location filename="mainwindow.ui" line="3470"/>
+        <location filename="mainwindow.ui" line="3683"/>
+        <location filename="mainwindow.ui" line="3896"/>
         <source>17</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3016"/>
-        <location filename="mainwindow.ui" line="3226"/>
-        <location filename="mainwindow.ui" line="3436"/>
-        <location filename="mainwindow.ui" line="3646"/>
-        <location filename="mainwindow.ui" line="3856"/>
+        <location filename="mainwindow.ui" line="3049"/>
+        <location filename="mainwindow.ui" line="3262"/>
+        <location filename="mainwindow.ui" line="3475"/>
+        <location filename="mainwindow.ui" line="3688"/>
+        <location filename="mainwindow.ui" line="3901"/>
         <source>18</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3021"/>
-        <location filename="mainwindow.ui" line="3231"/>
-        <location filename="mainwindow.ui" line="3441"/>
-        <location filename="mainwindow.ui" line="3651"/>
-        <location filename="mainwindow.ui" line="3861"/>
+        <location filename="mainwindow.ui" line="3054"/>
+        <location filename="mainwindow.ui" line="3267"/>
+        <location filename="mainwindow.ui" line="3480"/>
+        <location filename="mainwindow.ui" line="3693"/>
+        <location filename="mainwindow.ui" line="3906"/>
         <source>19</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3026"/>
-        <location filename="mainwindow.ui" line="3236"/>
-        <location filename="mainwindow.ui" line="3446"/>
-        <location filename="mainwindow.ui" line="3656"/>
-        <location filename="mainwindow.ui" line="3866"/>
+        <location filename="mainwindow.ui" line="3059"/>
+        <location filename="mainwindow.ui" line="3272"/>
+        <location filename="mainwindow.ui" line="3485"/>
+        <location filename="mainwindow.ui" line="3698"/>
+        <location filename="mainwindow.ui" line="3911"/>
         <source>20</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3031"/>
-        <location filename="mainwindow.ui" line="3241"/>
-        <location filename="mainwindow.ui" line="3451"/>
-        <location filename="mainwindow.ui" line="3661"/>
-        <location filename="mainwindow.ui" line="3871"/>
+        <location filename="mainwindow.ui" line="3064"/>
+        <location filename="mainwindow.ui" line="3277"/>
+        <location filename="mainwindow.ui" line="3490"/>
+        <location filename="mainwindow.ui" line="3703"/>
+        <location filename="mainwindow.ui" line="3916"/>
         <source>21</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3036"/>
-        <location filename="mainwindow.ui" line="3246"/>
-        <location filename="mainwindow.ui" line="3456"/>
-        <location filename="mainwindow.ui" line="3666"/>
-        <location filename="mainwindow.ui" line="3876"/>
+        <location filename="mainwindow.ui" line="3069"/>
+        <location filename="mainwindow.ui" line="3282"/>
+        <location filename="mainwindow.ui" line="3495"/>
+        <location filename="mainwindow.ui" line="3708"/>
+        <location filename="mainwindow.ui" line="3921"/>
         <source>22</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3041"/>
-        <location filename="mainwindow.ui" line="3251"/>
-        <location filename="mainwindow.ui" line="3461"/>
-        <location filename="mainwindow.ui" line="3671"/>
-        <location filename="mainwindow.ui" line="3881"/>
+        <location filename="mainwindow.ui" line="3074"/>
+        <location filename="mainwindow.ui" line="3287"/>
+        <location filename="mainwindow.ui" line="3500"/>
+        <location filename="mainwindow.ui" line="3713"/>
+        <location filename="mainwindow.ui" line="3926"/>
         <source>23</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3046"/>
-        <location filename="mainwindow.ui" line="3256"/>
-        <location filename="mainwindow.ui" line="3466"/>
-        <location filename="mainwindow.ui" line="3676"/>
-        <location filename="mainwindow.ui" line="3886"/>
+        <location filename="mainwindow.ui" line="3079"/>
+        <location filename="mainwindow.ui" line="3292"/>
+        <location filename="mainwindow.ui" line="3505"/>
+        <location filename="mainwindow.ui" line="3718"/>
+        <location filename="mainwindow.ui" line="3931"/>
         <source>24</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3051"/>
-        <location filename="mainwindow.ui" line="3261"/>
-        <location filename="mainwindow.ui" line="3471"/>
-        <location filename="mainwindow.ui" line="3681"/>
-        <location filename="mainwindow.ui" line="3891"/>
+        <location filename="mainwindow.ui" line="3084"/>
+        <location filename="mainwindow.ui" line="3297"/>
+        <location filename="mainwindow.ui" line="3510"/>
+        <location filename="mainwindow.ui" line="3723"/>
+        <location filename="mainwindow.ui" line="3936"/>
         <source>25</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3056"/>
-        <location filename="mainwindow.ui" line="3266"/>
-        <location filename="mainwindow.ui" line="3476"/>
-        <location filename="mainwindow.ui" line="3686"/>
-        <location filename="mainwindow.ui" line="3896"/>
+        <location filename="mainwindow.ui" line="3089"/>
+        <location filename="mainwindow.ui" line="3302"/>
+        <location filename="mainwindow.ui" line="3515"/>
+        <location filename="mainwindow.ui" line="3728"/>
+        <location filename="mainwindow.ui" line="3941"/>
         <source>26</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3061"/>
-        <location filename="mainwindow.ui" line="3271"/>
-        <location filename="mainwindow.ui" line="3481"/>
-        <location filename="mainwindow.ui" line="3691"/>
-        <location filename="mainwindow.ui" line="3901"/>
+        <location filename="mainwindow.ui" line="3094"/>
+        <location filename="mainwindow.ui" line="3307"/>
+        <location filename="mainwindow.ui" line="3520"/>
+        <location filename="mainwindow.ui" line="3733"/>
+        <location filename="mainwindow.ui" line="3946"/>
         <source>27</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3066"/>
-        <location filename="mainwindow.ui" line="3276"/>
-        <location filename="mainwindow.ui" line="3486"/>
-        <location filename="mainwindow.ui" line="3696"/>
-        <location filename="mainwindow.ui" line="3906"/>
+        <location filename="mainwindow.ui" line="3099"/>
+        <location filename="mainwindow.ui" line="3312"/>
+        <location filename="mainwindow.ui" line="3525"/>
+        <location filename="mainwindow.ui" line="3738"/>
+        <location filename="mainwindow.ui" line="3951"/>
         <source>28</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3071"/>
-        <location filename="mainwindow.ui" line="3281"/>
-        <location filename="mainwindow.ui" line="3491"/>
-        <location filename="mainwindow.ui" line="3701"/>
-        <location filename="mainwindow.ui" line="3911"/>
+        <location filename="mainwindow.ui" line="3104"/>
+        <location filename="mainwindow.ui" line="3317"/>
+        <location filename="mainwindow.ui" line="3530"/>
+        <location filename="mainwindow.ui" line="3743"/>
+        <location filename="mainwindow.ui" line="3956"/>
         <source>29</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3076"/>
-        <location filename="mainwindow.ui" line="3286"/>
-        <location filename="mainwindow.ui" line="3496"/>
-        <location filename="mainwindow.ui" line="3706"/>
-        <location filename="mainwindow.ui" line="3916"/>
+        <location filename="mainwindow.ui" line="3109"/>
+        <location filename="mainwindow.ui" line="3322"/>
+        <location filename="mainwindow.ui" line="3535"/>
+        <location filename="mainwindow.ui" line="3748"/>
+        <location filename="mainwindow.ui" line="3961"/>
         <source>30</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3081"/>
-        <location filename="mainwindow.ui" line="3291"/>
-        <location filename="mainwindow.ui" line="3501"/>
-        <location filename="mainwindow.ui" line="3711"/>
-        <location filename="mainwindow.ui" line="3921"/>
+        <location filename="mainwindow.ui" line="3114"/>
+        <location filename="mainwindow.ui" line="3327"/>
+        <location filename="mainwindow.ui" line="3540"/>
+        <location filename="mainwindow.ui" line="3753"/>
+        <location filename="mainwindow.ui" line="3966"/>
         <source>31</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3086"/>
-        <location filename="mainwindow.ui" line="3296"/>
-        <location filename="mainwindow.ui" line="3506"/>
-        <location filename="mainwindow.ui" line="3716"/>
-        <location filename="mainwindow.ui" line="3926"/>
+        <location filename="mainwindow.ui" line="3119"/>
+        <location filename="mainwindow.ui" line="3332"/>
+        <location filename="mainwindow.ui" line="3545"/>
+        <location filename="mainwindow.ui" line="3758"/>
+        <location filename="mainwindow.ui" line="3971"/>
         <source>Last Day of Month</source>
         <translation>Последний День Месяца</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4115"/>
+        <location filename="mainwindow.ui" line="4160"/>
         <source>start</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4131"/>
+        <location filename="mainwindow.ui" line="4176"/>
         <source>stop</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4337"/>
+        <location filename="mainwindow.ui" line="4367"/>
+        <source>Contacts</source>
+        <translation>Контакты</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4392"/>
         <source>Save Settings</source>
         <translation>Сохранить настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4342"/>
+        <location filename="mainwindow.ui" line="4397"/>
         <source>Read Settings</source>
         <translation>Считать настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4347"/>
+        <location filename="mainwindow.ui" line="4402"/>
         <source>Write Settings</source>
         <translation>Записать настройки</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4372"/>
+        <location filename="mainwindow.ui" line="4427"/>
         <source>Reset</source>
         <translation>Перезапуск</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4377"/>
+        <location filename="mainwindow.ui" line="4432"/>
         <source>Communication Log</source>
         <translation>Коммуникационный Лог</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4423"/>
+        <location filename="mainwindow.ui" line="4478"/>
         <source>Info</source>
         <translation>Информация</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4483"/>
+        <source>TechoGrid LLC</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4488"/>
+        <source>8(800)550-0822</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4493"/>
+        <source>www.technogrid.ru</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4498"/>
+        <source>www.tg-market.ru</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="49"/>
@@ -1487,18 +1512,18 @@
         <translation type="vanished">Обновление прошивки...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="211"/>
-        <location filename="mainwindow.cpp" line="260"/>
-        <location filename="mainwindow.cpp" line="284"/>
-        <location filename="mainwindow.cpp" line="340"/>
+        <location filename="mainwindow.cpp" line="215"/>
+        <location filename="mainwindow.cpp" line="264"/>
+        <location filename="mainwindow.cpp" line="288"/>
+        <location filename="mainwindow.cpp" line="344"/>
         <source>Error: </source>
         <translation>Ошибка: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="215"/>
-        <location filename="mainwindow.cpp" line="265"/>
-        <location filename="mainwindow.cpp" line="288"/>
-        <location filename="mainwindow.cpp" line="344"/>
+        <location filename="mainwindow.cpp" line="219"/>
+        <location filename="mainwindow.cpp" line="269"/>
+        <location filename="mainwindow.cpp" line="292"/>
+        <location filename="mainwindow.cpp" line="348"/>
         <source>Done</source>
         <translation>Выполнено</translation>
     </message>
@@ -1516,8 +1541,8 @@
         <translation type="vanished">Не настроен Канал Коммуникации</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="170"/>
+        <location filename="mainwindow.cpp" line="84"/>
+        <location filename="mainwindow.cpp" line="174"/>
         <source>Disconnected</source>
         <translation>Отключено</translation>
     </message>
@@ -1526,7 +1551,7 @@
         <translation type="vanished">Не настроен канал связи</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="120"/>
+        <location filename="mainwindow.cpp" line="124"/>
         <source>Connection Status: %1</source>
         <translation>Состояние Подключения: %1</translation>
     </message>
@@ -1535,64 +1560,64 @@
         <translation type="vanished">Подключение...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="82"/>
-        <location filename="mainwindow.cpp" line="162"/>
+        <location filename="mainwindow.cpp" line="84"/>
+        <location filename="mainwindow.cpp" line="166"/>
         <source>Connected</source>
         <translation>Подключено</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="125"/>
+        <location filename="mainwindow.cpp" line="129"/>
         <source>Connection Time: %1 sec</source>
         <translation>Время подключения: %1 сек</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="133"/>
+        <location filename="mainwindow.cpp" line="137"/>
         <source>Disconnecting...</source>
         <translation>Отключение...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="204"/>
+        <location filename="mainwindow.cpp" line="208"/>
         <source>Resetting Modem...</source>
         <translation>Перезапуск Модема...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="253"/>
+        <location filename="mainwindow.cpp" line="257"/>
         <source>Reading Settings from Modem...</source>
         <translation>Чтение настроек из модема...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="276"/>
+        <location filename="mainwindow.cpp" line="280"/>
         <source>Writing Settings from Modem...</source>
         <translation>Запись Настроек в Модем...</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="295"/>
+        <location filename="mainwindow.cpp" line="299"/>
         <source>Load Settings file</source>
         <translation>Загрузка файла настроек</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="297"/>
-        <location filename="mainwindow.cpp" line="314"/>
+        <location filename="mainwindow.cpp" line="301"/>
+        <location filename="mainwindow.cpp" line="318"/>
         <source>ZixLink settings (*.zcfg)</source>
         <translation>Настроки ZixLink (*.zcfg)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="305"/>
+        <location filename="mainwindow.cpp" line="309"/>
         <source>Fail to load settings</source>
         <translation>Ошибка при загрузке настроек</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="312"/>
+        <location filename="mainwindow.cpp" line="316"/>
         <source>Save Settings file</source>
         <translation>Файл для сохранение настроек</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="322"/>
+        <location filename="mainwindow.cpp" line="326"/>
         <source>Fail to save settings</source>
         <translation>Ошибка при сохранении настроек</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="333"/>
+        <location filename="mainwindow.cpp" line="337"/>
         <source>Writing default Modem settings...</source>
         <translation>Запись в Модем Заводских Настроек...</translation>
     </message>
@@ -1740,7 +1765,7 @@
         <translation>Подключение...</translation>
     </message>
     <message>
-        <location filename="zchanneldirectserial.cpp" line="53"/>
+        <location filename="zchanneldirectserial.cpp" line="54"/>
         <source>Fail to communicate with the Modem</source>
         <oldsource>Fail to communicate with meter</oldsource>
         <translation>Ошибка коммуникации с Модемом</translation>

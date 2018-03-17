@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MetCOM</string>
+   <string>TGlobal</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -4246,7 +4246,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#groupConnection{background-color:lightblue;}</string>
+     <string notr="true">#groupConnection{background-color:rgb(35, 70, 117);}</string>
     </property>
     <property name="title">
      <string/>
@@ -4362,10 +4362,20 @@
     <addaction name="separator"/>
     <addaction name="menuLanguage"/>
    </widget>
+   <widget class="QMenu" name="menuContacts">
+    <property name="title">
+     <string>Contacts</string>
+    </property>
+    <addaction name="actionTechoGrid_LLC"/>
+    <addaction name="action8_800_550_0822"/>
+    <addaction name="actionwww_technogrid_ru"/>
+    <addaction name="actionwww_tg_market_ru"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuDevice"/>
    <addaction name="menuOptions"/>
    <addaction name="menuTools"/>
+   <addaction name="menuContacts"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="sizeGripEnabled">
@@ -4466,6 +4476,26 @@
   <action name="actionInfo">
    <property name="text">
     <string>Info</string>
+   </property>
+  </action>
+  <action name="actionTechoGrid_LLC">
+   <property name="text">
+    <string>TechoGrid LLC</string>
+   </property>
+  </action>
+  <action name="action8_800_550_0822">
+   <property name="text">
+    <string>8(800)550-0822</string>
+   </property>
+  </action>
+  <action name="actionwww_technogrid_ru">
+   <property name="text">
+    <string>www.technogrid.ru</string>
+   </property>
+  </action>
+  <action name="actionwww_tg_market_ru">
+   <property name="text">
+    <string>www.tg-market.ru</string>
    </property>
   </action>
  </widget>
