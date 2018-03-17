@@ -5,7 +5,7 @@
 #define MyAppVersion "1.0.5"
 #define MyAppPublisher "ZixLink"
 #define MyAppURL "http://zixlink.com"
-#define MyAppExeName "MetCOM.exe"
+#define MyAppExeName "TGlobal.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
